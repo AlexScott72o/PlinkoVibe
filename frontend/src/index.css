@@ -9,16 +9,28 @@
   line-height: 1.5;
   font-weight: 400;
   color: #fff;
-  background: linear-gradient(180deg, #2d1b4e 0%, #1a0a2e 100%);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  background: url(/plinko-background.png) center center / cover no-repeat fixed;
+  background-color: #1a0a2e;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 10, 46, 0.7) 0%, rgba(26, 10, 46, 0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 #root {
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 button {
@@ -43,7 +55,16 @@ input {
   padding: 0.5rem 0;
 }
 
-.logo {
+.logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.logo-text {
   margin: 0;
   font-size: 1.5rem;
   font-weight: 700;
@@ -115,21 +136,35 @@ input {
   fill: #fff;
 }
 
-.ball {
-  fill: #f0c14b;
-  stroke: #fff;
-  stroke-width: 1;
+.ball-wrap {
+  pointer-events: none;
+}
+
+.ball-img {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .slot {
-  fill: rgba(255, 255, 255, 0.15);
-  stroke: rgba(255, 255, 255, 0.4);
+  stroke: rgba(255, 255, 255, 0.35);
   stroke-width: 1;
 }
 
+.slot-low {
+  fill: rgba(255, 200, 100, 0.25);
+}
+
+.slot-mid {
+  fill: rgba(255, 140, 60, 0.3);
+}
+
+.slot-high {
+  fill: rgba(220, 60, 50, 0.35);
+}
+
 .slot-result {
-  fill: rgba(240, 193, 75, 0.4);
+  fill: rgba(240, 193, 75, 0.5);
   stroke: #f0c14b;
+  stroke-width: 2;
 }
 
 .slot-text {

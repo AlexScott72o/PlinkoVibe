@@ -58,12 +58,20 @@ export function Ball({ rows, slotIndex, onPegHit, onLand, onComplete }: BallProp
 
   if (position === null) return null;
 
+  const size = 24;
+  const x = position.x - size / 2;
+  const y = position.y - size / 2;
+
   return (
-    <circle
-      cx={position.x}
-      cy={position.y}
-      r={10}
-      className="ball"
-    />
+    <g className="ball-wrap">
+      <image
+        href="/plinko-ball.png"
+        x={x}
+        y={y}
+        width={size}
+        height={size}
+        className="ball-img"
+      />
+    </g>
   );
 }

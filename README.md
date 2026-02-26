@@ -58,13 +58,17 @@ You can also call `GET /api/history?sessionId=...&limit=N` to fetch the last N r
 3. **Option A** (Vite proxy from desktop): On your iOS device, open `http://<LAN-IP>:5173`. The frontend will load; API requests go to the same host (Vite proxies `/api` to the backend). Your dev server must be bound to all interfaces (Vite’s `server.host: true` is set).
 4. **Option B**: Set `VITE_API_BASE_URL=http://<LAN-IP>:4000` in `.env`, rebuild or run dev, then on iOS open `http://<LAN-IP>:5173`. The client will call the backend at the LAN IP directly.
 
-## Asset generation (Gemini)
+## Assets and imagery
 
-To generate design and sound briefs (and optionally use them to create images/sounds):
+**Pre-made game imagery** (background, logo, ball) is in `frontend/public/` and is used automatically. You can replace these files to change the look without code changes.
+
+**Without a Gemini API key:** You can generate new imagery with Cursor’s built-in image tool (or any AI image generator). Ask the assistant to create assets that match the game style (e.g. purple/blue gradient background, gold logo “Plinko Go!”, glossy ball). Save outputs to `assets/` and copy into `frontend/public/` so the app serves them.
+
+**With Gemini (optional):** To generate design and sound briefs:
 
 1. Get an API key from [Google AI Studio](https://aistudio.google.com/app/apikey).
 2. Run: `GEMINI_API_KEY=your_key node scripts/generate-assets.js`
-3. Output is written to `assets/` (`design-brief.md`, `sound-descriptions.md`). Use these to commission or generate visuals and SFX; place image/audio files in `assets/` or `frontend/public/sounds/` and reference them in the app.
+3. Output is written to `assets/` (`design-brief.md`, `sound-descriptions.md`). Use these to commission or generate more visuals and SFX; place image/audio files in `assets/` or `frontend/public/` and reference them in the app.
 
 ## Security
 

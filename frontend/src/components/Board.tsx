@@ -72,14 +72,16 @@ export function Board({ rows, riskLevel, paytables, resultSlotIndex, onPegHit, o
         {/* Slots */}
         {multipliers.length > 0 && (
           <g transform={`translate(0, ${pegPositions.length ? pegPositions[pegPositions.length - 1].y + 24 : 80})`}>
-            {multipliers.map((mult, i) => (
+            {multipliers.map((mult, i) => {
+              const tier = mult >= 5 ? 'high' : mult >= 1.5 ? 'mid' : 'low';
+              return (
               <g key={i}>
                 <rect
                   x={i * slotWidth + 2}
                   y={0}
                   width={slotWidth - 4}
                   height={SLOT_HEIGHT}
-                  className={resultSlotIndex === i ? 'slot slot-result' : 'slot'}
+                  className={`slot slot-${tier} ${resultSlotIndex === i ? 'slot-result' : ''}`}
                 />
                 <text
                   x={i * slotWidth + slotWidth / 2}
@@ -90,7 +92,8 @@ export function Board({ rows, riskLevel, paytables, resultSlotIndex, onPegHit, o
                   {mult}x
                 </text>
               </g>
-            ))}
+            );
+            })}
           </g>
         )}
       </svg>
