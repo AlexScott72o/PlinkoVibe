@@ -1,0 +1,17 @@
+[
+  {
+    "sessionId": "bc8d9e93-8c15-47cb-a512-37087f253819",
+    "balance": 1000,
+    "createdAt": 1772102905408
+  },
+  {
+    "sessionId": "692891b3-786e-4621-b04b-f915005903dc",
+    "balance": 1000,
+    "createdAt": 1772102909719
+  },
+  {
+    "sessionId": "f9df7880-0836-4bdc-85be-38255ff9354d",
+    "balance": 1004.6,
+    "createdAt": 1772102913464
+  }
+]

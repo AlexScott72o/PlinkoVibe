@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/sound.ts","./src/vite-env.d.ts","./src/components/ball.tsx","./src/components/board.tsx","./src/components/controls.tsx","./src/hooks/useplinko.ts","./src/plinko/animation.ts"],"version":"5.9.3"}
