@@ -50,7 +50,7 @@ function App() {
     return (
       <div className="app">
         <header className="header">
-          <h1 className="logo-text">Plinko Go!</h1>
+          <h1 className="logo-text">PlinkoVibe</h1>
         </header>
         <p className="loading">Loading…</p>
       </div>
@@ -60,7 +60,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <img src="/plinko-logo.png" alt="Plinko Go!" className="logo-img" />
+        <img src="/plinko-logo.png" alt="PlinkoVibe" className="logo-img" />
         <button
           type="button"
           className="btn-mute"

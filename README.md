@@ -1,4 +1,4 @@
-# Plinko Go!
+# PlinkoVibe
 
 A browser-based Plinko casino game with a simple Remote Gaming Server (RGS) backend. The front-end never computes outcomes; the server is authoritative for RNG, paytables, and balance.
 
@@ -62,7 +62,7 @@ You can also call `GET /api/history?sessionId=...&limit=N` to fetch the last N r
 
 **Pre-made game imagery** (background, logo, ball) is in `frontend/public/` and is used automatically. You can replace these files to change the look without code changes.
 
-**Without a Gemini API key:** You can generate new imagery with Cursor’s built-in image tool (or any AI image generator). Ask the assistant to create assets that match the game style (e.g. purple/blue gradient background, gold logo “Plinko Go!”, glossy ball). Save outputs to `assets/` and copy into `frontend/public/` so the app serves them.
+**Without a Gemini API key:** You can generate new imagery with Cursor’s built-in image tool (or any AI image generator). Ask the assistant to create assets that match the game style (e.g. purple/blue gradient background, gold logo “PlinkoVibe”, glossy ball). Save outputs to `assets/` and copy into `frontend/public/` so the app serves them.
 
 **With Gemini (optional):** To generate design and sound briefs:
 

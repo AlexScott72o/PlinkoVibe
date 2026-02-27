@@ -25,7 +25,7 @@ async function main() {
     console.log('No GEMINI_API_KEY set. Writing placeholder design files.');
     fs.writeFileSync(
       path.join(ASSETS_DIR, 'design-brief.md'),
-      `# Plinko Go – Design Brief (placeholder)
+      `# PlinkoVibe – Design Brief (placeholder)
 
 Run with GEMINI_API_KEY to generate:
 - Color palette and visual style (purple/blue gradient, gold accents, white pegs)
@@ -59,9 +59,9 @@ Run script with GEMINI_API_KEY to generate AI descriptions.
     const genAI = new GoogleGenerativeAI(API_KEY);
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const designPrompt = `You are a game artist. For a browser-based Plinko casino game called "Plinko Go", output a short design brief (markdown) that includes:
+    const designPrompt = `You are a game artist. For a browser-based Plinko casino game called "PlinkoVibe", output a short design brief (markdown) that includes:
 1. Color palette: primary and accent hex codes (e.g. purple/blue gradient background, gold/yellow accents, white pegs).
-2. Asset list: what to draw or generate (background, peg sprite, ball, logo text "Plinko Go!", button panels).
+2. Asset list: what to draw or generate (background, peg sprite, ball, logo text "PlinkoVibe", button panels).
 3. Style: modern, polished casino feel; cohesive with the palette.
 Keep it under 300 words. Output only the markdown, no preamble.`;
 

@@ -1,4 +1,4 @@
-# Plinko Go – Design Brief (placeholder)
+# PlinkoVibe – Design Brief (placeholder)
 
 Run with GEMINI_API_KEY to generate:
 - Color palette and visual style (purple/blue gradient, gold accents, white pegs)

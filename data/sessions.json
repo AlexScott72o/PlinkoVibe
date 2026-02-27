@@ -13,5 +13,25 @@
     "sessionId": "f9df7880-0836-4bdc-85be-38255ff9354d",
     "balance": 1004.6,
     "createdAt": 1772102913464
+  },
+  {
+    "sessionId": "2d0f5572-120a-4da9-ba02-4ed33585b6a0",
+    "balance": 1000,
+    "createdAt": 1772210341616
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "balance": 1002.5,
+    "createdAt": 1772210341623
+  },
+  {
+    "sessionId": "9a774dad-fd8a-4a3f-a103-83692d6e5567",
+    "balance": 1000,
+    "createdAt": 1772210345098
+  },
+  {
+    "sessionId": "8194e31a-eacd-4091-bcc7-0f68066801ea",
+    "balance": 1035.6999999999996,
+    "createdAt": 1772210345100
   }
 ]
