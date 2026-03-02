@@ -39,6 +39,7 @@ Copy `.env.example` to `.env` and set values as needed.
 
 - **Location**: `backend/src/plinko/config.ts` (and any JSON you add under `backend/src/plinko/config/`).
 - **Allowed rows**: 8, 10, 12, 14. **Risk levels**: low, medium, high.
+- All configs are validated on load: **RTP must be between 90% and 100%** (so the house never has negative edge). See `verifyRTP()` in config.
 - To add another **RTP variant** (e.g. 98.98%): add or switch to a different set of multiplier/weight tables keyed by (rows, risk). No change to bet flow code—only data.
 
 ## RTP inspection

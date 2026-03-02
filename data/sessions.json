@@ -33,5 +33,15 @@
     "sessionId": "8194e31a-eacd-4091-bcc7-0f68066801ea",
     "balance": 1035.6999999999996,
     "createdAt": 1772210345100
+  },
+  {
+    "sessionId": "999d0fb6-f62f-4da1-b634-3a5dc018eda8",
+    "balance": 1000,
+    "createdAt": 1772457002961
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "balance": 1000,
+    "createdAt": 1772457002973
   }
 ]
