@@ -21,7 +21,7 @@
   },
   {
     "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
-    "balance": 1000.22,
+    "balance": 999.58,
     "createdAt": 1772210341623
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
-    "balance": 486.9639999999998,
+    "balance": 482.7739999999997,
     "createdAt": 1772457002973
   },
   {
@@ -53,5 +53,15 @@
     "sessionId": "c16fa066-fc1f-4305-8b99-5f94d4791659",
     "balance": 1000,
     "createdAt": 1772546455717
+  },
+  {
+    "sessionId": "4ac4f713-f9c9-4197-b301-b6141248b96a",
+    "balance": 1000,
+    "createdAt": 1772551955589
+  },
+  {
+    "sessionId": "fe87ac45-44ae-409a-8c8b-a13f6274ee69",
+    "balance": 1000,
+    "createdAt": 1772551955591
   }
 ]

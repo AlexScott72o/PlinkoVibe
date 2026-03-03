@@ -1,18 +1,26 @@
 /**
- * Deterministic path for ball animation. Path is computed from server outcome (slotIndex)
- * only — no client-side RNG. Used purely for visual; outcome is already fixed by server.
+ * Ball animation: deterministic path from server outcome (slotIndex).
  *
- * Path uses bounce points (tangent to each peg) plus via points in the gap between
- * consecutive pegs, so every segment stays strictly outside all peg circles.
+ * Approach:
+ * - Path is a sequence of waypoints that go *around* pegs (never over). Bounce
+ *   points are tangent to pegs with clearance; via points sit in the gap between
+ *   pegs; initial approach uses side waypoints so the drop never crosses the top peg.
+ * - Motion is smooth interpolation along these waypoints (smoothstep per segment)
+ *   so the ball decelerates into each peg and accelerates out, with no separate
+ *   bounce overlay. Single, consistent motion along a safe path.
  */
 
 const BOARD_WIDTH = 320;
-const PEG_R = 1.5; /* 75% smaller than original 6; must match Board peg radius */
+const PEG_R = 1.5; /* must match Board peg radius */
+const DROP_START_OFFSET = 28; /* ball appears and starts above the top peg */
+const PATH_CLEARANCE = 2.5; /* min distance from peg so ball graphic never overlaps */
 
 export interface PathPoint {
   x: number;
   y: number;
   rowIndex: number;
+  /** Outward normal from peg at bounce (so ball bounces away, never overlaps). */
+  bounceNormal?: { x: number; y: number };
 }
 
 function normalize(dx: number, dy: number): { x: number; y: number } {
@@ -69,7 +77,7 @@ export function getPath(rows: number, slotIndex: number, ballRadius: number): Pa
   const slotWidth = BOARD_WIDTH / slots;
   const rowHeight = slotWidth * 0.85;
   const startY = 24;
-  const d = PEG_R + ballRadius;
+  const d = PEG_R + ballRadius + PATH_CLEARANCE;
   const R = d + 4;
 
   const startCol = Math.floor(rows / 2);
@@ -98,12 +106,35 @@ export function getPath(rows: number, slotIndex: number, ballRadius: number): Pa
       x: peg.x + d * n.x,
       y: peg.y + d * n.y,
       rowIndex: r,
+      bounceNormal: n,
     };
     target = bouncePts[r];
   }
 
   const points: PathPoint[] = [];
-  points.push({ x: BOARD_WIDTH / 2, y: startY, rowIndex: 0 });
+  const centerX = BOARD_WIDTH / 2;
+  points.push({ x: centerX, y: startY - DROP_START_OFFSET, rowIndex: 0 });
+
+  // Approach first peg from the side so the ball never passes over the peg.
+  const peg0 = pegPosition(0, pathCols[0], slotWidth, rowHeight, startY);
+  const n0 = bouncePts[0].bounceNormal!;
+  const side = Math.abs(n0.x) > 0.05 ? n0.x : 1;
+  const margin = d + 3;
+  points.push({
+    x: centerX + margin * side,
+    y: startY - 6,
+    rowIndex: 0,
+  });
+  points.push({
+    x: peg0.x + (d + 2) * n0.x,
+    y: startY - 2,
+    rowIndex: 0,
+  });
+  points.push({
+    x: peg0.x + (d + 2) * n0.x,
+    y: peg0.y + (d + 2) * n0.y,
+    rowIndex: 0,
+  });
 
   for (let r = 0; r < rows; r++) {
     points.push(bouncePts[r]);
@@ -115,17 +146,62 @@ export function getPath(rows: number, slotIndex: number, ballRadius: number): Pa
     }
   }
   points.push({ x: slotCenter.x, y: slotCenter.y, rowIndex: rows });
+
+  const minDist = d;
+  const pegCenters: { x: number; y: number }[] = [];
+  for (let r = 0; r < rows; r++) {
+    pegCenters.push(pegPosition(r, pathCols[r], slotWidth, rowHeight, startY));
+  }
+
+  const maxSubdiv = 50;
+  let inserted = true;
+  let iterations = 0;
+  while (inserted && iterations < maxSubdiv) {
+    inserted = false;
+    iterations++;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i];
+      const p1 = points[i + 1];
+      if (!p0 || !p1) continue;
+      const dx = p1.x - p0.x;
+      const dy = p1.y - p0.y;
+      const len = Math.hypot(dx, dy);
+      if (len < 1e-6) continue;
+
+      for (const peg of pegCenters) {
+        const toP0 = p0.x - peg.x;
+        const toP0y = p0.y - peg.y;
+        const t = Math.max(0, Math.min(1, -(toP0 * dx + toP0y * dy) / (len * len)));
+        const closestX = p0.x + t * dx;
+        const closestY = p0.y + t * dy;
+        const dist = Math.hypot(closestX - peg.x, closestY - peg.y);
+        if (dist < minDist && dist > 1e-6) {
+          const out = (minDist + 1 - dist) / dist;
+          const mid: PathPoint = {
+            x: closestX + (closestX - peg.x) * out,
+            y: closestY + (closestY - peg.y) * out,
+            rowIndex: p0.rowIndex,
+          };
+          points.splice(i + 1, 0, mid);
+          inserted = true;
+          break;
+        }
+      }
+      if (inserted) break;
+    }
+  }
+
   return points.filter((p): p is PathPoint => p != null && typeof p.x === 'number' && typeof p.y === 'number');
 }
 
-/** Ease-in-out: slow at segment ends (bounce points), faster in middle. */
-function segmentEase(t: number): number {
+/** Smoothstep: slow at segment ends (at pegs), faster in middle — mimics contact. */
+function smoothstep(t: number): number {
   return t * t * (3 - 2 * t);
 }
 
 /**
- * Interpolate along the path with straight segments only (no curve).
- * So the ball never enters peg circles: it moves in lines between tangent points.
+ * Interpolate along the path by arc length so progress is proportional to distance.
+ * Avoids pauses when subdivision creates many short segments (e.g. after the first peg).
  */
 export function interpolatePath(
   path: PathPoint[],
@@ -138,16 +214,31 @@ export function interpolatePath(
   const numSegments = path.length - 1;
   if (numSegments <= 0) return last ? { x: last.x, y: last.y } : { x: 0, y: 0 };
 
-  const segProgress = progress * numSegments;
-  const segIndex = Math.min(Math.floor(segProgress), numSegments - 1);
-  const t = segProgress - segIndex;
-  const easedT = segmentEase(t);
+  const lengths: number[] = [0];
+  for (let i = 0; i < numSegments; i++) {
+    const p0 = path[i];
+    const p1 = path[i + 1];
+    const segLen = p0 && p1 ? Math.hypot(p1.x - p0.x, p1.y - p0.y) : 0;
+    lengths.push(lengths[lengths.length - 1] + segLen);
+  }
+  const totalLen = lengths[lengths.length - 1];
+  if (totalLen < 1e-9) return last ? { x: last.x, y: last.y } : { x: 0, y: 0 };
+
+  const target = progress * totalLen;
+  let segIndex = 0;
+  while (segIndex < numSegments - 1 && lengths[segIndex + 1] <= target) segIndex++;
+  const segStart = lengths[segIndex];
+  const segEnd = lengths[segIndex + 1];
+  const segLen = segEnd - segStart;
+  const t = segLen < 1e-9 ? 1 : (target - segStart) / segLen;
+  const s = smoothstep(Math.max(0, Math.min(1, t)));
 
   const p0 = path[segIndex];
   const p1 = path[segIndex + 1];
   if (!p0 || !p1) return last ? { x: last.x, y: last.y } : { x: 0, y: 0 };
+
   return {
-    x: p0.x + (p1.x - p0.x) * easedT,
-    y: p0.y + (p1.y - p0.y) * easedT,
+    x: p0.x + (p1.x - p0.x) * s,
+    y: p0.y + (p1.y - p0.y) * s,
   };
 }

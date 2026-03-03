@@ -10,14 +10,15 @@ interface BoardProps {
   rows: number;
   riskLevel: RiskLevel;
   paytables: Record<string, number[]>;
-  activeBalls: ActiveBall[];
+  activeBalls?: ActiveBall[] | null;
   animationDurationMs: number;
   onBallComplete: (roundId: number) => void;
   onPegHit?: (rowIndex: number) => void;
   onLand?: () => void;
 }
 
-export function Board({ rows, riskLevel, paytables, activeBalls, animationDurationMs, onBallComplete, onPegHit, onLand }: BoardProps) {
+export function Board({ rows, riskLevel, paytables, activeBalls = [], animationDurationMs, onBallComplete, onPegHit, onLand }: BoardProps) {
+  const balls = activeBalls ?? [];
   const [landedRoundIds, setLandedRoundIds] = useState<Set<number>>(new Set());
   const [activePegs, setActivePegs] = useState<number[]>([]);
 
@@ -33,7 +34,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls, animationDurati
 
   useEffect(() => {
     setActivePegs([]);
-  }, [activeBalls]);
+  }, [balls]);
 
   const key = `${rows}_${riskLevel}`;
   const multipliers = paytables[key] ?? [];
@@ -53,7 +54,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls, animationDurati
       }
       y += rowHeight;
     }
-    // Align slot row with ball path: ball lands at 24 + rows*rowHeight + 12
     const slotGroupY = 18 + rows * rowHeight;
     return { pegPositions: positions, slotWidth, slotGroupY };
   }, [rows]);
@@ -61,7 +61,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls, animationDurati
   return (
     <div className="board-wrap">
       <svg
-        viewBox={`0 0 320 ${pegPositions.length ? slotGroupY + SLOT_HEIGHT + 40 : 200}`}
+        viewBox={`0 -40 320 ${pegPositions.length ? slotGroupY + SLOT_HEIGHT + 80 : 240}`}
         className="board-svg"
         preserveAspectRatio="xMidYMin meet"
         style={{ overflow: 'visible' }}
@@ -116,7 +116,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls, animationDurati
             </g>
           );
         })}
-        {activeBalls.map((ball) => (
+        {balls.map((ball) => (
           <Ball
             key={ball.roundId}
             rows={ball.rows}
@@ -132,7 +132,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls, animationDurati
           <g transform={`translate(0, ${slotGroupY})`}>
             {multipliers.map((mult, i) => {
               const tier = mult >= 5 ? 'high' : mult >= 1.5 ? 'mid' : 'low';
-              const showAsResult = activeBalls.some((b) => b.slotIndex === i && landedRoundIds.has(b.roundId));
+              const showAsResult = balls.some((b) => b.slotIndex === i && landedRoundIds.has(b.roundId));
               const landedClass = showAsResult ? `landed-${tier}` : '';
               const slotX = i * slotWidth + 2;
               const slotW = slotWidth - 4;

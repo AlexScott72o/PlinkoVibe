@@ -69,7 +69,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <img src="/plinko-logo.png" alt="PlinkoVibe" className="logo-img" />
+        <h1 className="logo-text">PlinkoVibe</h1>
         <button
           type="button"
           className="btn-mute"

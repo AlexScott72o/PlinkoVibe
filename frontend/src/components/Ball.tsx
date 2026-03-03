@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { getPath, interpolatePath, type PathPoint } from '@/plinko/animation';
 
 const BOARD_WIDTH = 320;
-const EASE = (t: number) => t * (2 - t); // ease-out quadratic
+/** Ease-in-out cubic: smooth acceleration at drop, smooth deceleration at land. */
+const EASE = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
 /** Ball diameter so it stays smaller than the gap between pegs in any row config. */
 function ballSizeForRows(rows: number): number {
@@ -59,12 +60,9 @@ export function Ball({ rows, slotIndex, durationMs, onPegHit, onLand, onComplete
 
       let pos: { x: number; y: number };
       try {
-        if (!hasPaintedAtStartRef.current) {
-          pos = interpolatePath(path, 0);
-          hasPaintedAtStartRef.current = true;
-        } else {
-          pos = interpolatePath(path, eased);
-        }
+        const progressForPath = hasPaintedAtStartRef.current ? eased : 0;
+        pos = interpolatePath(path, progressForPath);
+        if (!hasPaintedAtStartRef.current) hasPaintedAtStartRef.current = true;
       } catch {
         rafRef.current = requestAnimationFrame(tick);
         return;
@@ -76,9 +74,10 @@ export function Ball({ rows, slotIndex, durationMs, onPegHit, onLand, onComplete
         return newTrail;
       });
 
-      const pathLen = pathRef.current.length - 1;
-      for (let r = 0; r < rows; r++) {
-        const threshold = (2 * r + 1) / pathLen;
+      const pathLen = path.length - 1;
+      const bounceIndices = path.map((p, i) => (p.bounceNormal ? i : -1)).filter((i) => i >= 0);
+      for (let r = 0; r < rows && r < bounceIndices.length; r++) {
+        const threshold = bounceIndices[r] / pathLen;
         if (eased >= threshold && !pegHitRef.current.has(r)) {
           pegHitRef.current.add(r);
           onPegHitRef.current?.(r);
