@@ -14,8 +14,6 @@ interface ControlsProps {
   playing: boolean;
   onPlay: () => void;
   error: string | null;
-  autoplay: boolean;
-  setAutoplay: (v: boolean) => void;
   balance: number;
 }
 
@@ -34,8 +32,6 @@ export function Controls({
   playing,
   onPlay,
   error,
-  autoplay,
-  setAutoplay,
   balance,
 }: ControlsProps) {
   const rowsList = config?.rows ?? [8, 10, 12, 14];
@@ -151,21 +147,8 @@ export function Controls({
           onClick={onPlay}
           disabled={!canBet && error !== 'Insufficient balance'}
         >
-          {playing ? '...' : 'BET'}
+          {playing ? '...' : `BET ${Number.isInteger(betAmount) ? betAmount : betAmount.toFixed(2)}`}
         </button>
-        
-        <div className="autoplay-wrap">
-          <span className="control-label" style={{ margin: 0 }}>Autoplay</span>
-          <label className="toggle-switch">
-            <input
-              type="checkbox"
-              checked={autoplay}
-              onChange={(e) => setAutoplay(e.target.checked)}
-              disabled={playing}
-            />
-            <span className="toggle-slider"></span>
-          </label>
-        </div>
       </div>
     </div>
   );

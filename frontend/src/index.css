@@ -405,9 +405,9 @@ input:disabled + .toggle-slider {
   stroke-width: 1;
 }
 
-.slot-low { fill: rgba(0, 229, 255, 0.15); }
+.slot-low { fill: rgba(255, 0, 127, 0.25); }
 .slot-mid { fill: rgba(112, 0, 255, 0.2); }
-.slot-high { fill: rgba(255, 0, 127, 0.25); }
+.slot-high { fill: rgba(0, 229, 255, 0.15); }
 
 .slot-result {
   fill: rgba(0, 229, 255, 0.4);
@@ -416,7 +416,9 @@ input:disabled + .toggle-slider {
 }
 
 .slot-result.landed-low {
-  animation: win-pulse-low 0.5s ease-out;
+  animation: win-flash-magenta 0.5s ease-out;
+  fill: var(--color-accent-magenta);
+  stroke: #FFF;
 }
 
 .slot-result.landed-mid {
@@ -426,8 +428,8 @@ input:disabled + .toggle-slider {
 }
 
 .slot-result.landed-high {
-  animation: win-flash-magenta 1s ease-out;
-  fill: var(--color-accent-magenta);
+  animation: win-flash-cyan 1s ease-out;
+  fill: var(--color-accent-cyan);
   stroke: #FFF;
 }
 
@@ -547,9 +549,34 @@ input:disabled + .toggle-slider {
 }
 
 .btn-play {
+  font-family: 'Orbitron', var(--font-primary);
+  font-weight: 700;
   width: 100%;
   padding: 1rem;
   font-size: 1.25rem;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.25);
+}
+
+.btn-play:not(:disabled) {
+  animation: bet-glow-pulse 2s ease-in-out infinite;
+}
+
+.btn-play:hover:not(:disabled) {
+  box-shadow: 0 0 28px rgba(0, 229, 255, 0.7), 0 0 50px rgba(0, 229, 255, 0.35);
+}
+
+.btn-play:disabled {
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes bet-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(0, 229, 255, 0.7), 0 0 55px rgba(0, 229, 255, 0.35);
+  }
 }
 
 .autoplay-wrap {

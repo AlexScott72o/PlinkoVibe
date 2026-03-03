@@ -5,9 +5,9 @@ import * as api from '../api';
 export type AnimationSpeed = 'slow' | 'regular' | 'turbo';
 
 export const ANIMATION_SPEED_MS: Record<AnimationSpeed, number> = {
-  slow: 5000,
-  regular: 3000,
-  turbo: 750,
+  slow: 10000,
+  regular: 6000,
+  turbo: 1500,
 };
 
 export interface ActiveBall {
@@ -49,8 +49,6 @@ export function usePlinko() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
-  const [autoplay, setAutoplay] = useState(false);
-
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -114,9 +112,6 @@ export function usePlinko() {
       setTimeout(() => {
         setPlaying(false);
         placingRef.current = false;
-        if (autoplayRef.current && result.balance >= betAmount) {
-          setTimeout(placeBet, 800);
-        }
       }, animationEndMs);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Bet failed');
@@ -125,8 +120,6 @@ export function usePlinko() {
     }
   }, [sessionId, config, playing, betAmount, balance, rows, riskLevel, animationSpeed]);
 
-  const autoplayRef = useRef(autoplay);
-  autoplayRef.current = autoplay;
   const placingRef = useRef(false);
 
   const onBallComplete = useCallback((roundId: number) => {
@@ -158,7 +151,5 @@ export function usePlinko() {
     error,
     playing,
     placeBet,
-    autoplay,
-    setAutoplay,
   };
 }

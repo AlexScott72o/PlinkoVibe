@@ -26,8 +26,6 @@ function App() {
     error,
     playing,
     placeBet,
-    autoplay,
-    setAutoplay,
   } = usePlinko();
 
   const [muted, setMutedState] = useState(isMuted);
@@ -106,8 +104,6 @@ function App() {
             playing={playing}
             onPlay={placeBet}
             error={error}
-            autoplay={autoplay}
-            setAutoplay={setAutoplay}
             balance={balance}
           />
         </aside>

@@ -3218,5 +3218,95 @@
     "win": 1.25,
     "balance": 482.7739999999997,
     "timestamp": 1772553088536
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1a724608-a574-4d69-9cb5-1cdfe45e173c",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.35,
+    "win": 0.35,
+    "balance": 482.12399999999974,
+    "timestamp": 1772553903789
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "70b5ff71-9663-409c-965e-41fc1686f81f",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.2,
+    "win": 0.2,
+    "balance": 481.3239999999997,
+    "timestamp": 1772553913972
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4385ba27-9319-4575-bd16-c4af8bd0c2fb",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.2,
+    "win": 0.2,
+    "balance": 480.5239999999997,
+    "timestamp": 1772554031319
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "73f0adb6-e314-45e0-b680-402a8181da95",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.2,
+    "win": 0.2,
+    "balance": 479.7239999999997,
+    "timestamp": 1772554036328
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "83d3a0bd-feb7-40f5-921b-86ed7a044759",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.5,
+    "win": 0.5,
+    "balance": 479.2239999999997,
+    "timestamp": 1772554039007
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "roundId": "d0f79033-d9b3-4268-bfe1-115c1231aebd",
+    "bet": 2.0000000000000004,
+    "slotIndex": 3,
+    "multiplier": 1.2,
+    "win": 2.4000000000000004,
+    "balance": 999.98,
+    "timestamp": 1772554295935
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1881ab0f-595c-432d-9276-7f60b1eed75b",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.4,
+    "win": 0.4,
+    "balance": 478.6239999999997,
+    "timestamp": 1772554437980
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c87eabac-a7b8-49ee-ad42-59ea3e8d43e6",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.6,
+    "win": 0.6,
+    "balance": 478.2239999999997,
+    "timestamp": 1772554441882
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "f8723293-a249-4ee7-a571-27426db6a63a",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.6,
+    "win": 0.6,
+    "balance": 477.8239999999997,
+    "timestamp": 1772554450049
   }
 ]
