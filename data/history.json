@@ -188,5 +188,2615 @@
     "win": 3.5,
     "balance": 1002.5,
     "timestamp": 1772210696619
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "79a090ee-75c0-4e57-a1bf-de5f2dc68c88",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 999.64,
+    "timestamp": 1772536320518
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0a568788-62c5-460e-8415-9e466c567437",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 1000.64,
+    "timestamp": 1772536323261
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "74fe7d2c-1dac-4766-8d67-7e6e7e1194b1",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 1000.28,
+    "timestamp": 1772536323971
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8942960d-a725-4ebd-961d-9df8ccf86176",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 999.92,
+    "timestamp": 1772536324499
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "98832670-d554-4811-a013-557ba0b61d64",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.16,
+    "win": 0.16,
+    "balance": 999.0799999999999,
+    "timestamp": 1772536331555
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "bf6d673b-1702-45e6-9209-3b4b761bad2b",
+    "bet": 221.2,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 148.204,
+    "balance": 926.0839999999998,
+    "timestamp": 1772536374808
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "481a202f-6143-4293-8f5a-0ba12b964572",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 925.7239999999998,
+    "timestamp": 1772537827724
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b4bcd488-2e56-485f-9a47-629d38a68255",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 925.3639999999998,
+    "timestamp": 1772537832149
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "164a433f-3594-4245-b190-02028556867e",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 925.0039999999998,
+    "timestamp": 1772537834506
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d69843dd-d1af-48ee-b95b-c4a8a1313f8f",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.6439999999998,
+    "timestamp": 1772537893275
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3f234bdd-a5eb-45c4-8105-54b712edac21",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.2839999999998,
+    "timestamp": 1772537898615
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "7377e9fa-1a90-454e-8c44-f49ab5a28add",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 923.9239999999998,
+    "timestamp": 1772537902842
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8ac1057f-03c2-4999-8f5a-99f89a0bb1da",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 923.5639999999997,
+    "timestamp": 1772537906966
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "77e9bc2c-455c-426a-9b5a-e4b8e32248aa",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 923.2039999999997,
+    "timestamp": 1772537974751
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "41c64737-109e-4957-87d6-4e3bbb5c5e5a",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 924.2039999999997,
+    "timestamp": 1772537976760
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "357875cc-f112-4ccb-9b91-403717347936",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 925.2039999999997,
+    "timestamp": 1772538516337
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "30b4393a-5a67-4afa-b61f-16004b3b048b",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.8439999999997,
+    "timestamp": 1772538519909
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b020592c-f9df-4c88-b97f-d23d26d0f250",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.4839999999997,
+    "timestamp": 1772538522371
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "69433cf2-f0cd-482a-bf9e-3845743343df",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 924.7339999999997,
+    "timestamp": 1772538524648
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "08f8a656-af27-411a-b5be-6cd606132e36",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.3739999999997,
+    "timestamp": 1772538909280
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "daf24c48-d844-4998-a3ed-6033dc6b3048",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.0139999999997,
+    "timestamp": 1772538912226
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5db2f74c-ba47-462a-a1a9-e709326a01a4",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 923.6539999999997,
+    "timestamp": 1772538914701
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "251b6d68-d0a3-4443-9e6e-7682cd1a3afd",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 923.9039999999997,
+    "timestamp": 1772538917209
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "75e5cab3-b382-4ba7-b043-9c398d5f2adb",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 5.59,
+    "win": 5.59,
+    "balance": 928.4939999999997,
+    "timestamp": 1772538925417
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5760f631-d848-488d-bca7-ed283e2cf8d4",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 928.1639999999996,
+    "timestamp": 1772538927252
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c4391df9-bde3-43af-88c2-4121fa5e270f",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 928.1139999999997,
+    "timestamp": 1772538930045
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0a92dbe1-652e-4a46-97dc-5727ed003c59",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 927.7839999999997,
+    "timestamp": 1772538932552
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0a2596b4-2e72-44bc-a270-718a42454ce4",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 0.7,
+    "win": 0.7,
+    "balance": 927.4839999999997,
+    "timestamp": 1772538958805
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "7d6ca8b0-601f-4b78-9d9b-8eeee38692c8",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.4,
+    "win": 0.4,
+    "balance": 926.8839999999997,
+    "timestamp": 1772539006786
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0939e519-11e2-4834-b0d9-fdceb5b84adb",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 3,
+    "win": 3,
+    "balance": 928.8839999999997,
+    "timestamp": 1772539010362
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e47b8895-0eec-4d9c-90f8-88822c37fafd",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 1.3,
+    "win": 1.3,
+    "balance": 929.1839999999996,
+    "timestamp": 1772539013725
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "74075208-f3e3-4f0a-96ce-2c9efd551b9d",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 3,
+    "win": 3,
+    "balance": 931.1839999999996,
+    "timestamp": 1772539016432
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d139cb0a-740b-4296-a187-aeff95152323",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 1.3,
+    "win": 1.3,
+    "balance": 931.4839999999996,
+    "timestamp": 1772539017377
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "47261da5-d39a-4314-9423-38d9f550996b",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.7,
+    "win": 0.7,
+    "balance": 931.1839999999996,
+    "timestamp": 1772539020251
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8adba1e3-ee91-46dc-aa0f-2967d5b3462c",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.7,
+    "win": 0.7,
+    "balance": 930.8839999999997,
+    "timestamp": 1772539022604
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "991e885b-37de-440c-975c-ae07cc7bf9ed",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 5.59,
+    "win": 5.59,
+    "balance": 935.4739999999997,
+    "timestamp": 1772539558336
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d6d855d6-8535-40ed-952a-0508f9b6a7f2",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 935.1439999999997,
+    "timestamp": 1772539560442
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4d005301-73c0-42c2-b028-fc69636f137d",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 934.5939999999997,
+    "timestamp": 1772539563476
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2eb95c43-4fc3-4abc-aa9a-6b54d76420f1",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 934.2639999999997,
+    "timestamp": 1772539566173
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "41635729-d4f5-45b6-b4a4-f974538beec3",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 934.5139999999997,
+    "timestamp": 1772539571634
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0b7257d8-f9c6-42c2-bf45-ba048a70a196",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 934.1839999999996,
+    "timestamp": 1772539574876
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "89730e2d-48a5-49af-be8e-75a5d5d5b4c1",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 933.6339999999997,
+    "timestamp": 1772539579157
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d1227ca9-eec6-45a6-84b7-112d3f406253",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 933.3039999999996,
+    "timestamp": 1772539579966
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "035ec5fd-02c0-42dd-a614-fd5599889c39",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 932.9739999999996,
+    "timestamp": 1772539580778
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9ae065a6-695f-4e2c-8467-e4dc8735f8ae",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 932.9239999999996,
+    "timestamp": 1772539581586
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "37cae9b6-b87e-4caa-aa71-5dffeb220cde",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 932.5939999999996,
+    "timestamp": 1772539582395
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "74003a8f-209e-496f-a35b-d94b72a8f8f0",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 932.9339999999996,
+    "timestamp": 1772539583206
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "622c2101-8e21-49de-9739-69e80d7e433b",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 933.2739999999997,
+    "timestamp": 1772539584015
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dc6a07a8-ff20-4c32-9fa4-144e1f122990",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 932.9439999999996,
+    "timestamp": 1772539584826
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b5d7ac54-e60f-4482-81ad-4b9e9b575a80",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 932.3939999999997,
+    "timestamp": 1772539587752
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "90d3d399-fef1-42ef-96f3-579f4b0bdfbc",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 931.7539999999997,
+    "timestamp": 1772539749638
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "57bdf2e1-ce7d-4985-b178-457a16379dc8",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 931.3939999999997,
+    "timestamp": 1772539756251
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e04a7ed2-252d-48b2-8a7e-929ecc84a209",
+    "bet": 1,
+    "slotIndex": 10,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 931.7339999999997,
+    "timestamp": 1772539762132
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "6f572693-7db8-47a9-a559-9d62afc4bacc",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 931.1839999999997,
+    "timestamp": 1772539764695
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "156ff7d7-ee77-4206-9c08-fa50790635eb",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 931.1339999999998,
+    "timestamp": 1772539767189
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "78b4bcdd-ac3e-4fba-94be-a4b69a6aea28",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 930.8039999999997,
+    "timestamp": 1772539882256
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8d17bc85-64d2-4b21-a79f-60193c1c65c0",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 930.7539999999998,
+    "timestamp": 1772539885045
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1786b2e4-1abb-479b-bb43-fab72288f306",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 930.4239999999998,
+    "timestamp": 1772539897057
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b4176033-5bfc-400b-a556-8ecc63cbb6d5",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 929.8739999999998,
+    "timestamp": 1772539897869
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "22fcee55-32a0-4e7c-b81b-e1cea62a356b",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 929.5439999999998,
+    "timestamp": 1772539904790
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d6e81f20-2871-4773-90b7-bf641d519a08",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 928.9039999999998,
+    "timestamp": 1772539927156
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e4cacfcc-04a8-4a18-bcc3-cae715223611",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 928.5439999999998,
+    "timestamp": 1772539929822
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "00be67d7-28d6-41b6-891a-2e532bd3f9ee",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 928.1839999999997,
+    "timestamp": 1772539932430
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "bd957967-1e21-415d-865e-e1a3020e3ad7",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 927.8239999999997,
+    "timestamp": 1772539934585
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "13d064b9-4021-4038-a5b5-22b5ca1b7e7f",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 928.0739999999997,
+    "timestamp": 1772539936881
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "400e54c7-91b5-4a68-afcd-43ad047ecd29",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 927.7439999999997,
+    "timestamp": 1772540088703
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9c22a911-e270-4f74-8cd0-c662a797f83a",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 927.4139999999996,
+    "timestamp": 1772540091373
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0a42357b-cab7-4634-a32d-4bba1a27167b",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 926.8039999999996,
+    "timestamp": 1772540097966
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d8670731-849c-43b4-99e6-4816741213c2",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.7,
+    "win": 0.7,
+    "balance": 926.5039999999997,
+    "timestamp": 1772540100478
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "86b9dec8-5792-47b8-9d93-b1d80d492eae",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 926.1239999999997,
+    "timestamp": 1772540105487
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1d78d344-0689-4a5b-928f-16a825c449e7",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.92,
+    "win": 0.92,
+    "balance": 926.0439999999996,
+    "timestamp": 1772540125530
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "89de832c-6f8a-4e86-9f94-3dc41980d276",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 925.4339999999996,
+    "timestamp": 1772540313408
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "13b62b71-0a83-4ab4-abf0-5e869a08c906",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 925.0539999999996,
+    "timestamp": 1772540315648
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "ed7864aa-bd1a-4667-a4de-029f8aff0757",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 924.6739999999996,
+    "timestamp": 1772540317900
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "382875b1-33d1-4dd4-9645-6fc56518bb8b",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 924.2939999999996,
+    "timestamp": 1772540637157
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c03f2264-4f2f-4050-9b1a-085a5be3d546",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 923.6539999999997,
+    "timestamp": 1772540641451
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dd15d1e0-50a1-4c7b-97e0-63bbc7075c22",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 923.0139999999997,
+    "timestamp": 1772540646249
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8802feb6-78f5-42a9-803f-f78ceb508fe2",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 922.6539999999997,
+    "timestamp": 1772540647312
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "79ab97cd-145f-4f0c-884b-560c732dcb19",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 922.0139999999997,
+    "timestamp": 1772540880711
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "755371e0-671f-415e-a046-e8412ec2cbe5",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 922.2639999999997,
+    "timestamp": 1772540884369
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0b0e387a-578f-4d71-95ce-f35037052a44",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 5.2,
+    "win": 5.2,
+    "balance": 926.4639999999997,
+    "timestamp": 1772540885348
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e76f5fe7-216f-42f6-9dc7-bb47ef837ebb",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 926.1039999999997,
+    "timestamp": 1772541408957
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1fd1d8d0-21de-432c-9447-784cc11d2ec1",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 925.7739999999997,
+    "timestamp": 1772541458953
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "38586a22-2504-4ea9-8274-5ac7bf1401f2",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 925.4439999999996,
+    "timestamp": 1772541461847
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0f834998-6502-4c52-b813-51dff0072285",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 925.3939999999997,
+    "timestamp": 1772541462625
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "a257db2a-5eff-4e53-8e60-9f74d4ee7612",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 925.0639999999996,
+    "timestamp": 1772541463564
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5e573d32-407f-48d0-b18b-c38b7d474c55",
+    "bet": 1,
+    "slotIndex": 10,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 925.4039999999997,
+    "timestamp": 1772541464386
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "89042b41-0634-4d4a-b416-1387b22bb833",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 924.8539999999997,
+    "timestamp": 1772541466971
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "70fbccd5-4fc7-4ec9-b4f4-c04b710501a7",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 924.5239999999997,
+    "timestamp": 1772541468607
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "056d2150-4cc6-4689-a8d2-6076fc3125fd",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 924.4739999999997,
+    "timestamp": 1772541476479
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9ce45107-2103-4678-8a25-60d6f50e5890",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 924.1139999999997,
+    "timestamp": 1772541601023
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d9084d1b-78c4-4383-83e7-7f56b6948c44",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 923.7539999999997,
+    "timestamp": 1772541602769
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "f94ea48b-65fd-4246-887e-0462cd5e67ef",
+    "bet": 100,
+    "slotIndex": 7,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 943.7539999999997,
+    "timestamp": 1772541628773
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "61dd2a3a-ccfb-46b0-a35c-7613b2dd01cf",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.48,
+    "win": 48,
+    "balance": 891.7539999999997,
+    "timestamp": 1772541630121
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "03282733-4fb0-4a9b-a9c8-280b4f3e8022",
+    "bet": 100,
+    "slotIndex": 7,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 911.7539999999997,
+    "timestamp": 1772541632021
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "76f1eb43-c94d-4cb6-8b9f-df7ed12153f3",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.48,
+    "win": 48,
+    "balance": 859.7539999999997,
+    "timestamp": 1772541651883
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d2260f1d-d284-47c7-b3a3-e89c3cbcfbd1",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.48,
+    "win": 48,
+    "balance": 807.7539999999997,
+    "timestamp": 1772541654259
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dab03378-30e0-4481-b42a-079f3e27f757",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.12,
+    "win": 12,
+    "balance": 719.7539999999997,
+    "timestamp": 1772541657838
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "26ede6f4-e747-4caf-afdb-f9c887fa4563",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.12,
+    "win": 12,
+    "balance": 631.7539999999997,
+    "timestamp": 1772541801780
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dc4a2a8e-4143-4f75-9d96-d8859c73ebef",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.12,
+    "win": 12,
+    "balance": 543.7539999999997,
+    "timestamp": 1772541803663
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2165004d-582f-485f-a273-1588e0c5e02f",
+    "bet": 100,
+    "slotIndex": 7,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 563.7539999999997,
+    "timestamp": 1772541810699
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c9981868-de2a-43a1-9b82-8ca71d1fc81f",
+    "bet": 100,
+    "slotIndex": 4,
+    "multiplier": 0.48,
+    "win": 48,
+    "balance": 511.7539999999997,
+    "timestamp": 1772541823551
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "a7504efa-a10d-413d-8b60-c0278afdb1c6",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 511.39399999999966,
+    "timestamp": 1772541892011
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "65cd33bf-20dd-4f99-a816-8e05535f3a4e",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 512.3939999999997,
+    "timestamp": 1772541896763
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3888f665-28b6-4c5d-b515-34404c95fbdc",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 512.6439999999997,
+    "timestamp": 1772541980866
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1d49e94a-330f-4d1b-9c82-2e10766ab162",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 512.2839999999997,
+    "timestamp": 1772541984636
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "f55c3ce3-5806-48e2-9d58-c295d9185596",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 512.5339999999997,
+    "timestamp": 1772542023826
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3d9ecdef-1af3-44c2-a6f4-804093dde2f2",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 512.1739999999996,
+    "timestamp": 1772542025755
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8818ff7d-fefb-4404-9fd9-421ef6c5a681",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 513.1739999999996,
+    "timestamp": 1772542030038
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0ee6aab7-c346-46ed-8d06-b6e5dfe7b40e",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 512.8139999999996,
+    "timestamp": 1772542217039
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "89e11e3b-80c8-4b2b-a0ef-51d0567030ba",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 513.0639999999996,
+    "timestamp": 1772542219568
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "18bf74eb-2768-4e53-b781-4afde197da52",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 513.3139999999996,
+    "timestamp": 1772542220334
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "202720d2-3381-4969-b4ae-2c9505dd14e1",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 5.2,
+    "win": 5.2,
+    "balance": 517.5139999999997,
+    "timestamp": 1772542221620
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "01c4adb7-2af1-4fbe-83f8-9184f91e1f82",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 517.1539999999997,
+    "timestamp": 1772542222634
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e44ef10a-66fb-4954-b14b-11191836d5f6",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 516.5139999999997,
+    "timestamp": 1772542223450
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8d3b7719-564c-4c26-9f4f-23c8a046085a",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 516.1539999999997,
+    "timestamp": 1772542226792
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5329580b-53f8-4f8e-b2ac-3408dc83a761",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 515.5139999999997,
+    "timestamp": 1772542227361
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9149fc9a-8df6-430a-b551-6f5560fa122d",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 514.8739999999997,
+    "timestamp": 1772542227603
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "bc241d3b-990e-4fe3-9553-34fb6a705672",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 514.5139999999997,
+    "timestamp": 1772542227831
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "cf37fd5c-e5f4-4d7c-b33c-9b82f555232b",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 514.1539999999997,
+    "timestamp": 1772542230442
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "57c904e3-a614-440c-bc79-77d996b676f5",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 514.4039999999997,
+    "timestamp": 1772542232999
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "62831fdc-ba97-45cb-885e-5623b34662ac",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 513.8539999999997,
+    "timestamp": 1772542237851
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "09a0b33d-9864-48dc-b12c-b68f3a38b4ae",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 513.8039999999997,
+    "timestamp": 1772542239613
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "ada8fb87-dc40-44a7-ba22-4531fe1078ef",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 513.2539999999998,
+    "timestamp": 1772542241377
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0e9cde6a-a117-4fc7-b9c1-3900381fcf2a",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 2.8,
+    "win": 2.8,
+    "balance": 515.0539999999997,
+    "timestamp": 1772542244255
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "7ce93423-823a-48b5-a209-e7a60823cdec",
+    "bet": 1,
+    "slotIndex": 10,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 515.3939999999998,
+    "timestamp": 1772542246007
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "39ba954a-194a-4a3a-8a47-970afd466872",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 515.3439999999998,
+    "timestamp": 1772542318413
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e2726ae4-124f-4a7c-9416-56761c947885",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 514.7939999999999,
+    "timestamp": 1772542320889
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3cf28d77-dd71-46fa-b8e0-3ee5e0513baa",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 2.8,
+    "win": 2.8,
+    "balance": 516.5939999999998,
+    "timestamp": 1772542323294
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dfd59654-9424-42d5-971c-d64448092f90",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 516.5439999999999,
+    "timestamp": 1772542326261
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3c139e8b-f9ed-4314-b5cb-cb0f7905f9b6",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 516.2139999999998,
+    "timestamp": 1772542328810
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2149bd9e-a306-4d8d-b256-83c6fc272bb6",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 515.8839999999998,
+    "timestamp": 1772542331277
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5929c0a9-9627-45a6-a77c-30651b4b89da",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 515.3339999999998,
+    "timestamp": 1772542333976
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "437c5c6b-68e6-43d2-9df6-4bcd4d9d662d",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 515.0039999999998,
+    "timestamp": 1772542336707
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b6e8d9e9-a911-445e-8190-1cb3b1248ea0",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 514.9539999999998,
+    "timestamp": 1772542339235
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "33ef9305-bc46-47b7-8166-b16321094bb4",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 514.4039999999999,
+    "timestamp": 1772542348024
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "ec8fa7d4-e048-44e9-9b35-5b63d27ebd65",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 514.3539999999999,
+    "timestamp": 1772542350218
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "35df4531-6174-4203-8b1e-00c9a3223bac",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 513.804,
+    "timestamp": 1772542350936
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c2f6ffc2-ace2-4b9a-9561-c59d3cb44152",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 513.4739999999999,
+    "timestamp": 1772542353953
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "03e604d5-7b74-442b-b9c5-4efba8079954",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 513.1439999999999,
+    "timestamp": 1772542354580
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "7282a766-04c1-48bb-91c8-2e877ed310ca",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 512.8139999999999,
+    "timestamp": 1772542357346
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d2b6d09d-5796-4d7a-ae07-e2e991e96cd6",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 512.7639999999999,
+    "timestamp": 1772542476325
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0f28720a-7ea8-468c-b798-d70597c174ec",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 512.2139999999999,
+    "timestamp": 1772542478529
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dd3fa564-e605-42ab-8769-26ac6dd43f61",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.09,
+    "win": 0.09,
+    "balance": 511.3039999999999,
+    "timestamp": 1772542482346
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2db1d2a0-7d54-4c09-9f32-3d91252c330c",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 510.6939999999999,
+    "timestamp": 1772542484919
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0c2bb1b7-5b0a-4a07-bb7d-09723c537839",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 510.0539999999999,
+    "timestamp": 1772542538457
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "bc13f4b2-8cf1-48e0-aa2c-59fce52a8802",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 509.41399999999993,
+    "timestamp": 1772542542118
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0e47f20e-658d-4ee2-b9e7-3e71a7f5bca8",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 508.8039999999999,
+    "timestamp": 1772542545451
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5d845cd4-ef6b-4b2e-9db4-17e6672e904b",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 509.0539999999999,
+    "timestamp": 1772542744093
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8824b63c-a37d-4fee-bdf8-4cdbc4f96362",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 509.3039999999999,
+    "timestamp": 1772542746899
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "537d3070-a093-41e9-8923-fbfd92d37d85",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.1,
+    "win": 0.1,
+    "balance": 508.40399999999994,
+    "timestamp": 1772542751729
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5fb660eb-627c-406f-90a7-57bad79f6d58",
+    "bet": 1,
+    "slotIndex": 10,
+    "multiplier": 1.56,
+    "win": 1.56,
+    "balance": 508.96399999999994,
+    "timestamp": 1772542754427
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "a157ec6b-ce8f-4716-9c28-e81018f5d6e6",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.16,
+    "win": 0.16,
+    "balance": 508.12399999999997,
+    "timestamp": 1772542866511
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "165557ab-7ef6-4fe2-9955-187cd192e88c",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 507.76399999999995,
+    "timestamp": 1772542972470
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8ec4292d-b4e2-483d-8dab-cf402384cd41",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 508.01399999999995,
+    "timestamp": 1772542979047
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "24c5b01f-9082-4a96-8304-89f0c526856c",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 507.65399999999994,
+    "timestamp": 1772542983302
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "739e0ef9-9cfd-4a80-91c6-2b00539ea7e3",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 507.2939999999999,
+    "timestamp": 1772542988852
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "da7c97f3-5a3c-484a-85dc-b39fc7faccf9",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 507.5439999999999,
+    "timestamp": 1772542992461
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0a16095d-fe7f-486a-b650-d5848e3b84b9",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 507.1839999999999,
+    "timestamp": 1772543203389
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "fd0f0ffa-377d-4d40-b2db-47eef350a981",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 506.5439999999999,
+    "timestamp": 1772543292375
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4189a91b-e326-4a9c-b9f4-d821eff2a6f4",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 505.9939999999999,
+    "timestamp": 1772543347964
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c59af030-7a0e-48e4-8cca-ae68660ef228",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 505.66399999999993,
+    "timestamp": 1772543351005
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0b7a6b7f-6b4e-400d-8b98-2ed6d4177353",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 505.1139999999999,
+    "timestamp": 1772543361726
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "dee7b615-6814-4128-91d4-08f526c2f3f3",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 504.78399999999993,
+    "timestamp": 1772543368461
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1e910763-1399-4afc-a79e-686de52242a1",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 504.45399999999995,
+    "timestamp": 1772543375434
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "7755a118-775f-4d36-83a0-d42ebba337a0",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 504.12399999999997,
+    "timestamp": 1772543382142
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3b4619bd-61f9-48e5-a68b-132520c86d3c",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 503.76399999999995,
+    "timestamp": 1772543593920
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8a034b90-1e13-4ba2-8c44-02129b2ae0e6",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 503.40399999999994,
+    "timestamp": 1772543599826
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9af8efb2-5fda-458d-a318-ad25bc7cdbb2",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 503.65399999999994,
+    "timestamp": 1772543602282
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0af2494b-9cdb-4c57-acf8-87b837e6788b",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 503.01399999999995,
+    "timestamp": 1772543606954
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5e1b2d89-7aed-4831-a95e-4efc84e05b05",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 502.65399999999994,
+    "timestamp": 1772543620940
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5449c9d5-8b49-4d96-b734-e7883f1c44bf",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 502.2939999999999,
+    "timestamp": 1772543626130
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "6171e1c5-86c6-48b4-a2e3-13b7a6977aa5",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 502.5439999999999,
+    "timestamp": 1772543628608
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "acb82b31-5bb3-4c1e-ae09-290146aad4ac",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 501.90399999999994,
+    "timestamp": 1772543630835
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "0d86f6cf-c49c-469c-b39c-f208eb069829",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 501.26399999999995,
+    "timestamp": 1772543633668
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "73cfa20c-bf8e-4176-bff2-2aeea47028fc",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 500.90399999999994,
+    "timestamp": 1772543638862
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b6bf2f53-c8a1-4a5b-9cc3-227c50dacbcc",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 500.5439999999999,
+    "timestamp": 1772543881002
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "435ba03f-2f22-4f07-8faa-229de02cff4d",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 499.90399999999994,
+    "timestamp": 1772543885990
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "723105b5-a191-4715-8bac-6c1ca77c4b56",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 499.5439999999999,
+    "timestamp": 1772543890944
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1f8d1249-45d8-4b78-a20e-06e048dc1178",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 499.1839999999999,
+    "timestamp": 1772544136063
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8413c6b1-aab8-4023-9fe7-faf4e97cdfdf",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.92,
+    "win": 0.92,
+    "balance": 499.1039999999999,
+    "timestamp": 1772544142561
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4cbc54a6-92d2-4545-a671-ab123c3a8157",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 499.3539999999999,
+    "timestamp": 1772544148400
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8c979d97-c79c-4840-ba39-00e4d2190f86",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.4,
+    "win": 0.4,
+    "balance": 498.7539999999999,
+    "timestamp": 1772544153586
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "456f0083-f9c9-438a-814f-95026e81df78",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 499.7539999999999,
+    "timestamp": 1772544159050
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "fd6dd0c6-d802-4f3e-b3b0-056c959bbf3d",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 499.1439999999999,
+    "timestamp": 1772544164161
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8dd3a212-342c-4214-80ca-34aaf879bb7b",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 498.8139999999999,
+    "timestamp": 1772544171696
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d55df0da-d6f3-4b35-b4bc-2fd754ad8277",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 498.1739999999999,
+    "timestamp": 1772544347952
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4c0ebcaa-d697-4873-930a-05620bbf3c59",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 497.8139999999999,
+    "timestamp": 1772544352119
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9fb14245-fcec-4f16-9e9c-4fba51258e2e",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 497.4539999999999,
+    "timestamp": 1772544356818
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4465ab3e-0562-4477-ba02-9ff0a945f6f8",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 497.0939999999999,
+    "timestamp": 1772544361325
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "682bc322-a4e3-4544-9363-15dff2868fd8",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 497.3439999999999,
+    "timestamp": 1772546032353
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b6221142-2a1a-49b7-8f6e-35eb9a811931",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 496.98399999999987,
+    "timestamp": 1772546060727
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "07e51054-eb3b-4647-a9f3-c6049bbb9b88",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 496.3439999999999,
+    "timestamp": 1772546065252
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1795c6a6-53dd-4328-8fef-55cf4c492281",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 495.98399999999987,
+    "timestamp": 1772546069802
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "80e499bb-1ed3-441a-88b8-b7a3e818f383",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 495.3439999999999,
+    "timestamp": 1772546089279
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "fb0524bd-2ab6-411d-acd7-174b309af6fa",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 495.5939999999999,
+    "timestamp": 1772546093739
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9d322df6-b846-4ac4-b6c9-11000f33b63a",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 495.23399999999987,
+    "timestamp": 1772546098695
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "981b20f5-d82e-4870-a896-294c7049b7ab",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 494.5939999999999,
+    "timestamp": 1772546105073
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "abacdab9-e8b4-4217-8c17-4e222b7da5ac",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 5.2,
+    "win": 5.2,
+    "balance": 498.79399999999987,
+    "timestamp": 1772546108064
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e4919e3c-7f11-4b7d-bb5c-2994fd7f6063",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 498.43399999999986,
+    "timestamp": 1772546112710
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "92a0029f-a5b8-4dad-8d86-f936e2249e81",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 498.07399999999984,
+    "timestamp": 1772546117195
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5d98ee95-9c53-4d45-a483-2bcaedbc1938",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 497.43399999999986,
+    "timestamp": 1772546289773
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "08cdaac7-aa05-490e-b700-5feee97123a0",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 496.79399999999987,
+    "timestamp": 1772546294265
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "f7c29d2b-ebbd-4a36-875f-9216e2117e76",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 496.1539999999999,
+    "timestamp": 1772546299379
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3393cf75-1456-42b7-8a4a-871666588418",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 495.79399999999987,
+    "timestamp": 1772546304482
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9c2db3b2-5f23-4838-ac65-5a1d817f3c29",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 495.1539999999999,
+    "timestamp": 1772546609376
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b9c980b0-3fd4-4a1a-9f69-1054fcd0ac19",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 494.79399999999987,
+    "timestamp": 1772546614140
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "roundId": "d9a366b3-b8d9-4a3c-b0c3-ce88b7243689",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 1001.86,
+    "timestamp": 1772546647176
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "roundId": "0884e774-55a8-41b9-b83a-7f8de321d46c",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 1001.5,
+    "timestamp": 1772546696667
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "roundId": "860739f9-6bb2-41f8-8601-2504c005ec59",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 1000.86,
+    "timestamp": 1772546701670
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4ecad0d5-4e59-44de-b9c9-b78d29fee7d5",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 494.1539999999999,
+    "timestamp": 1772546880764
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "a661f34d-9f39-4eae-9f08-9ce1b40ca8de",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 493.79399999999987,
+    "timestamp": 1772546885509
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "20e72623-1854-47d3-a49e-812967800dfd",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 493.43399999999986,
+    "timestamp": 1772546890415
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "006d9598-811b-4f0c-9678-316dbb0afc75",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 492.79399999999987,
+    "timestamp": 1772546895146
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e50aa06a-ca7e-4c03-b241-68f6d569fae2",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 493.79399999999987,
+    "timestamp": 1772546903272
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5090f80a-d390-48bf-9c06-e92fb22f9dd3",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 494.04399999999987,
+    "timestamp": 1772546905510
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "6b4af558-ac49-4707-8391-7f4529046904",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 493.4039999999999,
+    "timestamp": 1772546907696
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8b988a30-d518-4b71-88ac-bcbda37a7ab3",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 493.04399999999987,
+    "timestamp": 1772546909856
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "42be4749-948b-4c48-9709-6b6ad06421c2",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 492.68399999999986,
+    "timestamp": 1772546912178
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1ce4919f-ab28-42f2-ba20-8920879f7dab",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 492.04399999999987,
+    "timestamp": 1772546914346
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "470b03ce-e963-4469-9002-d09894129e02",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 491.68399999999986,
+    "timestamp": 1772546916550
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "482c6d76-75ac-4038-aeea-6126891e15d3",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 491.93399999999986,
+    "timestamp": 1772547012148
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2bb6f0c5-7441-48d7-81a4-798164d7b9d4",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 492.18399999999986,
+    "timestamp": 1772547029964
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "48cd38f8-6eaf-4925-a184-34352e26cabc",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 491.54399999999987,
+    "timestamp": 1772547125098
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c1750f2e-98c5-4b8c-95ed-053609489718",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 490.9039999999999,
+    "timestamp": 1772547128886
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "3aa9a946-1144-4a65-84e3-11250af199c6",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 490.54399999999987,
+    "timestamp": 1772547134091
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "72af1c69-a4a6-4115-ad35-cb316d96585d",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 490.79399999999987,
+    "timestamp": 1772547139091
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "eeed1d75-466f-40f3-bf22-3cdf7c746942",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 490.43399999999986,
+    "timestamp": 1772547143624
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "ec1603b0-3613-46c9-8810-601acff30427",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 490.68399999999986,
+    "timestamp": 1772547148195
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2e544b6d-83fa-4dd6-a9e6-15ea41fb1bd7",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 490.32399999999984,
+    "timestamp": 1772547153107
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d4f9030f-fa06-410b-9935-72a3f2c62dfd",
+    "bet": 1,
+    "slotIndex": 2,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 491.32399999999984,
+    "timestamp": 1772547157602
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "9597a60e-7252-4dc0-b9de-905db2b2fbe7",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 490.68399999999986,
+    "timestamp": 1772547650212
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c9f94fad-abdf-40a0-a006-1d46fd6101b8",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 490.32399999999984,
+    "timestamp": 1772547655796
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "edfe9583-8770-4dd6-a331-71bcdaf59103",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.92,
+    "win": 0.92,
+    "balance": 490.24399999999986,
+    "timestamp": 1772547660207
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e163dec2-eb56-46ad-b813-35c8929b2beb",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 489.86399999999986,
+    "timestamp": 1772547705151
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "d407b082-7144-432a-90c4-d0764b0deeca",
+    "bet": 1,
+    "slotIndex": 9,
+    "multiplier": 1.93,
+    "win": 1.93,
+    "balance": 490.79399999999987,
+    "timestamp": 1772547713447
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "c13e6039-da93-4dbc-8aca-268df02cac2e",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 490.18399999999986,
+    "timestamp": 1772547715839
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "2e63683d-4be1-4933-8d28-d5fc5f596f64",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 489.80399999999986,
+    "timestamp": 1772547718041
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "1fe2ea00-b937-48ff-bf4f-064207426ab2",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 0.92,
+    "win": 0.92,
+    "balance": 489.7239999999999,
+    "timestamp": 1772547720264
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "572b890a-92fa-488a-bba1-120e23d13f76",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 489.11399999999986,
+    "timestamp": 1772547722455
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b2b32cd2-3e0d-4e54-87f5-c45e5aa65a10",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.39,
+    "win": 0.39,
+    "balance": 488.50399999999985,
+    "timestamp": 1772547724405
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "560d1237-c59d-4174-af22-e93409222819",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.62,
+    "win": 0.62,
+    "balance": 488.12399999999985,
+    "timestamp": 1772547727902
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "70cdafbb-ade3-4a13-80c9-164e441f7d64",
+    "bet": 1,
+    "slotIndex": 10,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 488.4639999999998,
+    "timestamp": 1772547730717
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "e7a7e7b0-9ec2-47dc-8534-f4cb46764b47",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 488.13399999999984,
+    "timestamp": 1772547732890
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "02395c14-ccbe-4bca-9f50-5c9419c61313",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 487.80399999999986,
+    "timestamp": 1772547735038
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "4fda356c-0d86-4c3e-9c17-97fd0f950c70",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 0.45,
+    "win": 0.45,
+    "balance": 487.25399999999985,
+    "timestamp": 1772547737239
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "cbaae64d-a6d3-4a85-bd35-f4538ec1a983",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.67,
+    "win": 0.67,
+    "balance": 486.92399999999986,
+    "timestamp": 1772547739211
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8e606885-c16c-4e6e-a2a4-862948ee063e",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 1.34,
+    "win": 1.34,
+    "balance": 487.26399999999984,
+    "timestamp": 1772547741370
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "898e175f-1a8a-45d0-b93d-9a4444352565",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.95,
+    "win": 0.95,
+    "balance": 487.2139999999998,
+    "timestamp": 1772547743342
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "fe964f38-af7b-47a3-b3d6-ff0d55f798c0",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 488.2139999999998,
+    "timestamp": 1772548131094
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "cc46415b-2c1c-41fd-8bbf-b47adea66c0e",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 488.4639999999998,
+    "timestamp": 1772548135879
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "42886fad-dc46-4532-bee9-d149466dcfd9",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 487.82399999999984,
+    "timestamp": 1772548142494
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "604212a7-64cc-4ac4-ab9f-287c8d74df4f",
+    "bet": 1,
+    "slotIndex": 6,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 487.4639999999998,
+    "timestamp": 1772548146594
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "8b23455d-063d-4e20-af20-250e9a1fa909",
+    "bet": 1,
+    "slotIndex": 8,
+    "multiplier": 2,
+    "win": 2,
+    "balance": 488.4639999999998,
+    "timestamp": 1772548152522
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "452eb2f6-0aaf-4784-b739-16946332d15e",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 488.1039999999998,
+    "timestamp": 1772548157219
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "16b04581-31ed-4c75-ba3a-db846c5f9cbf",
+    "bet": 1,
+    "slotIndex": 3,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 488.3539999999998,
+    "timestamp": 1772548161887
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "04bac476-7510-4fbc-b7c9-307d9e6f39d3",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 487.7139999999998,
+    "timestamp": 1772548589816
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b59a8b0c-2023-4e34-814d-fdb38418f089",
+    "bet": 1,
+    "slotIndex": 4,
+    "multiplier": 0.64,
+    "win": 0.64,
+    "balance": 487.3539999999998,
+    "timestamp": 1772548594347
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "5f2150eb-f351-4bbf-b453-26b3a94fc794",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 486.7139999999998,
+    "timestamp": 1772548599127
+  },
+  {
+    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
+    "roundId": "b4f0cdd0-2da3-48ca-afbb-0940d8ee3935",
+    "bet": 1,
+    "slotIndex": 7,
+    "multiplier": 1.25,
+    "win": 1.25,
+    "balance": 486.9639999999998,
+    "timestamp": 1772548603762
+  },
+  {
+    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
+    "roundId": "aa168d9a-cc3c-4154-b929-71211dcd2767",
+    "bet": 1,
+    "slotIndex": 5,
+    "multiplier": 0.36,
+    "win": 0.36,
+    "balance": 1000.22,
+    "timestamp": 1772548643067
   }
 ]

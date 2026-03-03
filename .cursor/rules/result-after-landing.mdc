@@ -1,0 +1,16 @@
+---
+description: Result is only known to the player after the ball lands
+globs: 
+alwaysApply: true
+---
+
+# Result visibility rule
+
+**The result is only ever known to the player AFTER the ball lands in the final slot.**
+
+- Do not highlight the result slot until the ball has landed (e.g. `onLand` has fired / `landed` state is true).
+- Do not update the displayed balance until the ball has landed (delay balance update to match animation landing time).
+- Do not add the outcome to the Results list until the ball has landed.
+- Any other UI that reveals the outcome (win amount, slot, etc.) must wait until the ball has landed.
+
+The server outcome is available when the bet API returns, but the client must not reveal it to the player until the ball animation has reached the slot.
