@@ -1,5 +1,4 @@
 import type { ConfigResponse, RiskLevel } from 'shared';
-import type { AnimationSpeed } from '../hooks/usePlinko';
 
 interface ControlsProps {
   config: ConfigResponse | null;
@@ -9,15 +8,11 @@ interface ControlsProps {
   setRows: (v: number) => void;
   riskLevel: RiskLevel;
   setRiskLevel: (v: RiskLevel) => void;
-  animationSpeed: AnimationSpeed;
-  setAnimationSpeed: (v: AnimationSpeed) => void;
   playing: boolean;
   onPlay: () => void;
   error: string | null;
   balance: number;
 }
-
-const SPEED_OPTIONS: AnimationSpeed[] = ['slow', 'regular', 'turbo'];
 
 export function Controls({
   config,
@@ -27,8 +22,6 @@ export function Controls({
   setRows,
   riskLevel,
   setRiskLevel,
-  animationSpeed,
-  setAnimationSpeed,
   playing,
   onPlay,
   error,
@@ -96,7 +89,7 @@ export function Controls({
               onClick={() => setRiskLevel(r)}
               disabled={playing}
             >
-              {r}
+              {r.charAt(0).toUpperCase() + r.slice(1)}
             </button>
           ))}
         </div>
@@ -118,23 +111,6 @@ export function Controls({
               disabled={playing}
             >
               {r}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="control-group">
-        <span className="control-label">Speed</span>
-        <div className="row-selectors">
-          {SPEED_OPTIONS.map((s) => (
-            <button
-              key={s}
-              type="button"
-              className={`btn btn-secondary ${animationSpeed === s ? 'active-low' : ''}`}
-              onClick={() => setAnimationSpeed(s)}
-              disabled={playing}
-            >
-              {s.charAt(0).toUpperCase() + s.slice(1)}
             </button>
           ))}
         </div>

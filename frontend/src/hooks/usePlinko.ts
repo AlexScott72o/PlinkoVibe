@@ -102,17 +102,7 @@ export function usePlinko() {
         setActiveBalls((balls) => [...balls, { roundId: nextRoundId, slotIndex: result.slotIndex, rows }]);
         return { outcome: result, roundId: nextRoundId };
       });
-      const durationMs = ANIMATION_SPEED_MS[animationSpeed];
-      const animationEndMs = durationMs + 1000; // match Board: hide ball after trail
-      // Result is only known to the player after the ball lands
-      setTimeout(() => {
-        setBalance(result.balance);
-        setLastResults((prev) => [result, ...prev].slice(0, 5));
-      }, durationMs);
-      setTimeout(() => {
-        setPlaying(false);
-        placingRef.current = false;
-      }, animationEndMs);
+      pendingResultRef.current = result;
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Bet failed');
       setPlaying(false);
@@ -121,12 +111,21 @@ export function usePlinko() {
   }, [sessionId, config, playing, betAmount, balance, rows, riskLevel, animationSpeed]);
 
   const placingRef = useRef(false);
+  const pendingResultRef = useRef<BetResponse | null>(null);
 
   const onBallComplete = useCallback((roundId: number) => {
-    const delayMs = ANIMATION_SPEED_MS[animationSpeedRef.current] + 1000;
+    const result = pendingResultRef.current;
+    if (result) {
+      setBalance(result.balance);
+      setLastResults((prev) => [result, ...prev].slice(0, 5));
+      pendingResultRef.current = null;
+    }
+    setPlaying(false);
+    placingRef.current = false;
+    const removeBallDelayMs = 400;
     setTimeout(() => {
       setActiveBalls((prev) => prev.filter((b) => b.roundId !== roundId));
-    }, delayMs);
+    }, removeBallDelayMs);
   }, []);
 
   return {

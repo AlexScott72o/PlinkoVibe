@@ -1,9 +1,12 @@
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import type { RiskLevel } from 'shared';
 import type { ActiveBall } from '@/hooks/usePlinko';
+import { getPegPositions, getSlotXBounds } from '@/plinko/boardLayout';
 import { Ball } from './Ball';
 
-const PEG_R = 1.5; /* 75% smaller than original 6 */
+const BOARD_W = 320;
+const ROW_HEIGHT_FACTOR = 0.78;
+const PEG_R = 2.304; /* 20% larger than 1.92, matches physics scale */
 const SLOT_HEIGHT = 36;
 
 interface BoardProps {
@@ -39,23 +42,13 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   const key = `${rows}_${riskLevel}`;
   const multipliers = paytables[key] ?? [];
 
-  const { pegPositions, slotWidth, slotGroupY } = useMemo(() => {
+  const { pegPositions, slotGroupY } = useMemo(() => {
     const slots = rows + 1;
-    const w = 320;
-    const slotWidth = w / slots;
-    const rowHeight = slotWidth * 0.85;
-    const positions: { x: number; y: number, rowIndex: number }[] = [];
-    let y = 24;
-    for (let r = 0; r < rows; r++) {
-      const count = r + 1;
-      const startX = (w - (count - 1) * slotWidth) / 2;
-      for (let i = 0; i < count; i++) {
-        positions.push({ x: startX + i * slotWidth, y, rowIndex: r });
-      }
-      y += rowHeight;
-    }
+    const slotWidth = BOARD_W / slots;
+    const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
+    const positions = getPegPositions(rows);
     const slotGroupY = 18 + rows * rowHeight;
-    return { pegPositions: positions, slotWidth, slotGroupY };
+    return { pegPositions: positions, slotGroupY };
   }, [rows]);
 
   return (
@@ -95,11 +88,16 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          {multipliers.length > 0 && multipliers.map((_, i) => (
-            <clipPath key={i} id={`slot-clip-${i}`}>
-              <rect x={i * slotWidth + 2} y={0} width={slotWidth - 4} height={SLOT_HEIGHT} rx={4} />
-            </clipPath>
-          ))}
+          {multipliers.length > 0 && multipliers.map((_, i) => {
+            const bounds = getSlotXBounds(rows, i);
+            const slotX = bounds.left;
+            const slotW = bounds.right - bounds.left;
+            return (
+              <clipPath key={i} id={`slot-clip-${i}`}>
+                <rect x={slotX} y={0} width={slotW} height={SLOT_HEIGHT} rx={4} />
+              </clipPath>
+            );
+          })}
         </defs>
         {pegPositions.map((p, i) => {
           const isActive = activePegs.includes(p.rowIndex);
@@ -131,11 +129,13 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
         {multipliers.length > 0 && (
           <g transform={`translate(0, ${slotGroupY})`}>
             {multipliers.map((mult, i) => {
-              const tier = mult >= 5 ? 'high' : mult >= 1.5 ? 'mid' : 'low';
-              const showAsResult = balls.some((b) => b.slotIndex === i && landedRoundIds.has(b.roundId));
+              const bounds = getSlotXBounds(rows, i);
+              const slotX = bounds.left;
+              const slotW = bounds.right - bounds.left;
+              const slotCenterX = (bounds.left + bounds.right) / 2;
+              const tier = mult < 1 ? 'low' : mult >= 5 ? 'high' : 'mid';
+              const showAsResult = balls.some((ball) => ball.slotIndex === i && landedRoundIds.has(ball.roundId));
               const landedClass = showAsResult ? `landed-${tier}` : '';
-              const slotX = i * slotWidth + 2;
-              const slotW = slotWidth - 4;
               const fontSize = Math.min(10, Math.max(6, slotW / 4));
               return (
               <g key={i}>
@@ -153,14 +153,14 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
                 />
                 <g clipPath={`url(#slot-clip-${i})`}>
                   <text
-                    x={i * slotWidth + slotWidth / 2}
-                    y={SLOT_HEIGHT / 2 - 5}
+                    x={slotCenterX}
+                    y={SLOT_HEIGHT / 2 - (11 + fontSize * 1.2) / 2 + fontSize * 0.8}
                     textAnchor="middle"
                     className="slot-text"
                     style={{ fontSize }}
                   >
-                    <tspan x={i * slotWidth + slotWidth / 2} dy={0}>{String(mult)}</tspan>
-                    <tspan x={i * slotWidth + slotWidth / 2} dy={11}>x</tspan>
+                    <tspan x={slotCenterX} dy={0}>{String(mult)}</tspan>
+                    <tspan x={slotCenterX} dy={11}>x</tspan>
                   </text>
                 </g>
               </g>

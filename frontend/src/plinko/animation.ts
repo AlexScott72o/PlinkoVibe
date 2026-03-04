@@ -11,9 +11,9 @@
  */
 
 const BOARD_WIDTH = 320;
-const PEG_R = 1.5; /* must match Board peg radius */
+const PEG_R = 2.16; /* align with boardLayout PEG_COLLISION_R */
 const DROP_START_OFFSET = 28; /* ball appears and starts above the top peg */
-const PATH_CLEARANCE = 2.5; /* min distance from peg so ball graphic never overlaps */
+const PATH_CLEARANCE = 4; /* min distance from peg so ball graphic never overlaps */
 
 export interface PathPoint {
   x: number;
@@ -27,6 +27,22 @@ function normalize(dx: number, dy: number): { x: number; y: number } {
   const len = Math.hypot(dx, dy);
   if (len < 1e-6) return { x: 0, y: 1 };
   return { x: dx / len, y: dy / len };
+}
+
+/** All peg centers for the board (used to clamp ball outside pegs). */
+export function getPegCenters(rows: number): { x: number; y: number }[] {
+  const slots = rows + 1;
+  const slotWidth = BOARD_WIDTH / slots;
+  const rowHeight = slotWidth * 0.85;
+  const startY = 24;
+  const out: { x: number; y: number }[] = [];
+  for (let r = 0; r < rows; r++) {
+    const count = r + 1;
+    for (let c = 0; c < count; c++) {
+      out.push(pegPosition(r, c, slotWidth, rowHeight, startY));
+    }
+  }
+  return out;
 }
 
 /**
@@ -192,6 +208,29 @@ export function getPath(rows: number, slotIndex: number, ballRadius: number): Pa
   }
 
   return points.filter((p): p is PathPoint => p != null && typeof p.x === 'number' && typeof p.y === 'number');
+}
+
+/** Push position outward from any peg so the ball never overlaps. */
+export function clampPositionOutsidePegs(
+  pos: { x: number; y: number },
+  pegCenters: { x: number; y: number }[],
+  pegR: number,
+  ballRadius: number
+): { x: number; y: number } {
+  const minDist = pegR + ballRadius + 0.5;
+  let x = pos.x;
+  let y = pos.y;
+  for (const peg of pegCenters) {
+    const dx = x - peg.x;
+    const dy = y - peg.y;
+    const dist = Math.hypot(dx, dy);
+    if (dist < minDist && dist > 1e-6) {
+      const scale = minDist / dist;
+      x = peg.x + dx * scale;
+      y = peg.y + dy * scale;
+    }
+  }
+  return { x, y };
 }
 
 /** Smoothstep: slow at segment ends (at pegs), faster in middle — mimics contact. */

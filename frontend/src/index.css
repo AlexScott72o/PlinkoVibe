@@ -335,6 +335,12 @@ input:disabled + .toggle-slider {
     height: calc(100% - 40px);
     max-height: calc(100% - 40px);
   }
+
+  .stats-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   
   .board-hero {
     flex: 1;
@@ -586,11 +592,20 @@ input:disabled + .toggle-slider {
   padding: 0.5rem 0;
 }
 
+/* Testing section (right panel) */
+.testing-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 /* Stats specific */
 .stats-panel {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
 }
 
 .stat-box {

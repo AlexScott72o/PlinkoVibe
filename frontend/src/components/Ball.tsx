@@ -1,14 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
-import { getPath, interpolatePath, type PathPoint } from '@/plinko/animation';
+import { getInitialDropXMatter, runMatterLive } from '@/plinko/physicsSim';
 
 const BOARD_WIDTH = 320;
-/** Ease-in-out cubic: smooth acceleration at drop, smooth deceleration at land. */
-const EASE = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-/** Ball diameter so it stays smaller than the gap between pegs in any row config. */
 function ballSizeForRows(rows: number): number {
   const slotWidth = BOARD_WIDTH / (rows + 1);
-  const size = slotWidth * 0.5 * 0.8 * 0.75; // 25% smaller
+  const size = slotWidth * 0.5 * 0.8 * 0.75;
   return Math.max(5, Math.min(size, 18));
 }
 
@@ -21,15 +18,17 @@ interface BallProps {
   onComplete?: () => void;
 }
 
-export function Ball({ rows, slotIndex, durationMs, onPegHit, onLand, onComplete }: BallProps) {
+export function Ball({
+  rows,
+  slotIndex,
+  durationMs,
+  onPegHit,
+  onLand,
+  onComplete,
+}: BallProps) {
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [trail, setTrail] = useState<{ x: number; y: number }[]>([]);
-  const pathRef = useRef<PathPoint[]>([]);
-  const startRef = useRef<number>(0);
-  const durationRef = useRef(durationMs);
-  const hasPaintedAtStartRef = useRef(false);
   const pegHitRef = useRef<Set<number>>(new Set());
-  const rafRef = useRef<number>(0);
   const onPegHitRef = useRef(onPegHit);
   const onLandRef = useRef(onLand);
   const onCompleteRef = useRef(onComplete);
@@ -38,66 +37,27 @@ export function Ball({ rows, slotIndex, durationMs, onPegHit, onLand, onComplete
   onCompleteRef.current = onComplete;
 
   const ballRadius = ballSizeForRows(rows) / 2;
+
   useEffect(() => {
-    pathRef.current = getPath(rows, slotIndex, ballRadius);
-    startRef.current = performance.now();
-    durationRef.current = durationMs;
-    hasPaintedAtStartRef.current = false;
     pegHitRef.current = new Set();
     setPosition(null);
     setTrail([]);
 
-    const tick = (now: number) => {
-      const path = pathRef.current;
-      if (!path?.length) {
-        rafRef.current = requestAnimationFrame(tick);
-        return;
-      }
-      const elapsed = now - startRef.current;
-      const duration = Math.max(durationRef.current, 1);
-      const progress = Math.min(1, elapsed / duration);
-      const eased = EASE(progress);
-
-      let pos: { x: number; y: number };
-      try {
-        const progressForPath = hasPaintedAtStartRef.current ? eased : 0;
-        pos = interpolatePath(path, progressForPath);
-        if (!hasPaintedAtStartRef.current) hasPaintedAtStartRef.current = true;
-      } catch {
-        rafRef.current = requestAnimationFrame(tick);
-        return;
-      }
-      setPosition(pos);
+    const onPos = (px: number, py: number) => {
+      setPosition({ x: px, y: py });
       setTrail((prev) => {
-        const newTrail = [...prev, pos];
-        if (newTrail.length > 8) newTrail.shift();
-        return newTrail;
+        const next = [...prev, { x: px, y: py }];
+        if (next.length > 8) next.shift();
+        return next;
       });
-
-      const pathLen = path.length - 1;
-      const bounceIndices = path.map((p, i) => (p.bounceNormal ? i : -1)).filter((i) => i >= 0);
-      for (let r = 0; r < rows && r < bounceIndices.length; r++) {
-        const threshold = bounceIndices[r] / pathLen;
-        if (eased >= threshold && !pegHitRef.current.has(r)) {
-          pegHitRef.current.add(r);
-          onPegHitRef.current?.(r);
-        }
-      }
-      if (eased >= 0.98 && !pegHitRef.current.has(-1)) {
-        pegHitRef.current.add(-1);
-        onLandRef.current?.();
-      }
-
-      if (progress < 1) {
-        rafRef.current = requestAnimationFrame(tick);
-      } else {
-        onCompleteRef.current?.();
-      }
     };
+    const onHit = (rowIndex: number) => onPegHitRef.current?.(rowIndex);
+    const onL = () => onLandRef.current?.();
+    const onC = () => onCompleteRef.current?.();
 
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [rows, slotIndex, ballRadius]);
+    const runResult = runMatterLive(rows, slotIndex, ballRadius, getInitialDropXMatter(rows, slotIndex, ballRadius), durationMs, onPos, onHit, onL, onC);
+    return () => runResult.stop();
+  }, [rows, slotIndex, ballRadius, durationMs]);
 
   if (position === null) return null;
 

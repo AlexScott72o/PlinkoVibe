@@ -3,6 +3,7 @@ import { usePlinko } from './hooks/usePlinko';
 import { Board } from './components/Board';
 import { Controls } from './components/Controls';
 import { Stats } from './components/Stats';
+import { TestingSection } from './components/TestingSection';
 import { playPegBounce, playLanding, playWin, isMuted, setMuted } from './sound';
 
 function App() {
@@ -99,8 +100,6 @@ function App() {
             setRows={setRows}
             riskLevel={riskLevel}
             setRiskLevel={setRiskLevel}
-            animationSpeed={animationSpeed}
-            setAnimationSpeed={setAnimationSpeed}
             playing={playing}
             onPlay={placeBet}
             error={error}
@@ -132,6 +131,11 @@ function App() {
         </section>
         
         <aside className="stats-sidebar">
+          <TestingSection
+            animationSpeed={animationSpeed}
+            setAnimationSpeed={setAnimationSpeed}
+            playing={playing}
+          />
           <Stats
             balance={balance}
             lastResults={lastResults}
