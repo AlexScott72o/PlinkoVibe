@@ -254,7 +254,7 @@ input:disabled + .toggle-slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.4rem 1rem;
+  padding: 0.75rem 1rem;
   min-height: 0;
   flex-shrink: 0;
 }
@@ -315,22 +315,265 @@ input:disabled + .toggle-slider {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0;
   width: 100%;
 }
 
-@media (min-width: 1024px) {
+.board-hero {
+  margin-top: -4.3rem; /* Don't change this value on desktop devices */
+}
+
+/* --- Mobile: board + bet button always visible; settings in drawer --- */
+@media (max-width: 1023px) {
+  .main {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .board-hero {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    order: 1;
+  }
+
+  .board-hero .board-wrap {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5rem 0.25rem;
+    overflow: hidden;
+  }
+
+  /* Inner wrapper gets size from SVG (width: 100%, height from aspect ratio); canvas fills it so they align */
+  .board-hero .board-wrap .board-inner {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .board-hero .board-wrap .board-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .mobile-bet-row {
+    flex-shrink: 0;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mobile-bet-row .btn-play.btn-spin-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .mobile-bet-row .btn-play .btn-spin-icon-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-bet-row .btn-bet-adjust-inline {
+    width: 64px;
+    height: 64px;
+    font-size: 1.75rem;
+  }
+
+  .mobile-bet-row .play-bet-amount {
+    font-size: 1.1rem;
+  }
+
+  .mobile-balance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .mobile-balance .caption-text {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+  }
+
+  .mobile-balance .stat-value {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-accent-cyan);
+  }
+
+  .mobile-menu-toggle.header-icon-left {
+    position: absolute;
+    left: 0.75rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-bg-panel);
+    color: var(--color-accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .mobile-menu-toggle.header-icon-left:hover {
+    background: var(--color-bg-panel-hover);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+  }
+
+  .controls-sidebar,
+  .stats-sidebar {
+    display: none;
+  }
+
+  .mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .mobile-drawer-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 100vw);
+    max-width: 100%;
+    background: var(--color-bg-base);
+    border-right: 1px solid var(--color-border-subtle);
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-out;
+    overflow: hidden;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-drawer.open {
+    transform: translateX(0);
+  }
+
+  .mobile-drawer-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-subtle);
+    background: var(--color-bg-panel);
+  }
+
+  .mobile-drawer-header .heading-text {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .mobile-drawer-close {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+  }
+
+  .mobile-drawer-close:hover {
+    background: var(--color-bg-panel-hover);
+  }
+
+  .mobile-drawer-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-drawer-content .controls-panel {
+    margin: 0;
+  }
+
+  .mobile-drawer-content .panel-overlay {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 620px) {
+  .board-hero .board-wrap {
+    transform: scale(0.88);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 1024px) and (orientation: landscape) {
+  .mobile-bet-row,
+  .mobile-menu-toggle,
+  .mobile-drawer-backdrop,
+  .mobile-drawer {
+    display: none !important;
+  }
+
   .main {
     flex-direction: row;
     align-items: stretch;
     justify-content: center;
     min-height: 0;
+    /* If the viewport is too narrow, allow horizontal scroll instead of shrinking the board. */
+    overflow-x: auto;
+  }
+
+  .controls-sidebar {
+    order: 1;
+  }
+
+  .board-hero {
+    order: 2;
+  }
+
+  .stats-sidebar {
+    order: 3;
   }
   
   .controls-sidebar,
   .stats-sidebar {
-    width: 320px;
-    flex-shrink: 0;
+    /* Side panels can shrink, the board should not. */
+    flex: 0 1 280px;
+    max-width: 320px;
     /* Align panel bottom with bottom of multiplier slots (board SVG is shifted up 40px) */
     height: calc(100% - 40px);
     max-height: calc(100% - 40px);
@@ -343,8 +586,9 @@ input:disabled + .toggle-slider {
   }
   
   .board-hero {
-    flex: 1;
-    max-width: 800px;
+    /* Keep the Plinko board at a stable width; side panels adapt instead. */
+    flex: 0 0 720px;
+    max-width: 720px;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -363,12 +607,19 @@ input:disabled + .toggle-slider {
     padding: 0 0.5rem;
     overflow: visible;
   }
+
+  .board-hero .board-wrap .board-inner {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
   
-  .board-hero .board-wrap .board-svg {
+  .board-hero .board-wrap .board-svg,
+  .board-hero .board-wrap .board-canvas {
     height: 100%;
     width: auto;
     max-width: 100%;
-    transform: translateY(-40px);
+    transform: translateY(-40px) translateZ(0);
   }
 }
 
@@ -383,14 +634,45 @@ input:disabled + .toggle-slider {
 .board-wrap {
   width: 100%;
   max-width: 100%;
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem 0.25rem;
   position: relative;
+  contain: layout paint;
+}
+
+.board-inner {
+  position: relative;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  /* Avoid contain: strict/style so SVG stays visible during canvas animation */
+}
+
+/* GPU layer for animation; reduces repaint cost */
+.board-canvas {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  image-rendering: auto;
+}
+
+.fps-counter {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--color-accent-cyan);
+  opacity: 0.9;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
 }
 
 .board-svg {
   width: 100%;
   height: auto;
   display: block;
+  transform: translateZ(0);
 }
 
 .peg {
@@ -411,50 +693,52 @@ input:disabled + .toggle-slider {
   stroke-width: 1;
 }
 
-.slot-low { fill: rgba(255, 0, 127, 0.25); }
-.slot-mid { fill: rgba(112, 0, 255, 0.2); }
-.slot-high { fill: rgba(0, 229, 255, 0.15); }
+/* Opaque fills so balls appear to land inside the slot (drawn behind slots). */
+.slot-low { fill: rgba(40, 8, 28, 0.98); }
+.slot-mid { fill: rgba(18, 8, 38, 0.98); }
+.slot-high { fill: rgba(8, 28, 38, 0.98); }
 
 .slot-result {
-  fill: rgba(0, 229, 255, 0.4);
+  fill: rgba(0, 80, 100, 0.98);
   stroke: var(--color-accent-cyan);
   stroke-width: 2;
 }
 
-.slot-result.landed-low {
-  animation: win-flash-magenta 0.5s ease-out;
-  fill: var(--color-accent-magenta);
-  stroke: #FFF;
-}
-
-.slot-result.landed-mid {
-  animation: win-flash-cyan 0.8s ease-out;
+/* ---- Slot win animations: finish before next ball can land (BALL_DROP_DELAY_MS turbo = 200ms) ---- */
+/* will-change hints so the browser can use compositor (GPU) for these animations */
+.slot-result.landed-subtle-minimal {
+  animation: win-subtle-minimal 0.08s ease-out;
   fill: var(--color-accent-cyan);
-  stroke: #FFF;
+  stroke: rgba(255, 255, 255, 0.6);
+  will-change: filter;
 }
-
-.slot-result.landed-high {
-  animation: win-flash-cyan 1s ease-out;
+.slot-result.landed-subtle-bolder {
+  animation: win-subtle-bolder 0.12s ease-out;
   fill: var(--color-accent-cyan);
-  stroke: #FFF;
+  stroke: #fff;
+  will-change: transform, filter;
+}
+.slot-result.landed-subtle-dramatic {
+  animation: win-subtle-dramatic 0.16s ease-out;
+  fill: var(--color-accent-cyan);
+  stroke: #fff;
+  will-change: transform, filter;
 }
 
-@keyframes win-pulse-low {
+@keyframes win-subtle-minimal {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+  100% { filter: brightness(1); }
+}
+@keyframes win-subtle-bolder {
   0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.05); filter: brightness(1.5); }
+  50% { transform: scale(1.03); filter: brightness(1.25); }
   100% { transform: scale(1); filter: brightness(1); }
 }
-
-@keyframes win-flash-cyan {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--color-accent-cyan)); }
-  50% { transform: scale(1.1); filter: drop-shadow(0 0 20px var(--color-accent-cyan)); fill: #fff; }
-  100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--color-accent-cyan)); }
-}
-
-@keyframes win-flash-magenta {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--color-accent-magenta)); }
-  50% { transform: scale(1.15); filter: drop-shadow(0 0 30px var(--color-accent-magenta)); fill: #fff; }
-  100% { transform: scale(1); filter: drop-shadow(0 0 10px var(--color-accent-magenta)); }
+@keyframes win-subtle-dramatic {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0 var(--color-accent-cyan)); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 12px var(--color-accent-cyan)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 4px var(--color-accent-cyan)); }
 }
 
 .slot-text {
@@ -518,10 +802,32 @@ input:disabled + .toggle-slider {
   border: 1px solid var(--color-border-subtle);
 }
 
-.bet-value-display {
+.bet-input-row-value-only {
+  justify-content: center;
+}
+
+.bet-value-display,
+.bet-value-input {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.125rem;
+  color: var(--color-text-primary);
+}
+
+.bet-value-input {
+  width: 3.5em;
+  text-align: center;
+  background: transparent;
+  border: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.bet-value-input::-webkit-outer-spin-button,
+.bet-value-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .btn-bet-adjust {
@@ -550,21 +856,72 @@ input:disabled + .toggle-slider {
 .action-row {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 0.5rem;
+}
+
+.action-row-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-bet-adjust-inline {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.play-bet-amount {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-accent-cyan);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
 }
 
 .btn-play {
   font-family: 'Orbitron', var(--font-primary);
   font-weight: 700;
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.25rem;
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.25);
 }
 
+.btn-play.btn-spin-icon {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-play .btn-spin-icon-svg {
+  width: 36px;
+  height: 36px;
+}
+
+.btn-play .btn-spin-icon-inner.spin-loading {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(11, 13, 23, 0.4);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin-icon-rotate 0.7s linear infinite;
+}
+
+@keyframes spin-icon-rotate {
+  to { transform: rotate(360deg); }
+}
+
 .btn-play:not(:disabled) {
-  animation: bet-glow-pulse 2s ease-in-out infinite;
+  animation: bet-glow-pulse 1.8s ease-in-out infinite;
 }
 
 .btn-play:hover:not(:disabled) {
@@ -581,7 +938,7 @@ input:disabled + .toggle-slider {
     box-shadow: 0 0 20px rgba(0, 229, 255, 0.5), 0 0 40px rgba(0, 229, 255, 0.25);
   }
   50% {
-    box-shadow: 0 0 28px rgba(0, 229, 255, 0.7), 0 0 55px rgba(0, 229, 255, 0.35);
+    box-shadow: 0 0 32px rgba(0, 229, 255, 0.75), 0 0 60px rgba(0, 229, 255, 0.4);
   }
 }
 
@@ -592,7 +949,8 @@ input:disabled + .toggle-slider {
   padding: 0.5rem 0;
 }
 
-/* Testing section (right panel) */
+/* Settings / Testing section (right panel) */
+.settings-panel,
 .testing-panel {
   display: flex;
   flex-direction: column;

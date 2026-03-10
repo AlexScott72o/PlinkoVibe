@@ -3,15 +3,18 @@ import type { BetResponse } from 'shared';
 interface StatsProps {
   balance: number;
   lastResults: BetResponse[];
+  hideBalance?: boolean;
 }
 
-export function Stats({ balance, lastResults }: StatsProps) {
+export function Stats({ balance, lastResults, hideBalance }: StatsProps) {
   return (
     <div className="stats-panel panel-overlay">
-      <div className="stat-box">
-        <span className="caption-text">BALANCE (FUN)</span>
-        <span className="stat-value">{balance.toFixed(2)}</span>
-      </div>
+      {!hideBalance && (
+        <div className="stat-box">
+          <span className="caption-text">BALANCE (FUN)</span>
+          <span className="stat-value">{balance.toFixed(2)}</span>
+        </div>
+      )}
 
       <div className="stat-box" style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         <span className="caption-text">RESULTS</span>

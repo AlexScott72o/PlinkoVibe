@@ -1,104 +1,101 @@
-import { useEffect, useState, useRef } from 'react';
-import { getInitialDropXMatter, runMatterLive } from '@/plinko/physicsSim';
-
-const BOARD_WIDTH = 320;
+import { memo, useEffect, useRef } from 'react';
+import { getCachedPath, scheduleRecord, clearPathCache } from '@/plinko/physicsSim';
+import { getBallRadiusForRows, getSlotXBounds } from '@/plinko/boardLayout';
 
 function ballSizeForRows(rows: number): number {
-  const slotWidth = BOARD_WIDTH / (rows + 1);
-  const size = slotWidth * 0.5 * 0.8 * 0.75;
-  return Math.max(5, Math.min(size, 18));
+  return getBallRadiusForRows(rows) * 2;
 }
 
 interface BallProps {
+  roundId: number;
   rows: number;
   slotIndex: number;
   durationMs: number;
-  onPegHit?: (rowIndex: number) => void;
-  onLand?: () => void;
-  onComplete?: () => void;
+  onPegHit?: (pegIndex: number) => void;
+  onSlotReached?: () => void;
+  onLand?: (roundId: number) => void;
+  onComplete?: (roundId: number) => void;
+  registerPlayback: (
+    roundId: number,
+    path: import('@/plinko/physicsSim').RecordedPath,
+    durationMs: number,
+    radius: number,
+    slotIndex: number,
+    callbacks: {
+      onPegHit: (pegIndex: number) => void;
+      onSlotReached: () => void;
+      onLand: () => void;
+      onComplete: () => void;
+    }
+  ) => void;
+  unregisterPlayback: (roundId: number) => void;
 }
 
-export function Ball({
+function BallInner({
+  roundId,
   rows,
   slotIndex,
   durationMs,
   onPegHit,
+  onSlotReached,
   onLand,
   onComplete,
+  registerPlayback,
+  unregisterPlayback,
 }: BallProps) {
-  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
-  const [trail, setTrail] = useState<{ x: number; y: number }[]>([]);
-  const pegHitRef = useRef<Set<number>>(new Set());
+  const ballRadius = ballSizeForRows(rows) / 2;
   const onPegHitRef = useRef(onPegHit);
+  const onSlotReachedRef = useRef(onSlotReached);
   const onLandRef = useRef(onLand);
   const onCompleteRef = useRef(onComplete);
   onPegHitRef.current = onPegHit;
+  onSlotReachedRef.current = onSlotReached;
   onLandRef.current = onLand;
   onCompleteRef.current = onComplete;
 
-  const ballRadius = ballSizeForRows(rows) / 2;
-
   useEffect(() => {
-    pegHitRef.current = new Set();
-    setPosition(null);
-    setTrail([]);
-
-    const onPos = (px: number, py: number) => {
-      setPosition({ x: px, y: py });
-      setTrail((prev) => {
-        const next = [...prev, { x: px, y: py }];
-        if (next.length > 8) next.shift();
-        return next;
+    let cancelled = false;
+    const bounds = getSlotXBounds(rows, slotIndex);
+    const eps = 0.01; /* allow for floating point in physics */
+    const pathMatchesSlot = (path: import('@/plinko/physicsSim').RecordedPath) =>
+      path.finalX >= bounds.left - eps && path.finalX <= bounds.right + eps;
+    const doRegister = (path: import('@/plinko/physicsSim').RecordedPath) => {
+      if (!pathMatchesSlot(path)) return false;
+      registerPlayback(roundId, path, durationMs, ballRadius, slotIndex, {
+        onPegHit: (pegIndex) => onPegHitRef.current?.(pegIndex),
+        onSlotReached: () => onSlotReachedRef.current?.(),
+        onLand: () => onLandRef.current?.(roundId),
+        onComplete: () => onCompleteRef.current?.(roundId),
       });
+      return true;
     };
-    const onHit = (rowIndex: number) => onPegHitRef.current?.(rowIndex);
-    const onL = () => onLandRef.current?.();
-    const onC = () => onCompleteRef.current?.();
+    const cached = getCachedPath(rows, slotIndex);
+    if (cached) {
+      if (doRegister(cached)) {
+        return () => unregisterPlayback(roundId);
+      }
+      clearPathCache(rows, slotIndex);
+    }
+    let retried = false;
+    const tryRecord = () => {
+      scheduleRecord(rows, slotIndex, ballRadius).then((path) => {
+        if (cancelled) return;
+        if (doRegister(path)) return;
+        if (!retried) {
+          retried = true;
+          clearPathCache(rows, slotIndex);
+          tryRecord();
+        }
+      }).catch(() => {});
+    };
+    tryRecord();
+    return () => {
+      cancelled = true;
+      unregisterPlayback(roundId);
+    };
+  }, [roundId, rows, slotIndex, ballRadius, durationMs, registerPlayback, unregisterPlayback]);
 
-    const runResult = runMatterLive(rows, slotIndex, ballRadius, getInitialDropXMatter(rows, slotIndex, ballRadius), durationMs, onPos, onHit, onL, onC);
-    return () => runResult.stop();
-  }, [rows, slotIndex, ballRadius, durationMs]);
-
-  if (position === null) return null;
-
-  const size = ballSizeForRows(rows);
-  const r = size / 2;
-  const cx = position.x;
-  const cy = position.y;
-
-  return (
-    <g className="ball-wrap">
-      <defs>
-        <radialGradient id="ball-glow" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-          <stop offset="50%" stopColor="#00E5FF" stopOpacity="0.95" />
-          <stop offset="85%" stopColor="#7000FF" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#0B0D17" stopOpacity="0.4" />
-        </radialGradient>
-        <filter id="ball-shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#00E5FF" floodOpacity="0.6" />
-          <feDropShadow dx="0" dy="1" stdDeviation="1" floodColor="#000" floodOpacity="0.3" />
-        </filter>
-      </defs>
-      {trail.map((p, i) => (
-        <circle
-          key={i}
-          cx={p.x}
-          cy={p.y}
-          r={Math.max(r - 1, 2)}
-          fill="rgba(0, 229, 255, 0.4)"
-          opacity={(i + 1) / trail.length}
-          filter="blur(1px)"
-        />
-      ))}
-      <circle
-        cx={cx}
-        cy={cy}
-        r={r}
-        fill="url(#ball-glow)"
-        filter="url(#ball-shadow)"
-        className="ball-img"
-      />
-    </g>
-  );
+  return null;
 }
+
+export const Ball = memo(BallInner);

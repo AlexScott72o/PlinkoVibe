@@ -1,9 +1,13 @@
 /**
  * Simple sound effects using Web Audio API (no external files).
  * Peg bounce, landing, and win tiers. Mute state stored in localStorage.
+ * Multiple sounds can play at once; each call creates independent nodes so they don't interrupt each other.
  */
 
 let ctx: AudioContext | null = null;
+
+/** Keep references to active oscillators so they aren't GC'd before they finish playing. */
+const activeOscillators = new Set<OscillatorNode>();
 
 function getContext(): AudioContext | null {
   if (ctx) return ctx;
@@ -47,6 +51,8 @@ function playTone(
   osc.type = type;
   gain.gain.setValueAtTime(volume, ac.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + duration);
+  activeOscillators.add(osc);
+  osc.onended = () => activeOscillators.delete(osc);
   osc.start(ac.currentTime);
   osc.stop(ac.currentTime + duration);
 }

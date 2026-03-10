@@ -59,6 +59,50 @@ export function getSlotY(rows: number): number {
   return 24 + rows * rowHeight + 12;
 }
 
+/** Vertical coordinate of the bottom of the slot row (must match Board SLOT_HEIGHT). */
+export const SLOT_ROW_HEIGHT = 36;
+
+export function getSlotBottom(rows: number): number {
+  return getSlotY(rows) + SLOT_ROW_HEIGHT / 2;
+}
+
 export function getSlotCenter(rows: number, slotIndex: number): { x: number; y: number } {
   return { x: getTargetSlotX(rows, slotIndex), y: getSlotY(rows) };
+}
+
+/** Ball radius used by UI and physics; must match Ball.tsx. */
+export function getBallRadiusForRows(rows: number): number {
+  const slotWidth = BOARD_WIDTH / (rows + 1);
+  const size = slotWidth * 0.5 * 0.8 * 0.75;
+  const clamped = Math.max(5, Math.min(size, 18));
+  return clamped / 2;
+}
+
+/** Clamp ball center (x,y) so it never overlaps any peg. Use at playback so drawn ball never floats over pegs. */
+export function clampBallOutsidePegs(
+  x: number,
+  y: number,
+  rows: number,
+  ballRadius: number
+): { x: number; y: number } {
+  const pegPositions = getPegPositions(rows);
+  const noGoRadius = PEG_COLLISION_R + ballRadius;
+  let px = x;
+  let py = y;
+  for (let iter = 0; iter < 8; iter++) {
+    let changed = false;
+    for (const peg of pegPositions) {
+      const dx = px - peg.x;
+      const dy = py - peg.y;
+      const d = Math.hypot(dx, dy);
+      if (d < noGoRadius && d > 1e-6) {
+        const scale = noGoRadius / d;
+        px = peg.x + dx * scale;
+        py = peg.y + dy * scale;
+        changed = true;
+      }
+    }
+    if (!changed) break;
+  }
+  return { x: px, y: py };
 }

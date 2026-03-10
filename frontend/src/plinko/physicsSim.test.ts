@@ -2,8 +2,11 @@
  * Physics sim tests: Matter.js ball lands in target slot; drop X within 10px of center.
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
-import { runMatterLive, getInitialDropXMatter, getSlotXBounds } from './physicsSim';
-import { DROP_X } from './boardLayout';
+import { runMatterLive, getInitialDropXMatter, getSlotXBounds, getRecordedLandingPosition } from './physicsSim';
+import { DROP_X, getBallRadiusForRows } from './boardLayout';
+
+/** Row counts supported by the backend (must match ALLOWED_ROWS). */
+const ALLOWED_ROWS = [8, 10, 12, 14] as const;
 
 const ROWS = 8;
 const BALL_RADIUS = 6;
@@ -29,11 +32,11 @@ function installRafPolyfill() {
   };
 }
 
-function runOneMatterSim(rows: number, slotIndex: number): Promise<{ x: number; y: number }> {
+function runOneMatterSim(rows: number, slotIndex: number, ballRadius: number = BALL_RADIUS): Promise<{ x: number; y: number }> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => reject(new Error(`Sim slot ${slotIndex} timed out`)), 20000);
     let lastPos = { x: 0, y: 0 };
-    const initialDropX = getInitialDropXMatter(rows, slotIndex, BALL_RADIUS);
+    const initialDropX = getInitialDropXMatter(rows, slotIndex, ballRadius);
     const result = runMatterLive(
       rows,
       slotIndex,
@@ -91,4 +94,25 @@ describe('physicsSim (Matter)', () => {
       }
     }
   });
+
+  it(
+    'recorded landing position is inside target slot for all row/slot config variants',
+    () => {
+      const tolerance = 0.5;
+      for (const rows of ALLOWED_ROWS) {
+        const ballRadius = getBallRadiusForRows(rows);
+        const numSlots = rows + 1;
+        for (let slotIndex = 0; slotIndex < numSlots; slotIndex++) {
+          const { x } = getRecordedLandingPosition(rows, slotIndex, ballRadius);
+          const bounds = getSlotXBounds(rows, slotIndex);
+          const inSlot = x >= bounds.left - tolerance && x <= bounds.right + tolerance;
+          expect(
+            inSlot,
+            `rows=${rows} slotIndex=${slotIndex}: ball landed at x=${x.toFixed(2)}, expected [${bounds.left.toFixed(2)}, ${bounds.right.toFixed(2)}]`
+          ).toBe(true);
+        }
+      }
+    },
+    90000
+  );
 });

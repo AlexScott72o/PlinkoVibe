@@ -5,10 +5,20 @@ import * as api from '../api';
 export type AnimationSpeed = 'slow' | 'regular' | 'turbo';
 
 export const ANIMATION_SPEED_MS: Record<AnimationSpeed, number> = {
-  slow: 10000,
-  regular: 6000,
-  turbo: 1500,
+  turbo: 1000,
+  regular: 3000,
+  slow: 6000,
 };
+
+/** Delay between starting each ball drop (ms). */
+export const BALL_DROP_DELAY_MS: Record<AnimationSpeed, number> = {
+  turbo: 200,
+  regular: 400,
+  slow: 700,
+};
+
+export const MIN_BALLS = 1;
+export const MAX_BALLS = 100;
 
 export interface ActiveBall {
   roundId: number;
@@ -30,11 +40,15 @@ export interface PlinkoState {
   playing: boolean; // true while round in progress (request sent, animating)
 }
 
-export function usePlinko() {
+export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }) {
+  const onRevealRef = useRef(options?.onReveal);
+  onRevealRef.current = options?.onReveal;
+
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [balance, setBalance] = useState(0);
   const [config, setConfig] = useState<ConfigResponse | null>(null);
   const [betAmount, setBetAmount] = useState(1);
+  const [numBalls, setNumBalls] = useState<number>(1);
   const [rows, setRows] = useState(10);
   const [riskLevel, setRiskLevel] = useState<RiskLevel>('medium');
   const [animationSpeed, setAnimationSpeed] = useState<AnimationSpeed>('regular');
@@ -81,7 +95,10 @@ export function usePlinko() {
       setError('Bet out of range');
       return;
     }
-    if (balance < betAmount) {
+    const balls = Math.max(MIN_BALLS, Math.min(MAX_BALLS, Math.floor(numBalls)));
+    if (balls !== numBalls) setNumBalls(balls);
+    const effectiveTotalBet = betAmount * balls;
+    if (balance < effectiveTotalBet) {
       setError('Insufficient balance');
       return;
     }
@@ -90,38 +107,61 @@ export function usePlinko() {
     setPlaying(true);
     setOutcomeAndRound((prev) => ({ ...prev, outcome: null }));
     setActiveBalls([]);
+    pendingByRoundIdRef.current = new Map();
+    ballsCompletedRef.current = 0;
+    numBallsInBatchRef.current = balls;
+    const roundIdBase = nextRoundIdRef.current;
+
     try {
-      const result = await api.placeBet({
-        sessionId,
-        betAmount,
-        rows,
-        riskLevel,
-      });
-      setOutcomeAndRound((prev) => {
-        const nextRoundId = prev.roundId + 1;
-        setActiveBalls((balls) => [...balls, { roundId: nextRoundId, slotIndex: result.slotIndex, rows }]);
-        return { outcome: result, roundId: nextRoundId };
-      });
-      pendingResultRef.current = result;
+      const results: BetResponse[] = [];
+      for (let i = 0; i < balls; i++) {
+        const result = await api.placeBet({
+          sessionId,
+          betAmount,
+          rows,
+          riskLevel,
+        });
+        results.push(result);
+      }
+      nextRoundIdRef.current = roundIdBase + balls;
+      setOutcomeAndRound({ outcome: results[results.length - 1] ?? null, roundId: nextRoundIdRef.current });
+      const dropDelayMs = BALL_DROP_DELAY_MS[animationSpeedRef.current];
+      for (let i = 0; i < results.length; i++) {
+        const roundId = roundIdBase + i;
+        pendingByRoundIdRef.current.set(roundId, results[i]);
+        setTimeout(() => {
+          setActiveBalls((b) => [...b, { roundId, slotIndex: results[i].slotIndex, rows }]);
+        }, i * dropDelayMs);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Bet failed');
       setPlaying(false);
       placingRef.current = false;
     }
-  }, [sessionId, config, playing, betAmount, balance, rows, riskLevel, animationSpeed]);
+  }, [sessionId, config, playing, betAmount, numBalls, balance, rows, riskLevel]);
 
   const placingRef = useRef(false);
-  const pendingResultRef = useRef<BetResponse | null>(null);
+  const nextRoundIdRef = useRef(1);
+  const pendingByRoundIdRef = useRef<Map<number, BetResponse>>(new Map());
+  const ballsCompletedRef = useRef(0);
+  const numBallsInBatchRef = useRef(1);
 
-  const onBallComplete = useCallback((roundId: number) => {
-    const result = pendingResultRef.current;
+  const onLand = useCallback((roundId: number) => {
+    const result = pendingByRoundIdRef.current.get(roundId);
     if (result) {
       setBalance(result.balance);
       setLastResults((prev) => [result, ...prev].slice(0, 5));
-      pendingResultRef.current = null;
+      pendingByRoundIdRef.current.delete(roundId);
+      onRevealRef.current?.(result);
     }
-    setPlaying(false);
-    placingRef.current = false;
+  }, []);
+
+  const onBallComplete = useCallback((roundId: number) => {
+    ballsCompletedRef.current += 1;
+    if (ballsCompletedRef.current >= numBallsInBatchRef.current) {
+      setPlaying(false);
+      placingRef.current = false;
+    }
     const removeBallDelayMs = 400;
     setTimeout(() => {
       setActiveBalls((prev) => prev.filter((b) => b.roundId !== roundId));
@@ -134,6 +174,9 @@ export function usePlinko() {
     config,
     betAmount,
     setBetAmount,
+    numBalls,
+    setNumBalls,
+    totalBet: betAmount * numBalls,
     rows,
     setRows,
     riskLevel,
@@ -144,6 +187,7 @@ export function usePlinko() {
     lastOutcome: outcomeAndRound.outcome,
     roundId: outcomeAndRound.roundId,
     activeBalls,
+    onLand,
     onBallComplete,
     lastResults,
     loading,
