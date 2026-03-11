@@ -493,6 +493,7 @@ export function buildDeterministicPath(
   ballRadius: number
 ): RecordedPath {
   const slotWidth = BOARD_WIDTH / (rows + 1);
+  const { left: slotLeft, right: slotRight } = getSlotXBounds(rows, slotIndex);
   const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
   const pegSpacing = slotWidth * PEG_SPACING_FACTOR;
   const pegStartY = 24; // matches boardLayout getPegPositions startY
@@ -502,7 +503,11 @@ export function buildDeterministicPath(
   const slotBottom = getSlotBottom(rows);
   const maxDisplayY = slotBottom - ballRadius;
   const maxLandingY = slotTop - ballRadius;
-  const targetX = getTargetSlotX(rows, slotIndex);
+  // Keep the visible path comfortably inside the target slot so it never
+  // appears to cross a neighbouring slot boundary.
+  const slotClampMargin = Math.min(ballRadius * 0.6, (slotRight - slotLeft) * 0.15);
+  const clampXToSlot = (x: number) =>
+    Math.min(slotRight - slotClampMargin, Math.max(slotLeft + slotClampMargin, x));
 
   // ── Bresenham distribution of rights across rows ──────────────────────────
   // slotIndex rights in `rows` decisions, spread as evenly as possible.
@@ -579,35 +584,74 @@ export function buildDeterministicPath(
   }
 
   // ── Phase 3: final arc from last peg into slot ───────────────────────────
-  // The last peg deflects the ball into the target slot. The ball should NOT
-  // bounce upward here — it should continue falling with the downward velocity
-  // it already has from Phase 2's last arc, deflected sideways toward the slot.
+  // Mirrors Phase 2 arcs exactly: the ball launches UPWARD from the last peg
+  // with the same initial velocity V_BOUNCE, then falls into the slot.
+  // This produces a genuine curved bounce arc — not a straight downward line —
+  // and keeps the path above the peg centre at the start (never below the peg).
   //
-  // At the end of Phase 2's last arc (t = DET_T_ROW):
-  //   dy/dt = -V_BOUNCE + g_eff * DET_T_ROW = 4 * rowHeight / DET_T_ROW  (downward)
-  // We carry this velocity into Phase 3 so the ball keeps falling steeply,
-  // with no upward component at all.
+  //   y(t) = lastPeg.y - V_BOUNCE*t + 0.5*g_eff*t²   (same as Phase 2 arcs)
+  //
+  // CRITICAL: drawBalls() stops rendering at y = slotTopY - 2*r (draw cutoff).
+  // We scale finalDx via smoothstep so x = slot centre at that exact point.
+  const PHASE3_TIME_SCALE = 1.3; // slightly slower than inter-peg arcs
   const lastPeg = hitPegs[rows - 1]!;
+  const lastDecision = decisions[rows - 1]!;
   const finalArcStart = DET_T_DROP + (rows - 1) * DET_T_ROW;
-  const finalDx = targetX - lastPeg.x; // ±pegSpacing/2
   const finalDy = maxLandingY - lastPeg.y;
-  // Incoming downward speed at the moment the ball arrives at the last peg.
-  const v_y0 = g_eff * DET_T_ROW - V_BOUNCE; // = 4*rowHeight/DET_T_ROW > 0
-  // Time to fall finalDy more under continued gravity:
-  //   finalDy = v_y0*t + 0.5*g_eff*t^2  →  positive root
-  const finalT = (-v_y0 + Math.sqrt(v_y0 * v_y0 + 2 * g_eff * finalDy)) / g_eff;
+
+  // Solve -V_BOUNCE*t + 0.5*g_eff*t² = finalDy for t > 0:
+  const finalT = (V_BOUNCE + Math.sqrt(V_BOUNCE * V_BOUNCE + 2 * g_eff * finalDy)) / g_eff;
+
+  // t_draw: time when ball reaches draw-cutoff y (maxLandingY - ballRadius).
+  const dy_draw = finalDy - ballRadius;
+  const t_draw = (V_BOUNCE + Math.sqrt(V_BOUNCE * V_BOUNCE + 2 * g_eff * dy_draw)) / g_eff;
+
+  // Slot centre: half a pegSpacing from the last peg in the last decision direction.
+  const slotCentre = lastPeg.x + (lastDecision ? 1 : -1) * (pegSpacing / 2);
+
+  // Smoothstep ease-in-out for horizontal: gentle near peg, gentle near slot.
+  const smoothstep = (s: number) => s * s * (3 - 2 * s);
+  const fracAtDraw = t_draw / finalT;
+  const smoothAtDraw = smoothstep(fracAtDraw);
+  const finalDx = smoothAtDraw > 1e-6 ? (slotCentre - lastPeg.x) / smoothAtDraw : slotCentre - lastPeg.x;
+  const targetXRaw = lastPeg.x + finalDx;
+  const targetX = clampXToSlot(targetXRaw);
+  const phase3SimDuration = finalT * PHASE3_TIME_SCALE;
+
+  // Remember where Phase 3 starts so the peg-pushout below skips these positions
+  // (Phase 3's upward arc naturally stays above the last peg).
+  const phase3StartIdx = positions.length;
   for (let i = 1; i <= DET_FINE_STEPS; i++) {
     const frac = i / DET_FINE_STEPS;
-    const t = frac * finalT;
+    const tPhys = frac * finalT;
+    const rawX = lastPeg.x + finalDx * smoothstep(frac);
+    const y = Math.min(lastPeg.y - V_BOUNCE * tPhys + 0.5 * g_eff * tPhys * tPhys, maxDisplayY);
     positions.push({
-      simTime: finalArcStart + t,
-      x: lastPeg.x + finalDx * frac,
-      y: Math.min(lastPeg.y + v_y0 * t + 0.5 * g_eff * t * t, maxDisplayY),
+      simTime: finalArcStart + frac * phase3SimDuration,
+      x: clampXToSlot(rawX),
+      y,
     });
   }
 
-  const totalSimTime = finalArcStart + finalT;
+  const totalSimTime = finalArcStart + phase3SimDuration;
   positions[positions.length - 1] = { simTime: totalSimTime, x: targetX, y: maxLandingY };
+
+  // Nudge Phase 1+2 positions that land inside a peg's collision circle out to
+  // the rim so the debug overlay shows clean bounces off the peg surface.
+  // Phase 3 positions are excluded: their upward arc stays above the last peg.
+  const pegRadius = PEG_COLLISION_R;
+  for (const peg of hitPegs) {
+    for (let i = 0; i < phase3StartIdx; i++) {
+      const p = positions[i]!;
+      const dx = p.x - peg.x;
+      const dy = p.y - peg.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist > 0 && dist < pegRadius) {
+        const scale = pegRadius / dist;
+        positions[i] = { simTime: p.simTime, x: peg.x + dx * scale, y: peg.y + dy * scale };
+      }
+    }
+  }
 
   return { positions, pegHits, totalSimTime, finalX: targetX, finalY: maxLandingY };
 }
