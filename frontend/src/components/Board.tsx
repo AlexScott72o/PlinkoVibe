@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 import type { RiskLevel } from 'shared';
 import type { ActiveBall } from '@/hooks/usePlinko';
-import { getPegPositions, getSlotXBounds, getTargetSlotX, clampBallOutsidePegs } from '@/plinko/boardLayout';
+import { getPegPositions, getSlotXBounds, getTargetSlotX } from '@/plinko/boardLayout';
 import { interpolatePath, type RecordedPath } from '@/plinko/physicsSim';
 import { winIntensityFromMultiplier } from '@/plinko/winIntensity';
 import { Ball } from './Ball';
@@ -10,6 +10,7 @@ const TRAIL_MAX = 6;
 const VIEWBOX_Y_OFFSET = 40;
 /** Throttle peg-hit state updates to avoid 60+ re-renders/sec during animation */
 const PEG_FLUSH_INTERVAL_MS = 80;
+const PEG_HIT_LEAD_MS = 0;
 
 export type BallPosition = { x: number; y: number; trail: { x: number; y: number }[] };
 
@@ -134,7 +135,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   const rowsRef = useRef(rows);
   rowsRef.current = rows;
   const gradientCacheRef = useRef<Map<number, CanvasGradient>>(new Map());
-  const pendingPegHitsRef = useRef<number[]>([]);
   const activePegsRef = useRef<number[]>([]);
   const fpsNodeRef = useRef<HTMLDivElement>(null);
   const lastFrameTimeRef = useRef<number>(0);
@@ -144,9 +144,14 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   const fpsUiLastRef = useRef<number>(0);
 
   const handlePegHit = useCallback((pegIndex: number) => {
-    pendingPegHitsRef.current.push(pegIndex);
+    // Briefly light up hit pegs.
     activePegsRef.current.push(pegIndex);
-    onPegHit?.();
+    setActivePegs((prev) => (prev.includes(pegIndex) ? prev : [...prev, pegIndex]));
+    onPegHit?.(pegIndex);
+    setTimeout(() => {
+      activePegsRef.current = activePegsRef.current.filter((i) => i !== pegIndex);
+      setActivePegs((prev) => prev.filter((i) => i !== pegIndex));
+    }, PEG_FLUSH_INTERVAL_MS);
   }, [onPegHit]);
 
   const handleBallLand = useCallback((roundId: number) => {
@@ -165,9 +170,10 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       const elapsed = now - entry.startTime;
       const progress = Math.min(1, elapsed / entry.durationMs);
       const simTime = entry.path.totalSimTime * progress;
+      const simTimeForPegHits = simTime + PEG_HIT_LEAD_MS;
       while (
         entry.pegHitIndex < entry.path.pegHits.length &&
-        entry.path.pegHits[entry.pegHitIndex].simTime <= simTime
+        entry.path.pegHits[entry.pegHitIndex].simTime <= simTimeForPegHits
       ) {
         entry.onPegHit(entry.path.pegHits[entry.pegHitIndex].pegIndex);
         entry.pegHitIndex++;
@@ -177,7 +183,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
       const slotTopY = 18 + rowsCount * rowHeight;
       const r = entry.radius;
-      const slotCenterX = getTargetSlotX(rowsCount, entry.slotIndex);
       if (progress >= 1) {
         entry.onLand();
         entry.onComplete();
@@ -185,17 +190,11 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
         next[roundId] = { x: slotCenterX, y: slotTopY - r, trail: [] };
         return;
       }
-      const { x: rawX, y: rawY } = interpolatePath(entry.path.positions, simTime);
-      const nearSlotTop = rawY > slotTopY - 2 * r;
-      /* When not near slot: clamp so ball never overlaps a peg; when near slot: lock to slot center. */
-      const { x, y } = nearSlotTop
-        ? { x: slotCenterX, y: rawY }
-        : clampBallOutsidePegs(rawX, rawY, rowsCount, r);
+      const { x, y } = interpolatePath(entry.path.positions, simTime);
       if (y - r >= slotTopY) {
         entry.onLand();
         entry.onComplete();
         toRemove.push(roundId);
-        next[roundId] = { x: slotCenterX, y: slotTopY - r, trail: [] };
         return;
       }
       const trail =
@@ -250,7 +249,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       setIsAnimating(false);
       setActivePegs(activePegsRef.current.slice());
       activePegsRef.current = [];
-      pendingPegHitsRef.current = [];
       if (fpsNodeRef.current) fpsNodeRef.current.textContent = '—';
       const canvas = canvasRef.current;
       if (canvas) {
@@ -307,7 +305,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   useEffect(() => {
     setActivePegs([]);
     activePegsRef.current = [];
-    pendingPegHitsRef.current = [];
   }, [balls]);
 
   useEffect(() => {

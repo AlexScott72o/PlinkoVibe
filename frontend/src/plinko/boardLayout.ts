@@ -77,32 +77,3 @@ export function getBallRadiusForRows(rows: number): number {
   const clamped = Math.max(5, Math.min(size, 18));
   return clamped / 2;
 }
-
-/** Clamp ball center (x,y) so it never overlaps any peg. Use at playback so drawn ball never floats over pegs. */
-export function clampBallOutsidePegs(
-  x: number,
-  y: number,
-  rows: number,
-  ballRadius: number
-): { x: number; y: number } {
-  const pegPositions = getPegPositions(rows);
-  const noGoRadius = PEG_COLLISION_R + ballRadius;
-  let px = x;
-  let py = y;
-  for (let iter = 0; iter < 8; iter++) {
-    let changed = false;
-    for (const peg of pegPositions) {
-      const dx = px - peg.x;
-      const dy = py - peg.y;
-      const d = Math.hypot(dx, dy);
-      if (d < noGoRadius && d > 1e-6) {
-        const scale = noGoRadius / d;
-        px = peg.x + dx * scale;
-        py = peg.y + dy * scale;
-        changed = true;
-      }
-    }
-    if (!changed) break;
-  }
-  return { x: px, y: py };
-}

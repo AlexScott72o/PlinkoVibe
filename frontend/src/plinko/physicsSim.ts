@@ -11,6 +11,7 @@ import {
   DROP_Y,
   LANDED_VY_THRESHOLD,
   MAX_PHYSICS_MS,
+  SLOT_ROW_HEIGHT,
   getPegPositions,
   getTargetSlotX,
   getSlotY,
@@ -174,44 +175,14 @@ export function clearPathCache(rows: number, slotIndex: number): void {
   pathCache.delete(PATH_CACHE_KEY(rows, slotIndex));
 }
 
-/** Upsample a path to 2ms resolution and clamp points so the ball never overlaps any peg. */
+/** Upsample a path to 2ms resolution so playback interpolation doesn't cut through pegs. */
 const PLAYBACK_SAMPLE_MS = 2;
-
-/** No-go radius for ball center around each peg (ball surface must not touch peg). */
-function clampPointOutsidePegs(
-  x: number,
-  y: number,
-  pegPositions: { x: number; y: number }[],
-  noGoRadius: number
-): { x: number; y: number } {
-  let px = x;
-  let py = y;
-  for (let iter = 0; iter < 8; iter++) {
-    let changed = false;
-    for (const peg of pegPositions) {
-      const dx = px - peg.x;
-      const dy = py - peg.y;
-      const d = Math.hypot(dx, dy);
-      if (d < noGoRadius && d > 1e-6) {
-        const scale = noGoRadius / d;
-        px = peg.x + dx * scale;
-        py = peg.y + dy * scale;
-        changed = true;
-      }
-    }
-    if (!changed) break;
-  }
-  return { x: px, y: py };
-}
 
 function upsamplePath(
   positions: { simTime: number; x: number; y: number }[],
-  stepMs: number,
-  pegPositions: { x: number; y: number }[],
-  ballRadius: number
+  stepMs: number
 ): { simTime: number; x: number; y: number }[] {
   if (positions.length <= 1) return positions;
-  const noGoRadius = PEG_COLLISION_R + ballRadius;
   const out: { simTime: number; x: number; y: number }[] = [];
   const n = Math.round(stepMs / PLAYBACK_SAMPLE_MS);
   for (let i = 0; i < positions.length; i++) {
@@ -222,13 +193,53 @@ function upsamplePath(
     for (let j = 1; j < n; j++) {
       const t = a.simTime + (j * (b.simTime - a.simTime)) / n;
       const u = j / n;
-      let x = a.x + u * (b.x - a.x);
-      let y = a.y + u * (b.y - a.y);
-      const clamped = clampPointOutsidePegs(x, y, pegPositions, noGoRadius);
-      out.push({ simTime: t, x: clamped.x, y: clamped.y });
+      out.push({
+        simTime: t,
+        x: a.x + u * (b.x - a.x),
+        y: a.y + u * (b.y - a.y),
+      });
     }
   }
   return out;
+}
+
+/** Ensure there is at least one peg hit recorded per row, so the visual peg path always includes every row. */
+function ensureRowPegHits(
+  pegHits: { simTime: number; rowIndex: number; pegIndex: number }[],
+  positions: { simTime: number; x: number; y: number }[],
+  pegPositions: { x: number; y: number; rowIndex: number }[],
+  rows: number
+): void {
+  if (positions.length === 0 || pegPositions.length === 0) return;
+  const rowYs: number[] = [];
+  for (let r = 0; r < rows; r++) {
+    const peg = pegPositions.find((p) => p.rowIndex === r);
+    rowYs[r] = peg ? peg.y : 0;
+  }
+  for (let r = 0; r < rows; r++) {
+    const hasHit = pegHits.some((h) => h.rowIndex === r);
+    if (hasHit) continue;
+    const rowY = rowYs[r];
+    if (!rowY) continue;
+    const pos = positions.find((p) => p.y >= rowY);
+    if (!pos) continue;
+    const candidates: { idx: number; x: number }[] = [];
+    pegPositions.forEach((p, idx) => {
+      if (p.rowIndex === r) candidates.push({ idx, x: p.x });
+    });
+    if (!candidates.length) continue;
+    let best = candidates[0]!;
+    let bestDx = Math.abs(best.x - pos.x);
+    for (let i = 1; i < candidates.length; i++) {
+      const dx = Math.abs(candidates[i]!.x - pos.x);
+      if (dx < bestDx) {
+        best = candidates[i]!;
+        bestDx = dx;
+      }
+    }
+    pegHits.push({ simTime: pos.simTime, rowIndex: r, pegIndex: best.idx });
+  }
+  pegHits.sort((a, b) => a.simTime - b.simTime);
 }
 
 /** Run Matter.js to completion and record path (sync). Used for playback over durationMs.
@@ -246,6 +257,7 @@ export function runMatterRecord(
   const slotY = getSlotY(rows);
   const slotBottom = getSlotBottom(rows);
   const maxDisplayY = slotBottom - ballRadius;
+  const slotTop = slotY - SLOT_ROW_HEIGHT / 2;
   const { left: slotLeft, right: slotRight } = getSlotXBounds(rows, slotIndex);
   const positions: { simTime: number; x: number; y: number }[] = [];
   const pegHits: { simTime: number; rowIndex: number; pegIndex: number }[] = [];
@@ -319,11 +331,15 @@ export function runMatterRecord(
     const landed = py >= slotY - 10 && Math.abs(vy) < LANDED_VY_THRESHOLD;
     if (landed) {
       const finalX = px < slotLeft || px > slotRight ? targetX : Math.max(slotLeft, Math.min(slotRight, px));
-      const finalY = Math.min(py, maxDisplayY);
+      // Clamp landing Y so the ball center is just above the slot top (never inside the slot visuals).
+      const rawFinalY = Math.min(py, maxDisplayY);
+      const maxLandingCenterY = slotTop - ballRadius;
+      const finalY = Math.min(rawFinalY, maxLandingCenterY);
       positions[positions.length - 1] = { simTime, x: finalX, y: finalY };
+      ensureRowPegHits(pegHits, positions, pegPositions, rows);
       Matter.World.remove(world, ball);
       pegBodies.forEach((b) => Matter.World.remove(world, b));
-      const upsampled = upsamplePath(positions, STEP_MS, pegPositions, ballRadius);
+      const upsampled = upsamplePath(positions, STEP_MS);
       return { positions: upsampled, pegHits, totalSimTime: simTime, finalX, finalY };
     }
   }
@@ -332,10 +348,13 @@ export function runMatterRecord(
   let finalX = last.x;
   if (finalX < slotLeft || finalX > slotRight) finalX = targetX;
   else finalX = Math.max(slotLeft, Math.min(slotRight, finalX));
-  positions[positions.length - 1] = { simTime, x: finalX, y: maxDisplayY };
+  const maxLandingCenterY = slotTop - ballRadius;
+  const finalY = Math.min(maxDisplayY, maxLandingCenterY);
+  positions[positions.length - 1] = { simTime, x: finalX, y: finalY };
+  ensureRowPegHits(pegHits, positions, pegPositions, rows);
   Matter.World.remove(world, ball);
   pegBodies.forEach((b) => Matter.World.remove(world, b));
-  const upsampled = upsamplePath(positions, STEP_MS, pegPositions, ballRadius);
+  const upsampled = upsamplePath(positions, STEP_MS);
   return { positions: upsampled, pegHits, totalSimTime: simTime, finalX, finalY: maxDisplayY };
 }
 

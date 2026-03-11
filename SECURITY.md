@@ -2,6 +2,12 @@
 
 This document records the security review performed per the plan (Section 8). The following guarantees have been verified.
 
+## Transport security (production)
+
+- **Backend:** When `TLS_CERT_PATH` and `TLS_KEY_PATH` are set, the server listens over HTTPS and accepts only **TLS 1.3 or later** (`minVersion: 'TLSv1.3'`). Certificates must be PEM-format (e.g. from a public CA or Let’s Encrypt).
+- **HTTPS required outside local:** The server **refuses to start** over HTTP unless it is in a local environment. Local is defined as `NODE_ENV` equal to `development`, `test`, or unset. For any other `NODE_ENV` (e.g. `production`), both `TLS_CERT_PATH` and `TLS_KEY_PATH` must be set or the process exits with an error. This prevents accidentally running the API over plain HTTP in production.
+- **Frontend:** In production, set `VITE_API_BASE_URL` to the backend origin using **https** (e.g. `https://api.example.com`) so all API requests use the same TLS 1.3+ connection. Do not use `http` for the API in production.
+
 ## 8.1 Outcome only after bet
 
 - **Server:** The outcome (slot index, multiplier, win) is computed **only** in `POST /api/plinko/bet` in `backend/src/routes/index.ts`. It is produced by `resolveOutcome()` in `backend/src/plinko/engine.ts`, which is called only after: session validation, balance check, allowlist validation of rows and risk, and debit. There is no endpoint or code path that returns or pre-computes an outcome before a bet.
