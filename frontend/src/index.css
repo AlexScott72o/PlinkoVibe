@@ -1156,6 +1156,106 @@ input:disabled + .toggle-slider {
   text-shadow: 0 0 15px var(--color-accent-magenta);
 }
 
+/* Splash Screen */
+.splash-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-base);
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.splash-content {
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-accent-cyan);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 229, 255, 0.15), inset 0 0 20px rgba(0, 229, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.splash-logo {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.splash-instructions {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.splash-instructions h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.splash-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.splash-instructions li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent-cyan);
+  color: #000;
+  font-weight: 700;
+  font-family: var(--font-display);
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.splash-instructions p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.splash-instructions p strong {
+  color: var(--color-text-primary);
+}
+
+.splash-btn {
+  font-size: 1.25rem;
+  padding: 1rem 3rem;
+  align-self: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.splash-btn:hover {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.6);
+}
+
 .tooltip-wrap {
   position: relative;
   display: inline-flex;

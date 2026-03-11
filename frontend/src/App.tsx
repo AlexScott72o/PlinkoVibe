@@ -5,6 +5,7 @@ import { Controls } from './components/Controls';
 import { Stats } from './components/Stats';
 import { Settings } from './components/Settings';
 import { DebugPanel } from './components/DebugPanel';
+import { SplashScreen } from './components/SplashScreen';
 import {
   playPegBounce,
   playLanding,
@@ -16,6 +17,7 @@ import {
   getBgmVolume,
   setBgmVolume,
   tryAutoplayBackgroundMusic,
+  startBackgroundMusic,
 } from './sound';
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
   const [musicMuted, setMusicMutedState] = useState(isMusicMuted);
   const [sfxMuted, setSfxMutedState] = useState(isSfxMuted);
   const [bgmVolume, setBgmVolumeState] = useState(getBgmVolume);
+  const [showSplash, setShowSplash] = useState(true);
   const [audioMenuOpen, setAudioMenuOpen] = useState(false);
   const audioMenuRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -404,6 +407,15 @@ function App() {
           </div>
         </aside>
       </main>
+
+      {showSplash && (
+        <SplashScreen 
+          onDismiss={() => {
+            setShowSplash(false);
+            if (!musicMuted) startBackgroundMusic();
+          }} 
+        />
+      )}
     </div>
   );
 }
