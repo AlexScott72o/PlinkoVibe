@@ -1,10 +1,8 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { usePlinko, MIN_BALLS, MAX_BALLS } from './hooks/usePlinko';
-import { Board, type DebugState } from './components/Board';
+import { Board } from './components/Board';
 import { Controls } from './components/Controls';
 import { Stats } from './components/Stats';
-import { Settings } from './components/Settings';
-import { DebugPanel } from './components/DebugPanel';
 import { SplashScreen } from './components/SplashScreen';
 import {
   playPegBounce,
@@ -57,40 +55,6 @@ function App() {
   const [audioMenuOpen, setAudioMenuOpen] = useState(false);
   const audioMenuRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const [debugMode, setDebugMode] = useState(
-    () => typeof window !== 'undefined' && /[?&]plinkoDebug=1/.test(window.location.search)
-  );
-  const [debugPauseOnPegHit, setDebugPauseOnPegHit] = useState(false);
-  const [debugPaused, setDebugPaused] = useState(false);
-  const onDebugPause = useCallback(() => {
-    setDebugPaused(true);
-  }, []);
-  const onDebugResume = useCallback(() => setDebugPaused(false), []);
-  const setDebugModeAndUrl = useCallback((next: boolean) => {
-    setDebugMode(next);
-    if (typeof window !== 'undefined') {
-      const url = new URL(window.location.href);
-      if (next) {
-        url.searchParams.set('plinkoDebug', '1');
-      } else {
-        url.searchParams.delete('plinkoDebug');
-      }
-      window.history.replaceState(null, '', url.toString());
-    }
-  }, []);
-
-  const debug: DebugState | null = useMemo(
-    () =>
-      ({
-        debugMode,
-        debugPauseOnPegHit,
-        debugPaused,
-        onDebugPause,
-        onDebugResume,
-      }) as DebugState,
-    [debugMode, debugPauseOnPegHit, debugPaused, onDebugPause, onDebugResume]
-  );
 
   const canBet =
     config &&
@@ -267,7 +231,6 @@ function App() {
             onBallComplete={onBallComplete}
             onPegHit={onPegHit}
             onLand={handleLand}
-            debug={debug}
           />
           <div className="mobile-bet-row">
             <div className="action-row-buttons">
@@ -329,6 +292,8 @@ function App() {
             setRows={setRows}
             riskLevel={riskLevel}
             setRiskLevel={setRiskLevel}
+            animationSpeed={animationSpeed}
+            setAnimationSpeed={setAnimationSpeed}
             playing={playing}
             onPlay={handlePlaceBet}
             error={error}
@@ -337,19 +302,6 @@ function App() {
         </aside>
 
         <aside className="stats-sidebar">
-          <DebugPanel
-            debugMode={debugMode}
-            setDebugMode={setDebugModeAndUrl}
-            pauseOnPegHit={debugPauseOnPegHit}
-            setPauseOnPegHit={setDebugPauseOnPegHit}
-            debugPaused={debugPaused}
-            onResume={onDebugResume}
-          />
-          <Settings
-            animationSpeed={animationSpeed}
-            setAnimationSpeed={setAnimationSpeed}
-            playing={playing}
-          />
           <Stats
             balance={balance}
             lastResults={lastResults}
@@ -388,16 +340,13 @@ function App() {
               setRows={setRows}
               riskLevel={riskLevel}
               setRiskLevel={setRiskLevel}
+              animationSpeed={animationSpeed}
+              setAnimationSpeed={setAnimationSpeed}
               playing={playing}
               onPlay={handlePlaceBet}
               error={error}
               balance={balance}
               hideBetButton
-            />
-            <Settings
-              animationSpeed={animationSpeed}
-              setAnimationSpeed={setAnimationSpeed}
-              playing={playing}
             />
             <Stats
               balance={balance}

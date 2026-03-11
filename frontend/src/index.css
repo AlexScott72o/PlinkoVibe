@@ -393,7 +393,7 @@ input:disabled + .toggle-slider {
   padding: 0.5rem 1rem;
   max-width: 1400px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .main {
@@ -429,7 +429,7 @@ input:disabled + .toggle-slider {
 
   .board-hero .board-wrap {
     flex: 1;
-    min-height: 0;
+    min-height: 420px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -619,13 +619,6 @@ input:disabled + .toggle-slider {
   }
 }
 
-@media (max-width: 1023px) and (max-height: 620px) {
-  .board-hero .board-wrap {
-    transform: scale(0.88);
-    transform-origin: top center;
-  }
-}
-
 @media (min-width: 1024px) and (orientation: landscape) {
   .mobile-bet-row,
   .mobile-menu-toggle,
@@ -657,20 +650,25 @@ input:disabled + .toggle-slider {
   
   .controls-sidebar,
   .stats-sidebar {
-    /* Side panels can shrink, the board should not. */
+    /* Side panels same height; can shrink, the board should not. */
     flex: 0 1 280px;
     max-width: 320px;
+    min-height: 0;
     /* Align panel bottom with bottom of multiplier slots (board SVG is shifted up 40px) */
     height: calc(100% - 40px);
     max-height: calc(100% - 40px);
-  }
-
-  .stats-sidebar {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  
+
+  /* Both inner panels fill their sidebar so left and right panels match height */
+  .controls-sidebar .controls-panel,
+  .stats-sidebar .stats-panel {
+    flex: 1;
+    min-height: 0;
+  }
+
   .board-hero {
     /* Keep the Plinko board at a stable width; side panels adapt instead. */
     flex: 0 0 720px;
@@ -682,10 +680,10 @@ input:disabled + .toggle-slider {
     align-items: center;
   }
   
-  /* Top of SVG (initial ball drop) aligns with top of panels, shifted up 40px */
+  /* Top of SVG (initial ball drop) aligns with top of panels, shifted up 40px. Min-height keeps board at max size when window is resized. */
   .board-hero .board-wrap {
     flex: 1;
-    min-height: 0;
+    min-height: 520px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1038,12 +1036,6 @@ input:disabled + .toggle-slider {
 /* Settings / Testing section (right panel) */
 .settings-panel,
 .testing-panel,
-.debug-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .control-row-inline {
   display: flex;
   align-items: center;
@@ -1075,6 +1067,14 @@ input:disabled + .toggle-slider {
   gap: 0.25rem;
 }
 
+/* Results box must shrink so .results-list gets a bounded height and can scroll */
+.stats-panel .stat-box:has(.results-list) {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .stat-value {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -1093,7 +1093,43 @@ input:disabled + .toggle-slider {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  /* Always reserve space so the scrollbar never overlaps the result text */
+  padding-right: 0.9rem;
+  box-sizing: content-box;
+  /* Force a scrollbar track in supporting browsers so it's visible as soon as
+     the list can overflow the panel (it may still be styled/hidden by the OS). */
+  overflow-y: scroll;
+  /* Firefox: thick, high-contrast scrollbar */
+  scrollbar-width: auto;
+  scrollbar-color: #00E5FF #1a1d2e;
+}
+
+/* WebKit: always-visible, high-contrast scrollbar when content overflows */
+.results-list::-webkit-scrollbar {
+  width: 14px;
+}
+
+.results-list::-webkit-scrollbar-track {
+  background: #1a1d2e;
+  border-radius: 7px;
+  margin: 4px 0;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.results-list::-webkit-scrollbar-thumb {
+  background: #00E5FF;
+  border-radius: 7px;
+  min-height: 40px;
+}
+
+.results-list::-webkit-scrollbar-thumb:hover {
+  background: #33ebff;
+}
+
+.results-list::-webkit-scrollbar-thumb:active {
+  background: #66f0ff;
 }
 
 .result-item {

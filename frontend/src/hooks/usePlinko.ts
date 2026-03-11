@@ -150,7 +150,7 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
     const result = pendingByRoundIdRef.current.get(roundId);
     if (result) {
       setBalance(result.balance);
-      setLastResults((prev) => [result, ...prev].slice(0, 5));
+      setLastResults((prev) => [result, ...prev].slice(0, 100));
       pendingByRoundIdRef.current.delete(roundId);
       onRevealRef.current?.(result);
     }
