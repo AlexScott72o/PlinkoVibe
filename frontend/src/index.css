@@ -951,10 +951,23 @@ input:disabled + .toggle-slider {
 
 /* Settings / Testing section (right panel) */
 .settings-panel,
-.testing-panel {
+.testing-panel,
+.debug-panel {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.control-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-row-inline input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-accent);
 }
 
 /* Stats specific */

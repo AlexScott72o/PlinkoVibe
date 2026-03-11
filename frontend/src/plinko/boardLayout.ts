@@ -12,9 +12,9 @@ export const LANDED_VY_THRESHOLD = 3;
 export const MIN_SIM_MS = 8000;
 export const MAX_PHYSICS_MS = 25000;
 
-const ROW_HEIGHT_FACTOR = 0.78;
+export const ROW_HEIGHT_FACTOR = 0.78;
 /** So that no vertical line misses all pegs: pegSpacing <= 2*(PEG_COLLISION_R + ballRadius). */
-const PEG_SPACING_FACTOR = 0.86;
+export const PEG_SPACING_FACTOR = 0.86;
 
 export function getPegPositions(rows: number): { x: number; y: number; rowIndex: number }[] {
   const slots = rows + 1;

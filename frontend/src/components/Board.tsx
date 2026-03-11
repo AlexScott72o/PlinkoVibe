@@ -6,6 +6,15 @@ import { interpolatePath, type RecordedPath } from '@/plinko/physicsSim';
 import { winIntensityFromMultiplier } from '@/plinko/winIntensity';
 import { Ball } from './Ball';
 
+/** Which slot index (0..rows) contains this x? -1 if none. */
+function slotIndexFromX(rows: number, x: number): number {
+  for (let i = 0; i <= rows; i++) {
+    const { left, right } = getSlotXBounds(rows, i);
+    if (x >= left - 0.01 && x <= right + 0.01) return i;
+  }
+  return -1;
+}
+
 const TRAIL_MAX = 6;
 const VIEWBOX_Y_OFFSET = 40;
 /** Throttle peg-hit state updates to avoid 60+ re-renders/sec during animation */
@@ -52,6 +61,58 @@ function getCachedGradient(
     cache.set(key, g);
   }
   return g;
+}
+
+function drawDebugOverlay(
+  ctx: CanvasRenderingContext2D,
+  entry: PlaybackEntry,
+  rows: number,
+  slotTopY: number
+): void {
+  const { path } = entry;
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, VIEWBOX_Y_OFFSET);
+
+  // Path polyline
+  if (path.positions.length > 1) {
+    ctx.strokeStyle = 'rgba(255, 200, 0, 0.8)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(path.positions[0]!.x, path.positions[0]!.y);
+    for (let i = 1; i < path.positions.length; i++) {
+      ctx.lineTo(path.positions[i]!.x, path.positions[i]!.y);
+    }
+    ctx.stroke();
+  }
+
+  // Peg hit positions at their simTime (interpolated)
+  ctx.fillStyle = 'rgba(255, 0, 150, 0.9)';
+  for (const hit of path.pegHits) {
+    const pos = interpolatePath(path.positions, hit.simTime);
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Final position (path's clamped landing)
+  ctx.strokeStyle = 'lime';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  const cr = 8;
+  ctx.moveTo(path.finalX - cr, path.finalY);
+  ctx.lineTo(path.finalX + cr, path.finalY);
+  ctx.moveTo(path.finalX, path.finalY - cr);
+  ctx.lineTo(path.finalX, path.finalY + cr);
+  ctx.stroke();
+
+  // Slot bounds for this entry's slotIndex
+  const bounds = getSlotXBounds(rows, entry.slotIndex);
+  ctx.strokeStyle = 'rgba(0, 255, 255, 0.7)';
+  ctx.setLineDash([4, 4]);
+  ctx.strokeRect(bounds.left, slotTopY - 20, bounds.right - bounds.left, 24);
+  ctx.setLineDash([]);
+
+  ctx.restore();
 }
 
 function drawBalls(
@@ -109,6 +170,15 @@ const ROW_HEIGHT_FACTOR = 0.78;
 const PEG_R = 2.304; /* 20% larger than 1.92, matches physics scale */
 const SLOT_HEIGHT = 36;
 
+export type DebugState = {
+  debugMode: boolean;
+  debugPauseOnPegHit: boolean;
+  debugPaused: boolean;
+  /** Called when we want to pause (typically on peg hit). Argument is the current sim time. */
+  onDebugPause: (simNow: number) => void;
+  onDebugResume: () => void;
+};
+
 interface BoardProps {
   rows: number;
   riskLevel: RiskLevel;
@@ -118,9 +188,24 @@ interface BoardProps {
   onBallComplete: (roundId: number) => void;
   onPegHit?: (rowIndex: number) => void;
   onLand?: (roundId: number) => void;
+  debug?: DebugState | null;
 }
 
-export function Board({ rows, riskLevel, paytables, activeBalls = [], animationDurationMs, onBallComplete, onPegHit, onLand }: BoardProps) {
+export function Board({ rows, riskLevel, paytables, activeBalls = [], animationDurationMs, onBallComplete, onPegHit, onLand, debug = null }: BoardProps) {
+  const debugMode = debug?.debugMode ?? false;
+  const debugPauseOnPegHit = debug?.debugPauseOnPegHit ?? false;
+  const debugPaused = debug?.debugPaused ?? false;
+  const onDebugPause = debug?.onDebugPause ?? (() => {});
+  const onDebugResume = debug?.onDebugResume ?? (() => {});
+
+  const debugModeRef = useRef(debugMode);
+  const debugPauseOnPegHitRef = useRef(debugPauseOnPegHit);
+  const debugPausedRef = useRef(debugPaused);
+  const onDebugPauseRef = useRef(onDebugPause);
+  debugModeRef.current = debugMode;
+  debugPauseOnPegHitRef.current = debugPauseOnPegHit;
+  debugPausedRef.current = debugPaused;
+  onDebugPauseRef.current = onDebugPause;
   const balls = activeBalls ?? [];
   const [landedRoundIds, setLandedRoundIds] = useState<Set<number>>(new Set());
   const [activePegs, setActivePegs] = useState<number[]>([]);
@@ -129,6 +214,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   const positionsRef = useRef<Record<number, BallPosition>>({});
   const rafIdRef = useRef<number>(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const debugCanvasRef = useRef<HTMLCanvasElement>(null);
   const viewBoxHeightRef = useRef(240);
   const slotTopYRef = useRef(0);
   const slotBottomYRef = useRef(0);
@@ -142,6 +228,9 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   const fpsFrameCountRef = useRef<number>(0);
   const fpsAccumRef = useRef<number>(0);
   const fpsUiLastRef = useRef<number>(0);
+  // Simulation clock (decoupled from wall time so we can pause/resume cleanly)
+  const simNowRef = useRef<number>(0);
+  const lastRealNowRef = useRef<number | null>(null);
 
   const handlePegHit = useCallback((pegIndex: number) => {
     // Briefly light up hit pegs.
@@ -160,23 +249,44 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
   }, [onLand]);
 
   const tick = useCallback(() => {
-    const now = performance.now();
+    const realNow = performance.now();
+    let simNow = simNowRef.current;
+    const lastReal = lastRealNowRef.current;
+    if (lastReal == null) {
+      lastRealNowRef.current = realNow;
+    } else {
+      if (!debugPausedRef.current) {
+        simNow += realNow - lastReal;
+        simNowRef.current = simNow;
+      }
+      lastRealNowRef.current = realNow;
+    }
     const ballCount = playbackRef.current.size;
     const trailCap =
       ballCount >= TRAIL_OFF_ABOVE_COUNT ? 0 : ballCount > TRAIL_ABOVE_COUNT ? TRAIL_REDUCED_MAX : TRAIL_MAX;
     const next: Record<number, BallPosition> = {};
     const toRemove: number[] = [];
+    let pauseRequestSimNow: number | null = null;
     playbackRef.current.forEach((entry, roundId) => {
-      const elapsed = now - entry.startTime;
+      const elapsed = simNow - entry.startTime;
       const progress = Math.min(1, elapsed / entry.durationMs);
       const simTime = entry.path.totalSimTime * progress;
-      const simTimeForPegHits = simTime + PEG_HIT_LEAD_MS;
       while (
         entry.pegHitIndex < entry.path.pegHits.length &&
-        entry.path.pegHits[entry.pegHitIndex].simTime <= simTimeForPegHits
+        entry.path.pegHits[entry.pegHitIndex].simTime <= simTime
       ) {
-        entry.onPegHit(entry.path.pegHits[entry.pegHitIndex].pegIndex);
+        const hit = entry.path.pegHits[entry.pegHitIndex];
+        entry.onPegHit(hit.pegIndex);
         entry.pegHitIndex++;
+        if (debugModeRef.current && debugPauseOnPegHitRef.current && pauseRequestSimNow === null) {
+          pauseRequestSimNow = simNow;
+          const hitPos = interpolatePath(entry.path.positions, hit.simTime);
+          console.log('[Plinko debug] pegHit vs ball', {
+            roundId,
+            hitSimTime: hit.simTime,
+            hitPos,
+          });
+        }
       }
       const rowsCount = rowsRef.current;
       const slotWidth = BOARD_W / (rowsCount + 1);
@@ -184,17 +294,42 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       const slotTopY = 18 + rowsCount * rowHeight;
       const r = entry.radius;
       if (progress >= 1) {
+        if (debugMode) {
+          const slotForFinalX = slotIndexFromX(rowsCount, entry.path.finalX);
+          console.log('[Plinko debug] onLand (progress>=1)', {
+            roundId,
+            entrySlotIndex: entry.slotIndex,
+            pathFinalX: entry.path.finalX.toFixed(2),
+            pathFinalY: entry.path.finalY.toFixed(2),
+            slotIndexFromFinalX: slotForFinalX,
+            match: slotForFinalX === entry.slotIndex,
+          });
+        }
         entry.onLand();
         entry.onComplete();
         toRemove.push(roundId);
-        next[roundId] = { x: slotCenterX, y: slotTopY - r, trail: [] };
+        next[roundId] = { x: entry.path.finalX, y: entry.path.finalY, trail: [] };
         return;
       }
       const { x, y } = interpolatePath(entry.path.positions, simTime);
       if (y - r >= slotTopY) {
+        if (debugMode) {
+          const slotForFinalX = slotIndexFromX(rowsCount, entry.path.finalX);
+          console.log('[Plinko debug] onLand (y>=slotTopY)', {
+            roundId,
+            entrySlotIndex: entry.slotIndex,
+            pathFinalX: entry.path.finalX.toFixed(2),
+            pathFinalY: entry.path.finalY.toFixed(2),
+            interpolatedX: x.toFixed(2),
+            interpolatedY: y.toFixed(2),
+            slotIndexFromFinalX: slotForFinalX,
+            match: slotForFinalX === entry.slotIndex,
+          });
+        }
         entry.onLand();
         entry.onComplete();
         toRemove.push(roundId);
+        next[roundId] = { x: entry.path.finalX, y: entry.path.finalY, trail: [] };
         return;
       }
       const trail =
@@ -207,6 +342,11 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
           : [];
       next[roundId] = { x, y, trail };
     });
+    if (pauseRequestSimNow !== null) {
+      simNowRef.current = pauseRequestSimNow;
+      debugPausedRef.current = true;
+      onDebugPauseRef.current(pauseRequestSimNow);
+    }
     positionsRef.current = next;
     const now2 = performance.now();
     if (fpsNodeRef.current && lastFrameTimeRef.current > 0) {
@@ -238,11 +378,43 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
         drawBalls(ctx, next, playbackRef.current, viewBoxHeightRef.current, playbackRef.current.size, gradientCacheRef.current, slotTopYRef.current, slotBottomYRef.current);
       }
     }
+    if (debugMode) {
+      const dCanvas = debugCanvasRef.current;
+      const rowsCount = rowsRef.current;
+      const slotTopY = slotTopYRef.current;
+      if (dCanvas && canvas) {
+        dCanvas.width = canvas.width;
+        dCanvas.height = canvas.height;
+        const dCtx = dCanvas.getContext('2d');
+        if (dCtx) {
+          dCtx.clearRect(0, 0, dCanvas.width, dCanvas.height);
+          const firstEntry = playbackRef.current.values().next().value;
+          if (firstEntry) {
+            drawDebugOverlay(dCtx, firstEntry, rowsCount, slotTopY);
+            // Draw a red dot at the ball's ACTUAL computed position on the debug canvas.
+            const firstRoundId = playbackRef.current.keys().next().value;
+            if (firstRoundId != null) {
+              const ballPos = next[firstRoundId];
+              if (ballPos) {
+                dCtx.save();
+                dCtx.setTransform(1, 0, 0, 1, 0, VIEWBOX_Y_OFFSET);
+                dCtx.fillStyle = 'red';
+                dCtx.beginPath();
+                dCtx.arc(ballPos.x, ballPos.y, 6, 0, Math.PI * 2);
+                dCtx.fill();
+                dCtx.restore();
+              }
+            }
+          }
+        }
+      }
+    }
     toRemove.forEach((id) => playbackRef.current.delete(id));
     if (playbackRef.current.size > 0) {
       rafIdRef.current = requestAnimationFrame(tick);
     } else {
       rafIdRef.current = 0;
+      lastRealNowRef.current = null;
       lastFrameTimeRef.current = 0;
       fpsFrameCountRef.current = 0;
       fpsAccumRef.current = 0;
@@ -254,6 +426,10 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       if (canvas) {
         const ctx = canvas.getContext('2d');
         if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      if (debugMode && debugCanvasRef.current) {
+        const dCtx = debugCanvasRef.current.getContext('2d');
+        if (dCtx) dCtx.clearRect(0, 0, debugCanvasRef.current.width, debugCanvasRef.current.height);
       }
     }
   }, []);
@@ -267,6 +443,20 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       slotIndex: number,
       callbacks: { onPegHit: (pegIndex: number) => void; onLand: () => void; onComplete: () => void }
     ) => {
+      const rowsCount = rowsRef.current;
+      if (debugMode) {
+        const bounds = getSlotXBounds(rowsCount, slotIndex);
+        const slotForFinalX = slotIndexFromX(rowsCount, path.finalX);
+        console.log('[Plinko debug] registerPlayback', {
+          roundId,
+          slotIndex,
+          pathFinalX: path.finalX.toFixed(2),
+          pathFinalY: path.finalY.toFixed(2),
+          slotBounds: { left: bounds.left.toFixed(2), right: bounds.right.toFixed(2) },
+          slotIndexFromFinalX: slotForFinalX,
+          match: slotForFinalX === slotIndex,
+        });
+      }
       const first = path.positions[0];
       const initial: BallPosition = first
         ? { x: first.x, y: first.y, trail: [] }
@@ -275,7 +465,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       playbackRef.current.set(roundId, {
         path,
         slotIndex,
-        startTime: performance.now(),
+        startTime: simNowRef.current,
         durationMs,
         pegHitIndex: 0,
         radius,
@@ -412,6 +602,7 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
               onComplete={onBallComplete}
               registerPlayback={registerPlayback}
               unregisterPlayback={unregisterPlayback}
+              debugMode={debugMode}
             />
           ))}
         </svg>
@@ -427,11 +618,27 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
             width: '100%',
             height: '100%',
             pointerEvents: 'none',
-            transform: 'translateZ(0)',
-            willChange: 'transform',
             zIndex: 1,
           }}
         />
+        {debugMode && (
+          <canvas
+            ref={debugCanvasRef}
+            width={320}
+            height={viewBoxHeight}
+            className="board-canvas"
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'none',
+              zIndex: 3,
+            }}
+            aria-hidden="true"
+          />
+        )}
         {/* Slots layer on top so balls fall behind them */}
         {multipliers.length > 0 && (
           <svg

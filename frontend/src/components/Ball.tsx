@@ -15,6 +15,7 @@ interface BallProps {
   onSlotReached?: () => void;
   onLand?: (roundId: number) => void;
   onComplete?: (roundId: number) => void;
+  debugMode?: boolean;
   registerPlayback: (
     roundId: number,
     path: import('@/plinko/physicsSim').RecordedPath,
@@ -40,6 +41,7 @@ function BallInner({
   onSlotReached,
   onLand,
   onComplete,
+  debugMode = false,
   registerPlayback,
   unregisterPlayback,
 }: BallProps) {
@@ -60,7 +62,17 @@ function BallInner({
     const pathMatchesSlot = (path: import('@/plinko/physicsSim').RecordedPath) =>
       path.finalX >= bounds.left - eps && path.finalX <= bounds.right + eps;
     const doRegister = (path: import('@/plinko/physicsSim').RecordedPath) => {
-      if (!pathMatchesSlot(path)) return false;
+      if (!pathMatchesSlot(path)) {
+        if (debugMode) {
+          console.log('[Plinko debug] pathMatchesSlot REJECT', {
+            roundId,
+            slotIndex,
+            pathFinalX: path.finalX.toFixed(2),
+            bounds: { left: bounds.left.toFixed(2), right: bounds.right.toFixed(2) },
+          });
+        }
+        return false;
+      }
       registerPlayback(roundId, path, durationMs, ballRadius, slotIndex, {
         onPegHit: (pegIndex) => onPegHitRef.current?.(pegIndex),
         onSlotReached: () => onSlotReachedRef.current?.(),

@@ -12,6 +12,8 @@ import {
   LANDED_VY_THRESHOLD,
   MAX_PHYSICS_MS,
   SLOT_ROW_HEIGHT,
+  ROW_HEIGHT_FACTOR,
+  PEG_SPACING_FACTOR,
   getPegPositions,
   getTargetSlotX,
   getSlotY,
@@ -42,17 +44,18 @@ export interface PhysicsRunResult {
   stop: () => void;
 }
 
-/** Run one Matter sim with given initial drop X; returns landing position and peg hit count. */
+/** Run one Matter sim with given initial drop X; returns landing position and peg hit info. */
 function matterSimLanding(
   rows: number,
   ballRadius: number,
   initialDropX: number
-): { landingX: number; landingY: number; pegHits: number } {
+): { landingX: number; landingY: number; pegHits: number; topRowHit: boolean; rowsHit: boolean[] } {
   const pegPositions = getPegPositions(rows);
   const slotY = getSlotY(rows);
   const minX = ballRadius + BOUNDS_MARGIN;
   const maxX = BOARD_WIDTH - ballRadius - BOUNDS_MARGIN;
   const pegHit = new Set<number>();
+  const rowsHit: boolean[] = Array.from({ length: rows }, () => false);
 
   const engine = Matter.Engine.create({
     gravity: { x: 0, y: GRAVITY_Y },
@@ -101,7 +104,10 @@ function matterSimLanding(
     const py = ball.position.y;
     pegPositions.forEach((p) => {
       const dist = Math.hypot(p.x - px, p.y - py);
-      if (dist < PEG_COLLISION_R + ballRadius + 1) pegHit.add(p.rowIndex);
+      if (dist < PEG_COLLISION_R + ballRadius + 1) {
+        pegHit.add(p.rowIndex);
+        if (p.rowIndex >= 0 && p.rowIndex < rows) rowsHit[p.rowIndex] = true;
+      }
     });
     const vy = ball.velocity.y;
     if (py >= slotY - 10 && Math.abs(vy) < LANDED_VY_THRESHOLD) {
@@ -109,7 +115,7 @@ function matterSimLanding(
       const landingY = Math.min(py, slotY);
       Matter.World.remove(world, ball);
       pegBodies.forEach((b) => Matter.World.remove(world, b));
-      return { landingX, landingY, pegHits: pegHit.size };
+      return { landingX, landingY, pegHits: pegHit.size, topRowHit: pegHit.has(0), rowsHit };
     }
   }
 
@@ -117,7 +123,7 @@ function matterSimLanding(
   const landingY = slotY;
   Matter.World.remove(world, ball);
   pegBodies.forEach((b) => Matter.World.remove(world, b));
-  return { landingX, landingY, pegHits: pegHit.size };
+  return { landingX, landingY, pegHits: pegHit.size, topRowHit: pegHit.has(0), rowsHit };
 }
 
 /** Get initial drop X so the ball lands in the target slot (Matter, energetic). */
@@ -130,28 +136,32 @@ export function getInitialDropXMatter(
   const targetX = getTargetSlotX(rows, slotIndex);
   const slotW = slotRight - slotLeft;
 
-  let bestX = DROP_X;
-  let bestDist = Infinity;
-  let bestInSlot = false;
+  let bestInSlotX: number | null = null;
+  let bestInSlotDist = Infinity;
+  let bestFallbackX: number | null = null;
+  let bestFallbackDist = Infinity;
 
   for (let i = 0; i <= DROP_X_SEARCH_STEPS; i++) {
     const t = i / DROP_X_SEARCH_STEPS;
     const initialDropX = DROP_X + DROP_X_SEARCH_MIN + t * (DROP_X_SEARCH_MAX - DROP_X_SEARCH_MIN);
-    const { landingX, pegHits } = matterSimLanding(rows, ballRadius, initialDropX);
-    if (pegHits < 1) continue; /* require at least one peg hit – no straight drop */
+    const { landingX, pegHits, topRowHit, rowsHit } = matterSimLanding(rows, ballRadius, initialDropX);
+    if (!topRowHit || pegHits < 1) continue;
     const inSlot = landingX >= slotLeft && landingX <= slotRight;
+    if (!inSlot) continue;
     const dist = Math.abs(landingX - targetX);
-    if (inSlot && (bestDist > dist || !bestInSlot)) {
-      bestX = initialDropX;
-      bestDist = dist;
-      bestInSlot = true;
-      if (dist < slotW * 0.15) break;
-    } else if (!bestInSlot && bestDist > dist) {
-      bestX = initialDropX;
-      bestDist = dist;
+    const allRowsHit = rowsHit.every((hit) => hit);
+    if (allRowsHit) {
+      if (dist < bestInSlotDist) {
+        bestInSlotDist = dist;
+        bestInSlotX = initialDropX;
+        if (dist < slotW * 0.15) return bestInSlotX;
+      }
+    } else if (dist < bestFallbackDist) {
+      bestFallbackDist = dist;
+      bestFallbackX = initialDropX;
     }
   }
-  return bestX;
+  return bestInSlotX ?? bestFallbackX ?? DROP_X;
 }
 
 export interface RecordedPath {
@@ -203,43 +213,26 @@ function upsamplePath(
   return out;
 }
 
-/** Ensure there is at least one peg hit recorded per row, so the visual peg path always includes every row. */
-function ensureRowPegHits(
-  pegHits: { simTime: number; rowIndex: number; pegIndex: number }[],
+/** After the last peg row, smoothly guide X toward finalX so the visible path
+ *  never drifts horizontally between slots. */
+function smoothPathBelowLastPeg(
   positions: { simTime: number; x: number; y: number }[],
+  finalX: number,
   pegPositions: { x: number; y: number; rowIndex: number }[],
-  rows: number
+  slotTop: number
 ): void {
-  if (positions.length === 0 || pegPositions.length === 0) return;
-  const rowYs: number[] = [];
-  for (let r = 0; r < rows; r++) {
-    const peg = pegPositions.find((p) => p.rowIndex === r);
-    rowYs[r] = peg ? peg.y : 0;
-  }
-  for (let r = 0; r < rows; r++) {
-    const hasHit = pegHits.some((h) => h.rowIndex === r);
-    if (hasHit) continue;
-    const rowY = rowYs[r];
-    if (!rowY) continue;
-    const pos = positions.find((p) => p.y >= rowY);
-    if (!pos) continue;
-    const candidates: { idx: number; x: number }[] = [];
-    pegPositions.forEach((p, idx) => {
-      if (p.rowIndex === r) candidates.push({ idx, x: p.x });
-    });
-    if (!candidates.length) continue;
-    let best = candidates[0]!;
-    let bestDx = Math.abs(best.x - pos.x);
-    for (let i = 1; i < candidates.length; i++) {
-      const dx = Math.abs(candidates[i]!.x - pos.x);
-      if (dx < bestDx) {
-        best = candidates[i]!;
-        bestDx = dx;
-      }
+  const lastPegRowY = pegPositions.reduce((max, p) => Math.max(max, p.y), 0);
+  const smoothStart = lastPegRowY;
+  const range = slotTop - smoothStart;
+  if (range <= 0) return;
+  for (let i = 0; i < positions.length; i++) {
+    const p = positions[i];
+    if (p.y > smoothStart) {
+      const t = Math.min(1, (p.y - smoothStart) / range);
+      const eased = t * t;
+      positions[i] = { simTime: p.simTime, x: p.x + eased * (finalX - p.x), y: p.y };
     }
-    pegHits.push({ simTime: pos.simTime, rowIndex: r, pegIndex: best.idx });
   }
-  pegHits.sort((a, b) => a.simTime - b.simTime);
 }
 
 /** Run Matter.js to completion and record path (sync). Used for playback over durationMs.
@@ -331,12 +324,10 @@ export function runMatterRecord(
     const landed = py >= slotY - 10 && Math.abs(vy) < LANDED_VY_THRESHOLD;
     if (landed) {
       const finalX = px < slotLeft || px > slotRight ? targetX : Math.max(slotLeft, Math.min(slotRight, px));
-      // Clamp landing Y so the ball center is just above the slot top (never inside the slot visuals).
-      const rawFinalY = Math.min(py, maxDisplayY);
       const maxLandingCenterY = slotTop - ballRadius;
-      const finalY = Math.min(rawFinalY, maxLandingCenterY);
+      const finalY = Math.min(Math.min(py, maxDisplayY), maxLandingCenterY);
       positions[positions.length - 1] = { simTime, x: finalX, y: finalY };
-      ensureRowPegHits(pegHits, positions, pegPositions, rows);
+      smoothPathBelowLastPeg(positions, finalX, pegPositions, slotTop);
       Matter.World.remove(world, ball);
       pegBodies.forEach((b) => Matter.World.remove(world, b));
       const upsampled = upsamplePath(positions, STEP_MS);
@@ -351,11 +342,11 @@ export function runMatterRecord(
   const maxLandingCenterY = slotTop - ballRadius;
   const finalY = Math.min(maxDisplayY, maxLandingCenterY);
   positions[positions.length - 1] = { simTime, x: finalX, y: finalY };
-  ensureRowPegHits(pegHits, positions, pegPositions, rows);
+  smoothPathBelowLastPeg(positions, finalX, pegPositions, slotTop);
   Matter.World.remove(world, ball);
   pegBodies.forEach((b) => Matter.World.remove(world, b));
   const upsampled = upsamplePath(positions, STEP_MS);
-  return { positions: upsampled, pegHits, totalSimTime: simTime, finalX, finalY: maxDisplayY };
+  return { positions: upsampled, pegHits, totalSimTime: simTime, finalX, finalY };
 }
 
 export function interpolatePath(
@@ -385,8 +376,7 @@ export function getRecordedLandingPosition(
   slotIndex: number,
   ballRadius: number
 ): { x: number; y: number } {
-  const initialDropX = getInitialDropXMatter(rows, slotIndex, ballRadius);
-  const path = runMatterRecord(rows, slotIndex, ballRadius, initialDropX);
+  const path = buildDeterministicPath(rows, slotIndex, ballRadius);
   return { x: path.finalX, y: path.finalY };
 }
 
@@ -483,9 +473,147 @@ function getWorker(): Worker | null {
   }
 }
 
+// Timing constants for the deterministic path (in simulated ms, same units as runMatterRecord)
+const DET_T_DROP = 500;   // sim ms from spawn to row-0 peg hit
+const DET_T_ROW = 700;    // sim ms per inter-peg arc
+const DET_FINE_STEPS = 20; // position samples per arc segment
+const DET_DROP_STEPS = 10; // position samples for the initial drop
+
+/**
+ * Build a deterministic Galton-board path that guarantees:
+ *  - exactly one peg hit per row (lit by the real SVG peg lighting)
+ *  - the ball never crosses a slot boundary in the visible path
+ *
+ * Left/right decisions at each row are distributed evenly via Bresenham's
+ * line algorithm so that the ball reaches `slotIndex` after `rows` rows.
+ */
+export function buildDeterministicPath(
+  rows: number,
+  slotIndex: number,
+  ballRadius: number
+): RecordedPath {
+  const slotWidth = BOARD_WIDTH / (rows + 1);
+  const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
+  const pegSpacing = slotWidth * PEG_SPACING_FACTOR;
+  const pegStartY = 24; // matches boardLayout getPegPositions startY
+
+  const slotY = getSlotY(rows);
+  const slotTop = slotY - SLOT_ROW_HEIGHT / 2;
+  const slotBottom = getSlotBottom(rows);
+  const maxDisplayY = slotBottom - ballRadius;
+  const maxLandingY = slotTop - ballRadius;
+  const targetX = getTargetSlotX(rows, slotIndex);
+
+  // ── Bresenham distribution of rights across rows ──────────────────────────
+  // slotIndex rights in `rows` decisions, spread as evenly as possible.
+  const decisions: boolean[] = [];
+  let bErr = 0;
+  for (let r = 0; r < rows; r++) {
+    bErr += slotIndex;
+    if (bErr * 2 >= rows) {
+      decisions.push(true);  // right
+      bErr -= rows;
+    } else {
+      decisions.push(false); // left
+    }
+  }
+
+  // ── Peg hit at each row ───────────────────────────────────────────────────
+  // Row r has r+1 pegs. Peg j in row r:
+  //   x = (BOARD_WIDTH - r*pegSpacing)/2 + j*pegSpacing
+  //   y = pegStartY + r*rowHeight
+  //   globalIndex = r*(r+1)/2 + j
+  const hitPegs: { x: number; y: number; rowIndex: number; globalIndex: number }[] = [];
+  let cumRights = 0;
+  for (let r = 0; r < rows; r++) {
+    const pegX = (BOARD_WIDTH - r * pegSpacing) / 2 + cumRights * pegSpacing;
+    const pegY = pegStartY + r * rowHeight;
+    const globalIndex = (r * (r + 1)) / 2 + cumRights;
+    hitPegs.push({ x: pegX, y: pegY, rowIndex: r, globalIndex });
+    if (decisions[r]) cumRights++;
+  }
+
+  // ── Arc physics: C=2 bounce ───────────────────────────────────────────────
+  // y(t) = peg.y - V_BOUNCE*t + 0.5*g_eff*t^2
+  // At t=T_ROW → peg.y + rowHeight  (arrives at next peg)
+  // Bounce height = rowHeight / 3  (ball rises 1/3 of row height above peg)
+  const V_BOUNCE = 2 * rowHeight / DET_T_ROW;
+  const g_eff = 6 * rowHeight / (DET_T_ROW * DET_T_ROW);
+
+  const positions: { simTime: number; x: number; y: number }[] = [];
+  const pegHits: { simTime: number; rowIndex: number; pegIndex: number }[] = [];
+
+  // ── Phase 1: drop from DROP_Y to row-0 peg ───────────────────────────────
+  const firstPeg = hitPegs[0]!;
+  positions.push({ simTime: 0, x: DROP_X, y: DROP_Y });
+  for (let i = 1; i <= DET_DROP_STEPS; i++) {
+    const frac = i / DET_DROP_STEPS;
+    positions.push({
+      simTime: frac * DET_T_DROP,
+      x: DROP_X + (firstPeg.x - DROP_X) * frac,
+      y: DROP_Y + (firstPeg.y - DROP_Y) * frac * frac, // ease-in (gravity)
+    });
+  }
+  pegHits.push({ simTime: DET_T_DROP, rowIndex: 0, pegIndex: firstPeg.globalIndex });
+
+  // ── Phase 2: bounce arcs between consecutive pegs ────────────────────────
+  for (let r = 0; r < rows - 1; r++) {
+    const peg = hitPegs[r]!;
+    const nextPeg = hitPegs[r + 1]!;
+    const arcStart = DET_T_DROP + r * DET_T_ROW;
+    const dx = nextPeg.x - peg.x; // ±pegSpacing/2
+    for (let i = 1; i <= DET_FINE_STEPS; i++) {
+      const frac = i / DET_FINE_STEPS;
+      const t = frac * DET_T_ROW;
+      positions.push({
+        simTime: arcStart + t,
+        x: peg.x + dx * frac,
+        y: Math.min(peg.y - V_BOUNCE * t + 0.5 * g_eff * t * t, maxDisplayY),
+      });
+    }
+    pegHits.push({
+      simTime: DET_T_DROP + (r + 1) * DET_T_ROW,
+      rowIndex: r + 1,
+      pegIndex: nextPeg.globalIndex,
+    });
+  }
+
+  // ── Phase 3: final arc from last peg into slot ───────────────────────────
+  // The last peg deflects the ball into the target slot. The ball should NOT
+  // bounce upward here — it should continue falling with the downward velocity
+  // it already has from Phase 2's last arc, deflected sideways toward the slot.
+  //
+  // At the end of Phase 2's last arc (t = DET_T_ROW):
+  //   dy/dt = -V_BOUNCE + g_eff * DET_T_ROW = 4 * rowHeight / DET_T_ROW  (downward)
+  // We carry this velocity into Phase 3 so the ball keeps falling steeply,
+  // with no upward component at all.
+  const lastPeg = hitPegs[rows - 1]!;
+  const finalArcStart = DET_T_DROP + (rows - 1) * DET_T_ROW;
+  const finalDx = targetX - lastPeg.x; // ±pegSpacing/2
+  const finalDy = maxLandingY - lastPeg.y;
+  // Incoming downward speed at the moment the ball arrives at the last peg.
+  const v_y0 = g_eff * DET_T_ROW - V_BOUNCE; // = 4*rowHeight/DET_T_ROW > 0
+  // Time to fall finalDy more under continued gravity:
+  //   finalDy = v_y0*t + 0.5*g_eff*t^2  →  positive root
+  const finalT = (-v_y0 + Math.sqrt(v_y0 * v_y0 + 2 * g_eff * finalDy)) / g_eff;
+  for (let i = 1; i <= DET_FINE_STEPS; i++) {
+    const frac = i / DET_FINE_STEPS;
+    const t = frac * finalT;
+    positions.push({
+      simTime: finalArcStart + t,
+      x: lastPeg.x + finalDx * frac,
+      y: Math.min(lastPeg.y + v_y0 * t + 0.5 * g_eff * t * t, maxDisplayY),
+    });
+  }
+
+  const totalSimTime = finalArcStart + finalT;
+  positions[positions.length - 1] = { simTime: totalSimTime, x: targetX, y: maxLandingY };
+
+  return { positions, pegHits, totalSimTime, finalX: targetX, finalY: maxLandingY };
+}
+
 function runRecordSync(rows: number, slotIndex: number, ballRadius: number): RecordedPath {
-  const initialDropX = getInitialDropXMatter(rows, slotIndex, ballRadius);
-  return runMatterRecord(rows, slotIndex, ballRadius, initialDropX);
+  return buildDeterministicPath(rows, slotIndex, ballRadius);
 }
 
 function processNextRecord(): void {
