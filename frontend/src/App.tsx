@@ -1,11 +1,22 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { usePlinko, MIN_BALLS, MAX_BALLS } from './hooks/usePlinko';
 import { Board, type DebugState } from './components/Board';
 import { Controls } from './components/Controls';
 import { Stats } from './components/Stats';
 import { Settings } from './components/Settings';
 import { DebugPanel } from './components/DebugPanel';
-import { playPegBounce, playLanding, playWin, isMuted, setMuted } from './sound';
+import {
+  playPegBounce,
+  playLanding,
+  playWin,
+  isMusicMuted,
+  isSfxMuted,
+  setMusicMuted,
+  setSfxMuted,
+  getBgmVolume,
+  setBgmVolume,
+  tryAutoplayBackgroundMusic,
+} from './sound';
 
 function App() {
   const {
@@ -37,7 +48,11 @@ function App() {
     },
   });
 
-  const [muted, setMutedState] = useState(isMuted);
+  const [musicMuted, setMusicMutedState] = useState(isMusicMuted);
+  const [sfxMuted, setSfxMutedState] = useState(isSfxMuted);
+  const [bgmVolume, setBgmVolumeState] = useState(getBgmVolume);
+  const [audioMenuOpen, setAudioMenuOpen] = useState(false);
+  const audioMenuRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [debugMode, setDebugMode] = useState(
@@ -84,13 +99,42 @@ function App() {
     !playing;
 
   useEffect(() => {
-    setMutedState(isMuted());
+    setMusicMutedState(isMusicMuted());
+    setSfxMutedState(isSfxMuted());
+    setBgmVolumeState(getBgmVolume());
   }, []);
 
-  const toggleMute = () => {
-    const next = !muted;
-    setMuted(next);
-    setMutedState(next);
+  useEffect(() => {
+    if (!audioMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (audioMenuRef.current && !audioMenuRef.current.contains(e.target as Node)) {
+        setAudioMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [audioMenuOpen]);
+
+  const setMusicMutedAndState = useCallback((muted: boolean) => {
+    setMusicMuted(muted);
+    setMusicMutedState(muted);
+  }, []);
+
+  const setSfxMutedAndState = useCallback((muted: boolean) => {
+    setSfxMuted(muted);
+    setSfxMutedState(muted);
+  }, []);
+
+  // Start background music as soon as the game has loaded. If the browser blocks
+  // autoplay, music will start on first click/tap/key.
+  useEffect(() => {
+    if (!loading) {
+      tryAutoplayBackgroundMusic();
+    }
+  }, [loading]);
+
+  const handlePlaceBet = () => {
+    void placeBet();
   };
 
   const onPegHit = () => {
@@ -130,26 +174,74 @@ function App() {
           </svg>
         </button>
         <h1 className="logo-text">PlinkoVibe</h1>
-        <button
-          type="button"
-          className="btn-mute"
-          onClick={toggleMute}
-          aria-label={muted ? 'Unmute' : 'Mute'}
-        >
-          {muted ? (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <line x1="23" y1="9" x2="17" y2="15"></line>
-              <line x1="17" y1="9" x2="23" y2="15"></line>
-            </svg>
-          ) : (
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            </svg>
+        <div className="audio-control-wrap" ref={audioMenuRef}>
+          <button
+            type="button"
+            className="btn-mute"
+            onClick={() => setAudioMenuOpen((o) => !o)}
+            aria-label="Sound settings"
+            aria-expanded={audioMenuOpen}
+            aria-haspopup="true"
+          >
+            {musicMuted && sfxMuted ? (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            ) : (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              </svg>
+            )}
+          </button>
+          {audioMenuOpen && (
+            <div className="audio-menu" role="menu">
+              <div className="audio-menu-item">
+                <span className="audio-menu-label">Background music</span>
+                <button
+                  type="button"
+                  role="menuitemcheckbox"
+                  aria-checked={!musicMuted}
+                  className={`audio-menu-toggle ${musicMuted ? 'off' : 'on'}`}
+                  onClick={() => setMusicMutedAndState(!musicMuted)}
+                >
+                  {musicMuted ? 'Off' : 'On'}
+                </button>
+              </div>
+              <div className="audio-menu-item audio-menu-item-slider">
+                <span className="audio-menu-label">Music volume</span>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={Math.round(bgmVolume * 100)}
+                  onChange={(e) => {
+                    const v = Number(e.target.value) / 100;
+                    setBgmVolume(v);
+                    setBgmVolumeState(v);
+                  }}
+                  className="audio-volume-slider"
+                  aria-label="Music volume"
+                />
+              </div>
+              <div className="audio-menu-item">
+                <span className="audio-menu-label">Sound effects</span>
+                <button
+                  type="button"
+                  role="menuitemcheckbox"
+                  aria-checked={!sfxMuted}
+                  className={`audio-menu-toggle ${sfxMuted ? 'off' : 'on'}`}
+                  onClick={() => setSfxMutedAndState(!sfxMuted)}
+                >
+                  {sfxMuted ? 'Off' : 'On'}
+                </button>
+              </div>
+            </div>
           )}
-        </button>
+        </div>
       </header>
       <main className="main">
         <section className="board-hero">
@@ -188,7 +280,7 @@ function App() {
               <button
                 type="button"
                 className={`btn btn-primary btn-play btn-spin-icon ${error === 'Insufficient balance' ? 'btn-shake' : ''}`}
-                onClick={placeBet}
+                onClick={handlePlaceBet}
                 disabled={!canBet && error !== 'Insufficient balance'}
                 aria-label={playing ? 'Spinning...' : `Spin – bet ${totalBet}`}
               >
@@ -235,7 +327,7 @@ function App() {
             riskLevel={riskLevel}
             setRiskLevel={setRiskLevel}
             playing={playing}
-            onPlay={placeBet}
+            onPlay={handlePlaceBet}
             error={error}
             balance={balance}
           />
@@ -294,7 +386,7 @@ function App() {
               riskLevel={riskLevel}
               setRiskLevel={setRiskLevel}
               playing={playing}
-              onPlay={placeBet}
+              onPlay={handlePlaceBet}
               error={error}
               balance={balance}
               hideBetButton
