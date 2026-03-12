@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: plinkovibe-backend
+    env: node
+    rootDir: .
+    buildCommand: npm install && npm run build --workspace=backend
+    startCommand: npm run start --workspace=backend
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BEHIND_TLS_PROXY
+        value: "true"
+    healthCheckPath: /api/health
+
