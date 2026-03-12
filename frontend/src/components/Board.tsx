@@ -10,7 +10,6 @@ const TRAIL_MAX = 6;
 const VIEWBOX_Y_OFFSET = 40;
 /** Throttle peg-hit state updates to avoid 60+ re-renders/sec during animation */
 const PEG_FLUSH_INTERVAL_MS = 80;
-const PEG_HIT_LEAD_MS = 0;
 
 export type BallPosition = { x: number; y: number; trail: { x: number; y: number }[] };
 
@@ -61,8 +60,7 @@ function drawBalls(
   viewBoxHeight: number,
   ballCount: number,
   gradientCache: Map<number, CanvasGradient>,
-  slotTopY: number,
-  slotBottomY: number
+  slotTopY: number
 ) {
   const trailMax =
     ballCount >= TRAIL_OFF_ABOVE_COUNT ? 0 : ballCount > TRAIL_ABOVE_COUNT ? TRAIL_REDUCED_MAX : TRAIL_MAX;
@@ -190,10 +188,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
         entry.onPegHit(hit.pegIndex);
         entry.pegHitIndex++;
       }
-      const rowsCount = rowsRef.current;
-      const slotWidth = BOARD_W / (rowsCount + 1);
-      const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
-      const slotTopY = 18 + rowsCount * rowHeight;
       const r = entry.radius;
       if (progress >= 1) {
         entry.onLand();
@@ -248,7 +242,15 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
     if (canvas && playbackRef.current.size > 0) {
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        drawBalls(ctx, next, playbackRef.current, viewBoxHeightRef.current, playbackRef.current.size, gradientCacheRef.current, slotTopYRef.current, slotBottomYRef.current);
+        drawBalls(
+          ctx,
+          next,
+          playbackRef.current,
+          viewBoxHeightRef.current,
+          playbackRef.current.size,
+          gradientCacheRef.current,
+          slotTopYRef.current
+        );
       }
     }
     toRemove.forEach((id) => playbackRef.current.delete(id));
@@ -281,7 +283,6 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       slotIndex: number,
       callbacks: { onPegHit: (pegIndex: number) => void; onLand: () => void; onComplete: () => void }
     ) => {
-      const rowsCount = rowsRef.current;
       const first = path.positions[0];
       const initial: BallPosition = first
         ? { x: first.x, y: first.y, trail: [] }
@@ -302,7 +303,15 @@ export function Board({ rows, riskLevel, paytables, activeBalls = [], animationD
       if (canvas) {
         const ctx = canvas.getContext('2d');
         if (ctx) {
-          drawBalls(ctx, positionsRef.current, playbackRef.current, viewBoxHeightRef.current, playbackRef.current.size, gradientCacheRef.current, slotTopYRef.current, slotBottomYRef.current);
+          drawBalls(
+            ctx,
+            positionsRef.current,
+            playbackRef.current,
+            viewBoxHeightRef.current,
+            playbackRef.current.size,
+            gradientCacheRef.current,
+            slotTopYRef.current
+          );
         }
       }
       if (rafIdRef.current === 0) {

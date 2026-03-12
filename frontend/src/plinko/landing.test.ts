@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildDeterministicPath, interpolatePath } from './physicsSim';
+import { buildDeterministicPath } from './physicsSim';
 import { getSlotXBounds, getBallRadiusForRows, getSlotY, SLOT_ROW_HEIGHT } from './boardLayout';
 
 describe('ball appears to land at slot centre', () => {
