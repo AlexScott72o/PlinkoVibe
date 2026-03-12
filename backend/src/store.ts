@@ -9,8 +9,8 @@ const SESSIONS_PATH = join(DATA_DIR, 'sessions.json');
 const HISTORY_PATH = join(DATA_DIR, 'history.json');
 
 /** Sessions inactive longer than this are eligible for cleanup. */
-const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-const CLEANUP_INTERVAL_MS = 10 * 60 * 1000;  // 10 minutes
+const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const CLEANUP_INTERVAL_MS = 60 * 60 * 1000;      // 1 hour
 const MAX_SESSIONS = 10_000;
 const MAX_HISTORY_PER_SESSION = 500;
 

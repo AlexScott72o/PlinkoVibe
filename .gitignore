@@ -4,3 +4,5 @@ data/sessions.json
 .env
 .env.local
 .env.*.local
+data/history.json
+data/sessions.json
