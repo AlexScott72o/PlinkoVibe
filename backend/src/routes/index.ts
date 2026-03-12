@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, type Request, type Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import type { BetRequest } from 'shared';
 import {
@@ -25,19 +25,19 @@ const router = Router();
 
 initStore();
 
-router.get('/health', (_req, res) => {
+router.get('/health', (_req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
 // POST /api/session — create or restore session
-router.post('/session', (_req, res) => {
+router.post('/session', (_req: Request, res: Response) => {
   const sessionId = uuidv4();
   const record = createSession(sessionId, INITIAL_BALANCE);
   res.json({ sessionId: record.sessionId, balance: record.balance });
 });
 
 // GET /api/config?sessionId=...
-router.get('/config', (req, res) => {
+router.get('/config', (req: Request, res: Response) => {
   const sessionId = req.query.sessionId as string;
   if (!sessionId) {
     res.status(400).json({ error: 'sessionId required' });
@@ -60,7 +60,7 @@ router.get('/config', (req, res) => {
 });
 
 // POST /api/plinko/bet — outcome computed only here, after validation
-router.post('/plinko/bet', (req, res) => {
+router.post('/plinko/bet', (req: Request, res: Response) => {
   const body = req.body as BetRequest;
   const { sessionId, betAmount, rows, riskLevel } = body;
 
@@ -132,7 +132,7 @@ router.post('/plinko/bet', (req, res) => {
 });
 
 // GET /api/balance?sessionId=...
-router.get('/balance', (req, res) => {
+router.get('/balance', (req: Request, res: Response) => {
   const sessionId = req.query.sessionId as string;
   if (!sessionId) {
     res.status(400).json({ error: 'sessionId required' });
@@ -147,7 +147,7 @@ router.get('/balance', (req, res) => {
 });
 
 // GET /api/history?sessionId=...&limit=N
-router.get('/history', (req, res) => {
+router.get('/history', (req: Request, res: Response) => {
   const sessionId = req.query.sessionId as string;
   const limit = Math.min(100, Math.max(1, parseInt(String(req.query.limit), 10) || 20));
   if (!sessionId) {

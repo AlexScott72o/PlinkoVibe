@@ -11,5 +11,7 @@ services:
         value: production
       - key: BEHIND_TLS_PROXY
         value: "true"
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
     healthCheckPath: /api/health
 
