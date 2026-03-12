@@ -9,17 +9,25 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "shared": "file:../shared",
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "uuid": "^9.0.1",
-    "@types/node": "^20.10.4",
-    "@types/express": "^4.17.21",
     "@types/cors": "^2.8.17",
-    "@types/uuid": "^9.0.7"
+    "@types/express": "^4.17.21",
+    "@types/express-rate-limit": "^5.1.3",
+    "@types/node": "^20.10.4",
+    "@types/uuid": "^9.0.7",
+    "@types/write-file-atomic": "^4.0.3",
+    "async-mutex": "^0.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.3.1",
+    "helmet": "^8.1.0",
+    "pino": "^10.3.1",
+    "pino-http": "^11.0.0",
+    "shared": "file:../shared",
+    "uuid": "^9.0.1",
+    "write-file-atomic": "^7.0.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }

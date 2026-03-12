@@ -6,7 +6,7 @@ import type {
   SessionResponse,
   ConfigResponse,
   BetRequest,
-  BetResponse,
+  PlaceBetResponse,
   BalanceResponse,
   HistoryResponse,
 } from 'shared';
@@ -47,7 +47,7 @@ export async function getConfig(sessionId: string): Promise<ConfigResponse> {
   return res.json();
 }
 
-export async function placeBet(body: BetRequest): Promise<BetResponse> {
+export async function placeBet(body: BetRequest): Promise<PlaceBetResponse> {
   const res = await fetch(`${BASE}/api/plinko/bet`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

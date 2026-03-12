@@ -113,24 +113,17 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
     const roundIdBase = nextRoundIdRef.current;
 
     try {
-      const results: BetResponse[] = [];
-      for (let i = 0; i < balls; i++) {
-        const result = await api.placeBet({
-          sessionId,
-          betAmount,
-          rows,
-          riskLevel,
-        });
-        results.push(result);
-      }
+      // Single request resolves all balls at once — avoids N serial round-trips
+      const { bets } = await api.placeBet({ sessionId, betAmount, rows, riskLevel, count: balls });
       nextRoundIdRef.current = roundIdBase + balls;
-      setOutcomeAndRound({ outcome: results[results.length - 1] ?? null, roundId: nextRoundIdRef.current });
+      setOutcomeAndRound({ outcome: bets[bets.length - 1] ?? null, roundId: nextRoundIdRef.current });
       const dropDelayMs = BALL_DROP_DELAY_MS[animationSpeedRef.current];
-      for (let i = 0; i < results.length; i++) {
+      for (let i = 0; i < bets.length; i++) {
         const roundId = roundIdBase + i;
-        pendingByRoundIdRef.current.set(roundId, results[i]);
+        const bet = bets[i]!;
+        pendingByRoundIdRef.current.set(roundId, bet);
         setTimeout(() => {
-          setActiveBalls((b) => [...b, { roundId, slotIndex: results[i].slotIndex, rows }]);
+          setActiveBalls((b) => [...b, { roundId, slotIndex: bet.slotIndex, rows }]);
         }, i * dropDelayMs);
       }
     } catch (e) {

@@ -11,5 +11,7 @@ services:
         value: production
       - key: BEHIND_TLS_PROXY
         value: "true"
+      - key: CORS_ORIGINS
+        sync: false  # Set this manually in the Render dashboard to your frontend URL (e.g. https://your-app.pages.dev)
     healthCheckPath: /api/health
 

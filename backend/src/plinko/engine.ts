@@ -8,7 +8,8 @@ import { randomBytes } from 'crypto';
 export interface PlinkoOutcome {
   slotIndex: number;
   multiplier: number;
-  winAmount: number;
+  /** Win amount in integer cents. */
+  winAmountCents: number;
 }
 
 /**
@@ -37,18 +38,20 @@ function weightedSample(weights: number[]): number {
 
 /**
  * Resolve one Plinko round. Called only from bet handler after validation.
+ * @param betAmountCents - Bet amount in integer cents (e.g. 150 = $1.50).
+ * @returns Outcome with winAmountCents as an integer number of cents.
  */
 export function resolveOutcome(
   rows: number,
   risk: string,
-  betAmount: number
+  betAmountCents: number
 ): PlinkoOutcome | null {
   const config = getConfig(rows, risk);
   if (!config || config.multipliers.length === 0) return null;
 
   const slotIndex = weightedSample(config.weights);
   const multiplier = config.multipliers[slotIndex] ?? 0;
-  const winAmount = betAmount * multiplier;
+  const winAmountCents = Math.round(betAmountCents * multiplier);
 
-  return { slotIndex, multiplier, winAmount };
+  return { slotIndex, multiplier, winAmountCents };
 }

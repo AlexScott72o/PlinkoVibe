@@ -1,3 +1,6 @@
 node_modules/
 data/history.json
 data/sessions.json
+.env
+.env.local
+.env.*.local

@@ -1,12 +1,13 @@
 /**
  * @vitest-environment jsdom
- * Ensures the result (balance, lastResults) is not displayed until the animation completes.
- * The hook only applies the bet result when onBallComplete is called, not when placeBet resolves.
+ * Ensures the result (balance, lastResults) is not revealed until the ball lands.
+ * The hook only applies the bet result when onLand fires (ball reaches the slot),
+ * not when the placeBet API call resolves.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { usePlinko } from './usePlinko';
-import type { BetResponse } from 'shared';
+import type { PlaceBetResponse } from 'shared';
 
 vi.mock('../api', () => ({
   ensureSession: vi.fn().mockResolvedValue({ sessionId: 'test-session', balance: 100 }),
@@ -20,11 +21,8 @@ vi.mock('../api', () => ({
     paytables: {},
   }),
   placeBet: vi.fn().mockResolvedValue({
-    slotIndex: 5,
-    balance: 99,
-    winAmount: 0,
-    multiplier: 1,
-  } as BetResponse),
+    bets: [{ slotIndex: 5, balance: 99, winAmount: 0, multiplier: 1 }],
+  } as PlaceBetResponse),
 }));
 
 describe('usePlinko', () => {
@@ -35,7 +33,7 @@ describe('usePlinko', () => {
     vi.useRealTimers();
   });
 
-  it('does not update balance or lastResults until onBallComplete is called', async () => {
+  it('does not update balance or lastResults until the ball lands', async () => {
     const { result } = renderHook(() => usePlinko());
 
     await act(async () => {
@@ -49,6 +47,7 @@ describe('usePlinko', () => {
       vi.runAllTimersAsync();
     });
 
+    // After the API returns but before the ball lands: nothing is revealed
     const balanceAfterBet = result.current.balance;
     const lastResultsAfterBet = result.current.lastResults;
     const activeBallsAfterBet = result.current.activeBalls;
@@ -58,11 +57,9 @@ describe('usePlinko', () => {
     expect(balanceAfterBet).toBe(100);
     expect(lastResultsAfterBet.length).toBe(0);
 
+    // Ball lands → balance and result are now revealed
     await act(async () => {
-      result.current.onBallComplete(roundId);
-    });
-    await act(async () => {
-      vi.advanceTimersByTime(8000);
+      result.current.onLand(roundId);
     });
 
     expect(result.current.balance).toBe(99);

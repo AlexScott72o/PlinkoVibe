@@ -18,6 +18,11 @@ import {
   startBackgroundMusic,
 } from './sound';
 
+/** Seconds of loading after which we assume the server is waking from sleep. */
+const SLOW_CONNECTION_THRESHOLD_S = 5;
+/** Render free-tier cold-start cap used for the progress bar (seconds). */
+const EXPECTED_WAKEUP_S = 60;
+
 function App() {
   const {
     balance,
@@ -55,6 +60,18 @@ function App() {
   const [audioMenuOpen, setAudioMenuOpen] = useState(false);
   const audioMenuRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [loadingElapsedS, setLoadingElapsedS] = useState(0);
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingElapsedS(0);
+      return;
+    }
+    const interval = setInterval(() => setLoadingElapsedS((s) => s + 1), 1000);
+    return () => clearInterval(interval);
+  }, [loading]);
+
+  const isSlowConnection = loading && loadingElapsedS >= SLOW_CONNECTION_THRESHOLD_S;
 
   const canBet =
     config &&
@@ -114,13 +131,54 @@ function App() {
   };
 
   if (loading) {
+    const progressPct = Math.min(
+      100,
+      ((loadingElapsedS - SLOW_CONNECTION_THRESHOLD_S) / (EXPECTED_WAKEUP_S - SLOW_CONNECTION_THRESHOLD_S)) * 100,
+    );
     return (
       <div className="app">
         <header className="header">
           <h1 className="logo-text">PlinkoVibe</h1>
         </header>
         <div className="loading">
-          <p className="display-text">[ ESTABLISHING SECURE RGS CONNECTION... ]</p>
+          {!isSlowConnection ? (
+            <p className="display-text">[ ESTABLISHING SECURE RGS CONNECTION... ]</p>
+          ) : (
+            <div className="loading-slow">
+              <p className="loading-slow-title">
+                Server Waking Up
+                <span className="loading-dots" aria-hidden="true">
+                  <span>.</span><span>.</span><span>.</span>
+                </span>
+              </p>
+
+              <p className="loading-slow-body">
+                The server is starting up from sleep — this can take up to a minute
+                on the free tier. Please hang tight!
+              </p>
+
+              <div className="loading-progress-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progressPct)}>
+                <div className="loading-progress-fill" style={{ width: `${progressPct}%` }} />
+              </div>
+
+              <div className="loading-elapsed">
+                <span className="loading-elapsed-label">Waiting</span>
+                <span className="loading-elapsed-value">{loadingElapsedS}s</span>
+              </div>
+
+              <p className="loading-slow-support">
+                Enjoying the game? Help us upgrade to faster servers —{' '}
+                <a
+                  href="https://buymeacoffee.com/quitter"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="loading-coffee-link"
+                >
+                  buy us a coffee ☕
+                </a>
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

@@ -8,9 +8,19 @@ export const ALLOWED_ROWS = [8, 10, 12, 14] as const;
 export const ALLOWED_RISK = ['low', 'medium', 'high'] as const;
 export const DEFAULT_ROWS = 10;
 export const DEFAULT_RISK = 'medium';
+
+/** Dollar-denominated constants exposed to the frontend for display. */
 export const MIN_BET = 0.1;
 export const MAX_BET = 1000;
 export const INITIAL_BALANCE = 1000;
+
+/** Cent-denominated constants for internal arithmetic. All balances stored as integer cents. */
+export const MIN_BET_CENTS = 10;         // $0.10
+export const MAX_BET_CENTS = 100_000;    // $1000.00
+export const INITIAL_BALANCE_CENTS = 100_000; // $1000.00
+
+/** Maximum number of balls that can be resolved in a single batch bet request. */
+export const MAX_BET_COUNT = 100;
 
 export type RiskLevel = (typeof ALLOWED_RISK)[number];
 

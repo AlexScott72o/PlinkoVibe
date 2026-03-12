@@ -32,15 +32,27 @@ export interface BetRequest {
   betAmount: number;
   rows: number;
   riskLevel: RiskLevel;
+  /**
+   * Number of balls to resolve in one request (1–100). Defaults to 1.
+   * Each ball is an independent bet at `betAmount`; the server processes them
+   * all inside a single session lock and returns one result per ball.
+   */
+  count?: number;
 }
 
-/** Bet response (outcome only returned here, after bet is placed) */
+/** Result for a single ball within a bet request */
 export interface BetResponse {
   slotIndex: number;
   multiplier: number;
   winAmount: number;
+  /** Running balance (in dollars) after this specific ball's bet resolves. */
   balance: number;
   roundId?: string;
+}
+
+/** Response returned by POST /api/plinko/bet for any count (1 or more balls) */
+export interface PlaceBetResponse {
+  bets: BetResponse[];
 }
 
 /** Balance response */

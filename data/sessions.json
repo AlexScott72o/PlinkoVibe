@@ -1,72 +1,16 @@
 [
   {
-    "sessionId": "bc8d9e93-8c15-47cb-a512-37087f253819",
-    "balance": 1000,
-    "createdAt": 1772102905408
+    "sessionId": "4671f3a8-a697-48a9-9da2-bb069bbf5bdc",
+    "balance": 98850,
+    "createdAt": 1773320328236,
+    "lastActiveAt": 1773320343210,
+    "createdByIp": "127.0.0.1"
   },
   {
-    "sessionId": "692891b3-786e-4621-b04b-f915005903dc",
-    "balance": 1000,
-    "createdAt": 1772102909719
-  },
-  {
-    "sessionId": "f9df7880-0836-4bdc-85be-38255ff9354d",
-    "balance": 1004.6,
-    "createdAt": 1772102913464
-  },
-  {
-    "sessionId": "2d0f5572-120a-4da9-ba02-4ed33585b6a0",
-    "balance": 1000,
-    "createdAt": 1772210341616
-  },
-  {
-    "sessionId": "7aaad415-eb01-4676-9e5c-799ffc7306bc",
-    "balance": 990.630000000001,
-    "createdAt": 1772210341623
-  },
-  {
-    "sessionId": "9a774dad-fd8a-4a3f-a103-83692d6e5567",
-    "balance": 1000,
-    "createdAt": 1772210345098
-  },
-  {
-    "sessionId": "8194e31a-eacd-4091-bcc7-0f68066801ea",
-    "balance": 48.484999999994606,
-    "createdAt": 1772210345100
-  },
-  {
-    "sessionId": "999d0fb6-f62f-4da1-b634-3a5dc018eda8",
-    "balance": 1000,
-    "createdAt": 1772457002961
-  },
-  {
-    "sessionId": "60766443-4f02-4fc4-a1c4-dbfec069f927",
-    "balance": 476.22399999999976,
-    "createdAt": 1772457002973
-  },
-  {
-    "sessionId": "ffb05d52-989d-4723-841a-09a1896ca4f3",
-    "balance": 1000,
-    "createdAt": 1772546455715
-  },
-  {
-    "sessionId": "c16fa066-fc1f-4305-8b99-5f94d4791659",
-    "balance": 1000,
-    "createdAt": 1772546455717
-  },
-  {
-    "sessionId": "4ac4f713-f9c9-4197-b301-b6141248b96a",
-    "balance": 1000,
-    "createdAt": 1772551955589
-  },
-  {
-    "sessionId": "fe87ac45-44ae-409a-8c8b-a13f6274ee69",
-    "balance": 1000,
-    "createdAt": 1772551955591
-  },
-  {
-    "sessionId": "cced3579-9e4e-4169-9db3-fa2900921163",
-    "balance": 1000,
-    "createdAt": 1772646604208
+    "sessionId": "ac68b873-e4b9-4000-abb3-12c68153f4ad",
+    "balance": 100000,
+    "createdAt": 1773320328240,
+    "lastActiveAt": 1773320328240,
+    "createdByIp": "127.0.0.1"
   }
 ]
