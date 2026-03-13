@@ -25,11 +25,16 @@ export default defineConfig({
     },
     server: {
         port: 5173,
-        host: true, // listen on 0.0.0.0 for LAN access
+        host: true,
         proxy: {
             '/api': {
                 target: 'http://localhost:4000',
                 changeOrigin: true,
+            },
+            '/pam': {
+                target: 'http://localhost:4001',
+                changeOrigin: true,
+                rewrite: function (path) { return path.replace(/^\/pam/, ''); },
             },
         },
     },

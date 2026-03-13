@@ -1608,5 +1608,181 @@
     "win": 60,
     "balance": 98040,
     "timestamp": 1773322075716
+  },
+  {
+    "playerKey": "e2c32bf7-735c-4713-9b72-44f6a28cfd1d",
+    "roundId": "ba8bd5d9-4b77-4521-9a5f-28238daa54da",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99960,
+    "currency": "FUN",
+    "timestamp": 1773331868791
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "7090fe2a-daa5-47f5-9d1d-fe6e86ca7219",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99960,
+    "currency": "FUN",
+    "timestamp": 1773399798370
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "a78673c6-1ae8-4edb-bf46-60367978c0d0",
+    "bet": 100,
+    "slotIndex": 4,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99920,
+    "currency": "FUN",
+    "timestamp": 1773400343526
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "6a48cec6-3107-4b4f-857d-8e7661e0f604",
+    "bet": 100,
+    "slotIndex": 2,
+    "multiplier": 2,
+    "win": 200,
+    "balance": 100100,
+    "currency": "FUN",
+    "timestamp": 1773400927107
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "ffcaa50b-cb28-4131-8f5f-627682e1081d",
+    "bet": 100,
+    "slotIndex": 3,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 100120,
+    "currency": "FUN",
+    "timestamp": 1773400931653
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "644fd4e4-0bb5-45ce-b85e-18466cee27c4",
+    "bet": 100,
+    "slotIndex": 7,
+    "multiplier": 0.4,
+    "win": 40,
+    "balance": 100060,
+    "currency": "FUN",
+    "timestamp": 1773400937537
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "1b98c8e6-8fda-4bc7-9c44-f22ef26cfad1",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.5,
+    "win": 50,
+    "balance": 100010,
+    "currency": "FUN",
+    "timestamp": 1773400943027
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "8eafce0d-ea97-46f0-b9ef-9ea6d41ebf25",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.35,
+    "win": 35,
+    "balance": 99855,
+    "currency": "FUN",
+    "timestamp": 1773401404520
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "5bca9a2b-6e27-42d3-8f63-2060ed325b3f",
+    "bet": 100,
+    "slotIndex": 4,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99815,
+    "currency": "FUN",
+    "timestamp": 1773401725414
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "507dae20-365b-461e-8ffa-3f59592d3e53",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.35,
+    "win": 35,
+    "balance": 99750,
+    "currency": "FUN",
+    "timestamp": 1773402001033
+  },
+  {
+    "playerKey": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "roundId": "f99f4228-3e41-48d1-ad90-cd9c9865de9f",
+    "bet": 100,
+    "slotIndex": 3,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 99770,
+    "currency": "FUN",
+    "timestamp": 1773407909627
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "dcb6e0ec-ea45-4b05-a846-0d3cfee72cd4",
+    "bet": 100,
+    "slotIndex": 4,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99970,
+    "currency": "FUN",
+    "timestamp": 1773408705667
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "3d826631-473d-4216-b26b-127955f254f7",
+    "bet": 100,
+    "slotIndex": 4,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99930,
+    "currency": "FUN",
+    "timestamp": 1773408710654
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "1363d91c-af95-4ee5-8402-0a23924047f6",
+    "bet": 100,
+    "slotIndex": 5,
+    "multiplier": 0.35,
+    "win": 35,
+    "balance": 99865,
+    "currency": "FUN",
+    "timestamp": 1773409153345
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "da6c1337-1666-4c04-a123-5e344c8b3905",
+    "bet": 100,
+    "slotIndex": 6,
+    "multiplier": 0.6,
+    "win": 60,
+    "balance": 99825,
+    "currency": "FUN",
+    "timestamp": 1773409157632
+  },
+  {
+    "playerKey": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "roundId": "ab25cd5d-d213-4836-b949-cc1f3b0e9f51",
+    "bet": 100,
+    "slotIndex": 3,
+    "multiplier": 1.2,
+    "win": 120,
+    "balance": 99845,
+    "currency": "FUN",
+    "timestamp": 1773409161792
   }
 ]

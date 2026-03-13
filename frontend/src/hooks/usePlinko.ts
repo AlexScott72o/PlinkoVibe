@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { ConfigResponse, BetResponse, RiskLevel } from 'shared';
-import * as api from '../api';
+import type { ConfigResponse, BetResponse, RiskLevel, Currency } from 'shared';
+import type { AuthState } from './useAuth.js';
+import * as api from '../api.js';
+import { getGuestBalance } from '../pamApi.js';
 
 export type AnimationSpeed = 'slow' | 'regular' | 'turbo';
 
@@ -10,7 +12,6 @@ export const ANIMATION_SPEED_MS: Record<AnimationSpeed, number> = {
   slow: 6000,
 };
 
-/** Delay between starting each ball drop (ms). */
 export const BALL_DROP_DELAY_MS: Record<AnimationSpeed, number> = {
   turbo: 200,
   regular: 400,
@@ -27,24 +28,25 @@ export interface ActiveBall {
 }
 
 export interface PlinkoState {
-  sessionId: string | null;
   balance: number;
   config: ConfigResponse | null;
   betAmount: number;
   rows: number;
   riskLevel: RiskLevel;
-  lastOutcome: BetResponse | null; // Only set from bet response; never predicted
-  activeBalls: ActiveBall[]; // one ball per bet; cleared on new bet, removed shortly after land
+  lastOutcome: BetResponse | null;
+  activeBalls: ActiveBall[];
   loading: boolean;
   error: string | null;
-  playing: boolean; // true while round in progress (request sent, animating)
+  playing: boolean;
 }
 
-export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }) {
+export function usePlinko(
+  auth: AuthState,
+  options?: { onReveal?: (result: BetResponse) => void }
+) {
   const onRevealRef = useRef(options?.onReveal);
   onRevealRef.current = options?.onReveal;
 
-  const [sessionId, setSessionId] = useState<string | null>(null);
   const [balance, setBalance] = useState(0);
   const [config, setConfig] = useState<ConfigResponse | null>(null);
   const [betAmount, setBetAmount] = useState(1);
@@ -63,34 +65,63 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
+
+  // Load config when auth is ready
   useEffect(() => {
+    if (auth.status === 'loading') return;
     let cancelled = false;
     (async () => {
       try {
-        const session = await api.ensureSession();
-        if (cancelled) return;
-        setSessionId(session.sessionId);
-        setBalance(session.balance);
-        const cfg = await api.getConfig(session.sessionId);
+        const cfg = await api.getConfig();
         if (cancelled) return;
         setConfig(cfg);
         setBetAmount(Math.max(cfg.minBet, Math.min(cfg.maxBet, 1)));
         setRows(cfg.defaultRows);
         setRiskLevel(cfg.defaultRisk);
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error ? e.message : 'Failed to load');
+        if (!cancelled) setError(e instanceof Error ? e.message : 'Failed to load config');
       } finally {
         if (!cancelled) setLoading(false);
       }
     })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+    return () => { cancelled = true; };
+  }, [auth.status]);
+
+  // Sync balance from auth wallet when currency or wallet balances change
+  useEffect(() => {
+    if (auth.status === 'authenticated' && auth.walletBalances) {
+      setBalance(auth.walletBalances[auth.currency] ?? 0);
+    } else if (auth.status === 'guest' && auth.guestSessionId) {
+      // Guest balance will be set after first bet; initialise from PAM lazily
+    }
+  }, [auth.status, auth.currency, auth.walletBalances, auth.guestSessionId]);
+
+  // Load initial guest balance
+  useEffect(() => {
+    if (auth.status !== 'guest' || !auth.guestSessionId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await getGuestBalance(auth.guestSessionId!);
+        if (!cancelled) setBalance(data.balance);
+      } catch {
+        // non-fatal — balance will be updated after first bet
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [auth.status, auth.guestSessionId]);
+
+  const placingRef = useRef(false);
+  const nextRoundIdRef = useRef(1);
+  const pendingByRoundIdRef = useRef<Map<number, BetResponse>>(new Map());
+  const ballsCompletedRef = useRef(0);
+  const numBallsInBatchRef = useRef(1);
 
   const placeBet = useCallback(async () => {
-    if (!sessionId || !config || playing) return;
+    if (!config || playing) return;
     if (placingRef.current) return;
+    if (auth.status === 'loading') return;
+
     if (betAmount < config.minBet || betAmount > config.maxBet) {
       setError('Bet out of range');
       return;
@@ -102,6 +133,7 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
       setError('Insufficient balance');
       return;
     }
+
     placingRef.current = true;
     setError(null);
     setPlaying(true);
@@ -112,9 +144,25 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
     numBallsInBatchRef.current = balls;
     const roundIdBase = nextRoundIdRef.current;
 
+    const currency: Currency = auth.status === 'authenticated' ? auth.currency : 'FUN';
+    const guestSessionId = auth.status === 'guest' ? auth.guestSessionId ?? undefined : undefined;
+
+    if (auth.status === 'guest' && !guestSessionId) {
+      setError('Session not ready — please refresh the page');
+      setPlaying(false);
+      placingRef.current = false;
+      return;
+    }
+
     try {
-      // Single request resolves all balls at once — avoids N serial round-trips
-      const { bets } = await api.placeBet({ sessionId, betAmount, rows, riskLevel, count: balls });
+      const { bets } = await api.placeBet({
+        guestSessionId,
+        betAmount,
+        rows,
+        riskLevel,
+        count: balls,
+        currency,
+      });
       nextRoundIdRef.current = roundIdBase + balls;
       setOutcomeAndRound({ outcome: bets[bets.length - 1] ?? null, roundId: nextRoundIdRef.current });
       const dropDelayMs = BALL_DROP_DELAY_MS[animationSpeedRef.current];
@@ -131,23 +179,21 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
       setPlaying(false);
       placingRef.current = false;
     }
-  }, [sessionId, config, playing, betAmount, numBalls, balance, rows, riskLevel]);
-
-  const placingRef = useRef(false);
-  const nextRoundIdRef = useRef(1);
-  const pendingByRoundIdRef = useRef<Map<number, BetResponse>>(new Map());
-  const ballsCompletedRef = useRef(0);
-  const numBallsInBatchRef = useRef(1);
+  }, [config, playing, auth, betAmount, numBalls, balance, rows, riskLevel]);
 
   const onLand = useCallback((roundId: number) => {
     const result = pendingByRoundIdRef.current.get(roundId);
     if (result) {
       setBalance(result.balance);
+      // Propagate balance update to auth wallet balances
+      if (auth.status === 'authenticated') {
+        auth.refreshWalletBalances().catch(() => null);
+      }
       setLastResults((prev) => [result, ...prev].slice(0, 100));
       pendingByRoundIdRef.current.delete(roundId);
       onRevealRef.current?.(result);
     }
-  }, []);
+  }, [auth]);
 
   const onBallComplete = useCallback((roundId: number) => {
     ballsCompletedRef.current += 1;
@@ -155,14 +201,12 @@ export function usePlinko(options?: { onReveal?: (result: BetResponse) => void }
       setPlaying(false);
       placingRef.current = false;
     }
-    const removeBallDelayMs = 400;
     setTimeout(() => {
       setActiveBalls((prev) => prev.filter((b) => b.roundId !== roundId));
-    }, removeBallDelayMs);
+    }, 400);
   }, []);
 
   return {
-    sessionId,
     balance,
     config,
     betAmount,

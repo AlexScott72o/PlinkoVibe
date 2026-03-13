@@ -1,17 +1,51 @@
-import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import {
+  Application,
+  Container,
+  Graphics,
+  GraphicsContext,
+  FillGradient,
+  Text,
+  TextStyle,
+} from 'pixi.js';
 import type { RiskLevel } from 'shared';
 import type { ActiveBall } from '@/hooks/usePlinko';
-import { getPegPositions, getSlotXBounds } from '@/plinko/boardLayout';
-import { interpolatePath, type RecordedPath } from '@/plinko/physicsSim';
-import { winIntensityFromMultiplier } from '@/plinko/winIntensity';
-import { Ball } from './Ball';
+import {
+  getPegPositions,
+  getSlotXBounds,
+  getBallRadiusForRows,
+  BOARD_WIDTH,
+  ROW_HEIGHT_FACTOR,
+} from '@/plinko/boardLayout';
+import {
+  getCachedPath,
+  scheduleRecord,
+  clearPathCache,
+  interpolatePath,
+} from '@/plinko/physicsSim';
+import type { RecordedPath } from '@/plinko/physicsSim';
+import { winIntensityFromMultiplier, type WinIntensity } from '@/plinko/winIntensity';
 
-const TRAIL_MAX = 6;
+// ── Constants ─────────────────────────────────────────────────────────────────
+
 const VIEWBOX_Y_OFFSET = 40;
-/** Throttle peg-hit state updates to avoid 60+ re-renders/sec during animation */
-const PEG_FLUSH_INTERVAL_MS = 80;
+const PEG_R_IDLE = 2.304;
+const PEG_R_ACTIVE = PEG_R_IDLE * 1.15;
+const PEG_FLUSH_MS = 80;
+const SLOT_HEIGHT = 36;
+const TRAIL_MAX = 6;
+const TRAIL_OFF_ABOVE = 10;
+const TRAIL_REDUCED_MAX = 2;
+const TRAIL_ABOVE_COUNT = 25;
+const SOLID_BALL_ABOVE = 12;
 
-export type BallPosition = { x: number; y: number; trail: { x: number; y: number }[] };
+const TRAIL_COLOR      = 0x00e5ff;
+const BALL_SOLID_COLOR = 0xc8f0ff;
+// Text is rendered at TEXT_PRESCALE× the logical font size then scaled back down so
+// the bitmap texture has enough pixels even after the board container's CSS upscale.
+const TEXT_PRESCALE = 4;
+
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 type PlaybackEntry = {
   path: RecordedPath;
@@ -25,89 +59,163 @@ type PlaybackEntry = {
   onComplete: () => void;
 };
 
-const TRAIL_ABOVE_COUNT = 25;
-const TRAIL_REDUCED_MAX = 2;
-/** No trails when many balls to keep FPS up */
-const TRAIL_OFF_ABOVE_COUNT = 10;
-/** Solid fill instead of gradient when many balls */
-const SOLID_BALL_ABOVE_COUNT = 12;
-const BALL_SOLID_FILL = 'rgba(200, 240, 255, 0.95)';
+type BallEntry = {
+  gfx: Graphics;
+  trail: Array<{ x: number; y: number }>;
+};
 
-function getCachedGradient(
-  ctx: CanvasRenderingContext2D,
-  r: number,
-  cache: Map<number, CanvasGradient>
-): CanvasGradient {
-  const key = Math.round(r * 20) / 20;
-  let g = cache.get(key);
-  if (!g) {
-    g = ctx.createRadialGradient(-r * 0.35, -r * 0.35, r * 0.08, 0, 0, r);
-    g.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
-    g.addColorStop(0.12, 'rgba(220, 248, 255, 0.95)');
-    g.addColorStop(0.35, 'rgba(140, 215, 255, 0.95)');
-    g.addColorStop(0.6, 'rgba(50, 160, 220, 0.98)');
-    g.addColorStop(0.85, 'rgba(20, 100, 180, 0.95)');
-    g.addColorStop(1, 'rgba(10, 60, 130, 0.95)');
-    cache.set(key, g);
-  }
-  return g;
+type SlotAnim = {
+  elapsed: number;
+  duration: number;
+  intensity: WinIntensity;
+};
+
+type PixiScene = {
+  app: Application;
+  boardContainer: Container;
+  bgGfx: Graphics;
+  pegsContainer: Container;
+  pegGfxList: Graphics[];
+  trailGfx: Graphics;
+  ballsContainer: Container;
+  slotsContainer: Container;
+  pegIdleCtx: GraphicsContext;
+  pegActiveCtx: GraphicsContext;
+};
+
+// Slot containers have extra metadata attached
+type SlotContainer = Container & {
+  __bg: Graphics;
+  __baseColor: number;
+  __mult: number;
+};
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function computeLayout(rows: number) {
+  const slotWidth = BOARD_WIDTH / (rows + 1);
+  const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
+  const slotGroupY = 18 + rows * rowHeight;
+  const viewBoxHeight = slotGroupY + SLOT_HEIGHT + 80;
+  return { slotGroupY, viewBoxHeight, slotTopY: slotGroupY };
 }
 
-function drawBalls(
-  ctx: CanvasRenderingContext2D,
-  positions: Record<number, BallPosition>,
-  entries: Map<number, PlaybackEntry>,
-  viewBoxHeight: number,
-  ballCount: number,
-  gradientCache: Map<number, CanvasGradient>,
-  slotTopY: number
-) {
-  const trailMax =
-    ballCount >= TRAIL_OFF_ABOVE_COUNT ? 0 : ballCount > TRAIL_ABOVE_COUNT ? TRAIL_REDUCED_MAX : TRAIL_MAX;
-  const useSolidFill = ballCount >= SOLID_BALL_ABOVE_COUNT;
-  ctx.save();
-  ctx.setTransform(1, 0, 0, 1, 0, VIEWBOX_Y_OFFSET);
-  ctx.clearRect(0, -VIEWBOX_Y_OFFSET, 320, viewBoxHeight);
-  ctx.beginPath();
-  ctx.rect(0, -VIEWBOX_Y_OFFSET - 1, 322, slotTopY + VIEWBOX_Y_OFFSET + 1);
-  ctx.clip();
-  entries.forEach((entry, roundId) => {
-    const pos = positions[roundId];
-    if (!pos) return;
-    const { x, y, trail } = pos;
-    const r = entry.radius;
-    if (y - r >= slotTopY) return;
-    /* Stop drawing before ball reaches slot so it never appears in the slot. */
-    if (y >= slotTopY - 2 * r) return;
-    const maxCenterY = slotTopY - 2 * r;
-    const drawY = Math.min(y, maxCenterY);
-    const trailLen = trailMax > 0 ? trail.length : 0;
-    for (let i = 0; i < trailLen; i++) {
-      const p = trail[i];
-      const trailR = Math.max(r - 1, 2);
-      const trailY = Math.min(p.y, slotTopY - 2 * trailR);
-      const alpha = (i + 1) / (trailLen || 1);
-      ctx.fillStyle = `rgba(0, 229, 255, ${0.35 * alpha})`;
-      ctx.beginPath();
-      ctx.arc(p.x, trailY, trailR, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.translate(x, drawY);
-    ctx.fillStyle = useSolidFill ? BALL_SOLID_FILL : getCachedGradient(ctx, r, gradientCache);
-    ctx.beginPath();
-    ctx.arc(0, 0, r, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.translate(-x, -drawY);
+type SlotTierStyle = {
+  bgOuter: number; bgInner: number;
+  borderColor: number; borderWidth: number;
+  textFill: string;
+};
+
+/** Returns colours and border style for a multiplier value. Outer/high slots get warm glowing colours. */
+function slotTier(mult: number): SlotTierStyle {
+  if (mult >= 20) return { bgOuter: 0x1a0008, bgInner: 0x2e0014, borderColor: 0xff2255, borderWidth: 1.5, textFill: '#ff6688' };
+  if (mult >= 10) return { bgOuter: 0x190800, bgInner: 0x2c1200, borderColor: 0xff8833, borderWidth: 1.5, textFill: '#ffaa66' };
+  if (mult >= 5)  return { bgOuter: 0x181000, bgInner: 0x261a00, borderColor: 0xffcc44, borderWidth: 1,   textFill: '#ffd966' };
+  if (mult >= 2)  return { bgOuter: 0x071620, bgInner: 0x0c2030, borderColor: 0x00b8e8, borderWidth: 1,   textFill: '#55ccee' };
+  if (mult >= 1)  return { bgOuter: 0x060c16, bgInner: 0x0a1422, borderColor: 0x224488, borderWidth: 1,   textFill: '#5577bb' };
+  if (mult >= 0.5) return { bgOuter: 0x07070f, bgInner: 0x0c0c1a, borderColor: 0x3a2860, borderWidth: 1,  textFill: '#6655aa' };
+  return                 { bgOuter: 0x050508, bgInner: 0x08080e, borderColor: 0x1a1a26, borderWidth: 1,   textFill: '#3d3d55' };
+}
+
+function makePegContexts(): { pegIdleCtx: GraphicsContext; pegActiveCtx: GraphicsContext } {
+  // Layered circles give a 3D peg look without relying on gradient texture mapping
+  const pegIdleCtx = new GraphicsContext()
+    .circle(0, 0, PEG_R_IDLE)
+    .fill({ color: 0xc8c8d8 })
+    .circle(-PEG_R_IDLE * 0.35, -PEG_R_IDLE * 0.35, PEG_R_IDLE * 0.4)
+    .fill({ color: 0xffffff });
+
+  const pegActiveCtx = new GraphicsContext()
+    .circle(0, 0, PEG_R_ACTIVE)
+    .fill({ color: 0xa0b8cc })
+    .circle(-PEG_R_ACTIVE * 0.35, -PEG_R_ACTIVE * 0.35, PEG_R_ACTIVE * 0.4)
+    .fill({ color: 0xffffff });
+
+  return { pegIdleCtx, pegActiveCtx };
+}
+
+/** Draw a glossy sphere using layered concentric circles (FillGradient is unreliable for small shapes). */
+function drawBallSphere(gfx: Graphics, r: number) {
+  gfx
+    .circle(0, 0, r).fill({ color: 0x0a3c82 })            // outer dark-blue rim
+    .circle(0, 0, r * 0.82).fill({ color: 0x1878c8 })     // mid-blue body
+    .circle(0, 0, r * 0.60).fill({ color: 0x50b8f0 })     // lighter inner
+    .circle(-r * 0.28, -r * 0.28, r * 0.26)               // soft highlight blob
+      .fill({ color: 0xdcf8ff })
+    .circle(-r * 0.14, -r * 0.14, r * 0.10)               // specular
+      .fill({ color: 0xffffff });
+}
+
+function drawBgGlow(bgGfx: Graphics, viewBoxHeight: number) {
+  bgGfx.clear();
+  // Subtle radial ambient glow behind the board
+  const ambientGrad = new FillGradient({
+    type: 'radial',
+    center: { x: 0.5, y: 0.35 },
+    innerRadius: 0,
+    outerCenter: { x: 0.5, y: 0.35 },
+    outerRadius: 0.5,
+    colorStops: [
+      { offset: 0,   color: 'rgba(0,80,120,0.18)' },
+      { offset: 0.5, color: 'rgba(0,40,80,0.08)'  },
+      { offset: 1,   color: 'rgba(0,0,0,0)'        },
+    ],
   });
-  ctx.restore();
+  bgGfx.rect(0, -VIEWBOX_Y_OFFSET, BOARD_WIDTH, viewBoxHeight + VIEWBOX_Y_OFFSET).fill(ambientGrad);
 }
 
-const BOARD_W = 320;
-const ROW_HEIGHT_FACTOR = 0.78;
-const PEG_R = 2.304; /* 20% larger than 1.92, matches physics scale */
-const SLOT_HEIGHT = 36;
+// ── Particle burst (dramatic wins) ───────────────────────────────────────────
 
-interface BoardProps {
+type Particle = {
+  gfx: Graphics;
+  vx: number;
+  vy: number;
+  life: number;   // 0–1, 0 = just born, 1 = dead
+  maxLife: number; // ms
+};
+
+function spawnWinParticles(
+  particles: Particle[],
+  scene: PixiScene,
+  slotIndex: number,
+  rows: number,
+  intensity: WinIntensity,
+) {
+  if (intensity === 'minimal') return;
+  const bounds = getSlotXBounds(rows, slotIndex);
+  const slotCenterX = (bounds.left + bounds.right) / 2;
+  const { slotGroupY } = computeLayout(rows);
+  const slotCenterY = slotGroupY + SLOT_HEIGHT / 2;
+  const count = intensity === 'dramatic' ? 18 : 10;
+  const speedScale = intensity === 'dramatic' ? 1.6 : 1.0;
+
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * Math.PI * 2 + Math.random() * 0.4;
+    const speed = (0.06 + Math.random() * 0.1) * speedScale;
+    const r = 1.5 + Math.random() * 1.5;
+    const color = intensity === 'dramatic'
+      ? (Math.random() > 0.5 ? 0x00e5ff : 0xffffff)
+      : 0x00e5ff;
+
+    const gfx = new Graphics();
+    gfx.circle(0, 0, r).fill({ color, alpha: 0.9 });
+    gfx.x = slotCenterX;
+    gfx.y = slotCenterY;
+    scene.ballsContainer.addChild(gfx);
+
+    particles.push({
+      gfx,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 0.08,
+      life: 0,
+      maxLife: 300 + Math.random() * 200,
+    });
+  }
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+export interface BoardProps {
   rows: number;
   riskLevel: RiskLevel;
   paytables: Record<string, number[]>;
@@ -118,404 +226,624 @@ interface BoardProps {
   onLand?: (roundId: number) => void;
 }
 
-export function Board({ rows, riskLevel, paytables, activeBalls = [], animationDurationMs, onBallComplete, onPegHit, onLand }: BoardProps) {
-  const balls = activeBalls ?? [];
-  const [landedRoundIds, setLandedRoundIds] = useState<Set<number>>(new Set());
-  const [activePegs, setActivePegs] = useState<number[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const playbackRef = useRef<Map<number, PlaybackEntry>>(new Map());
-  const positionsRef = useRef<Record<number, BallPosition>>({});
-  const rafIdRef = useRef<number>(0);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const viewBoxHeightRef = useRef(240);
-  const slotTopYRef = useRef(0);
-  const slotBottomYRef = useRef(0);
-  const rowsRef = useRef(rows);
-  rowsRef.current = rows;
-  const gradientCacheRef = useRef<Map<number, CanvasGradient>>(new Map());
-  const activePegsRef = useRef<number[]>([]);
-  const fpsNodeRef = useRef<HTMLDivElement>(null);
-  const lastFrameTimeRef = useRef<number>(0);
-  const fpsLogLastRef = useRef<number>(0);
-  const fpsFrameCountRef = useRef<number>(0);
-  const fpsAccumRef = useRef<number>(0);
-  const fpsUiLastRef = useRef<number>(0);
-  // Simulation clock (decoupled from wall time so we can pause/resume cleanly)
-  const simNowRef = useRef<number>(0);
-  const lastRealNowRef = useRef<number | null>(null);
+export function Board({
+  rows,
+  riskLevel,
+  paytables,
+  activeBalls = [],
+  animationDurationMs,
+  onBallComplete,
+  onPegHit,
+  onLand,
+}: BoardProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<PixiScene | null>(null);
 
-  const handlePegHit = useCallback((pegIndex: number) => {
-    // Briefly light up hit pegs.
-    activePegsRef.current.push(pegIndex);
-    setActivePegs((prev) => (prev.includes(pegIndex) ? prev : [...prev, pegIndex]));
-    onPegHit?.(pegIndex);
-    setTimeout(() => {
-      activePegsRef.current = activePegsRef.current.filter((i) => i !== pegIndex);
-      setActivePegs((prev) => prev.filter((i) => i !== pegIndex));
-    }, PEG_FLUSH_INTERVAL_MS);
-  }, [onPegHit]);
+  // Callback refs – read inside ticker/async callbacks to avoid stale closures
+  const onBallCompleteRef = useRef(onBallComplete);
+  const onPegHitRef       = useRef(onPegHit);
+  const onLandRef         = useRef(onLand);
+  onBallCompleteRef.current = onBallComplete;
+  onPegHitRef.current       = onPegHit;
+  onLandRef.current         = onLand;
 
-  const handleBallLand = useCallback((roundId: number) => {
-    setLandedRoundIds((prev) => new Set(prev).add(roundId));
-    onLand?.(roundId);
-  }, [onLand]);
+  // Dynamic prop refs
+  const rowsRef      = useRef(rows);
+  const riskRef      = useRef(riskLevel);
+  const paytablesRef = useRef(paytables);
+  const animDurRef   = useRef(animationDurationMs);
+  rowsRef.current      = rows;
+  riskRef.current      = riskLevel;
+  paytablesRef.current = paytables;
+  animDurRef.current   = animationDurationMs;
 
-  const tick = useCallback(() => {
-    const realNow = performance.now();
-    let simNow = simNowRef.current;
-    const lastReal = lastRealNowRef.current;
-    if (lastReal == null) {
-      lastRealNowRef.current = realNow;
-    } else {
-      simNow += realNow - lastReal;
-      simNowRef.current = simNow;
-      lastRealNowRef.current = realNow;
+  // Imperative animation state (lives outside React render cycle)
+  const particlesRef      = useRef<Particle[]>([]);
+  const playbackRef       = useRef<Map<number, PlaybackEntry>>(new Map());
+  const ballEntriesRef    = useRef<Map<number, BallEntry>>(new Map());
+  const simNowRef         = useRef(0);
+  const landedRoundIds    = useRef<Set<number>>(new Set());
+  const slotAnimsRef      = useRef<Map<number, SlotAnim>>(new Map());
+
+  // ── Scene helpers ────────────────────────────────────────────────────────
+
+  function buildPegs() {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const { pegsContainer, pegIdleCtx, pegGfxList } = scene;
+    // Destroy old pegs
+    for (const p of pegGfxList) {
+      pegsContainer.removeChild(p);
+      p.destroy();
     }
+    pegGfxList.length = 0;
+
+    const positions = getPegPositions(rowsRef.current);
+    for (const pos of positions) {
+      const g = new Graphics(pegIdleCtx);
+      g.x = pos.x;
+      g.y = pos.y;
+      pegsContainer.addChild(g);
+      pegGfxList.push(g);
+    }
+  }
+
+  function buildSlots() {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const { slotsContainer } = scene;
+
+    // Destroy old slots
+    for (const child of [...slotsContainer.children]) {
+      child.destroy({ children: true });
+    }
+    slotsContainer.removeChildren();
+    slotAnimsRef.current.clear();
+
+    const key = `${rowsRef.current}_${riskRef.current}`;
+    const multipliers = paytablesRef.current[key] ?? [];
+    const { slotGroupY } = computeLayout(rowsRef.current);
+
+    for (let i = 0; i < multipliers.length; i++) {
+      const mult = multipliers[i]!;
+      const bounds = getSlotXBounds(rowsRef.current, i);
+      const slotW = bounds.right - bounds.left;
+      const tier = slotTier(mult);
+
+      const slotCont = new Container() as SlotContainer;
+      // Position slot center for scale-pivot animations
+      slotCont.x = bounds.left + slotW / 2;
+      slotCont.y = slotGroupY + SLOT_HEIGHT / 2;
+      slotCont.pivot.set(slotW / 2, SLOT_HEIGHT / 2);
+      slotCont.__baseColor = tier.bgOuter;
+      slotCont.__mult = mult;
+
+      const bg = new Graphics();
+      // Two-layer background for depth, plus a coloured border per tier
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4).fill({ color: tier.bgOuter });
+      bg.roundRect(1, 1, slotW - 2, SLOT_HEIGHT - 2, 3).fill({ color: tier.bgInner });
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4)
+        .stroke({ color: tier.borderColor, width: tier.borderWidth, alpha: 0.9 });
+      slotCont.__bg = bg;
+
+      // Prescale text 4× then scale back down → bitmap has 4× more pixels → crisp
+      const baseFontPx = Math.min(11, Math.max(6.5, slotW * 0.28));
+      const label = new Text({
+        text: `${mult}x`,
+        style: new TextStyle({
+          fontFamily: '"Space Mono", monospace',
+          fontSize: baseFontPx * TEXT_PRESCALE,
+          fill: tier.textFill,
+          align: 'center',
+          fontWeight: '700',
+        }),
+        anchor: { x: 0.5, y: 0.5 },
+      });
+      label.scale.set(1 / TEXT_PRESCALE);
+      label.x = slotW / 2;
+      label.y = SLOT_HEIGHT / 2;
+
+      slotCont.addChild(bg, label);
+      slotsContainer.addChild(slotCont);
+    }
+  }
+
+  function updateSlotHighlight(slotIndex: number, highlight: boolean) {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const slotCont = scene.slotsContainer.children[slotIndex] as SlotContainer | undefined;
+    if (!slotCont) return;
+    const bg = slotCont.__bg;
+    if (!bg) return;
+    const bounds = getSlotXBounds(rowsRef.current, slotIndex);
+    const slotW = bounds.right - bounds.left;
+    bg.clear();
+    if (highlight) {
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4).fill({ color: 0x003c50 });
+      bg.roundRect(1, 1, slotW - 2, SLOT_HEIGHT - 2, 3).fill({ color: 0x005468 });
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4)
+        .stroke({ color: 0x00e5ff, width: 1.5, alpha: 1 });
+    } else {
+      const tier = slotTier(slotCont.__mult);
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4).fill({ color: tier.bgOuter });
+      bg.roundRect(1, 1, slotW - 2, SLOT_HEIGHT - 2, 3).fill({ color: tier.bgInner });
+      bg.roundRect(0, 0, slotW, SLOT_HEIGHT, 4)
+        .stroke({ color: tier.borderColor, width: tier.borderWidth, alpha: 0.9 });
+      // Restore scale after animation
+      (scene.slotsContainer.children[slotIndex] as Container).scale.set(1);
+    }
+  }
+
+  function updateAllSlotHighlights() {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const key = `${rowsRef.current}_${riskRef.current}`;
+    const mults = paytablesRef.current[key] ?? [];
+    for (let i = 0; i < mults.length; i++) {
+      let isLanded = false;
+      playbackRef.current.forEach((entry, rId) => {
+        if (entry.slotIndex === i && landedRoundIds.current.has(rId)) {
+          isLanded = true;
+        }
+      });
+      updateSlotHighlight(i, isLanded);
+    }
+  }
+
+  function handlePegHit(pegIndex: number) {
+    const scene = sceneRef.current;
+    if (!scene) return;
+    const gfx = scene.pegGfxList[pegIndex];
+    if (!gfx) return;
+    gfx.context = scene.pegActiveCtx;
+    gfx.tint = 0x88eeff;
+    setTimeout(() => {
+      if (gfx.context === scene.pegActiveCtx) {
+        gfx.context = scene.pegIdleCtx;
+        gfx.tint = 0xffffff;
+      }
+    }, PEG_FLUSH_MS);
+  }
+
+  function triggerSlotAnim(slotIndex: number, intensity: WinIntensity) {
+    const duration = intensity === 'minimal' ? 80 : intensity === 'bolder' ? 160 : 280;
+    slotAnimsRef.current.set(slotIndex, { elapsed: 0, duration, intensity });
+  }
+
+  function registerPlayback(
+    roundId: number,
+    path: RecordedPath,
+    durationMs: number,
+    radius: number,
+    slotIndex: number,
+  ) {
+    const scene = sceneRef.current;
+    if (!scene) return;
+
+    const ballCount = ballEntriesRef.current.size;
+    const useSolid = ballCount >= SOLID_BALL_ABOVE;
+    const gfx = new Graphics();
+    if (useSolid) {
+      gfx.circle(0, 0, radius).fill({ color: BALL_SOLID_COLOR, alpha: 0.95 });
+    } else {
+      drawBallSphere(gfx, radius);
+    }
+    if (path.positions.length > 0) {
+      gfx.x = path.positions[0]!.x;
+      gfx.y = path.positions[0]!.y;
+    }
+    scene.ballsContainer.addChild(gfx);
+    ballEntriesRef.current.set(roundId, { gfx, trail: [] });
+
+    playbackRef.current.set(roundId, {
+      path,
+      slotIndex,
+      startTime: simNowRef.current,
+      durationMs,
+      pegHitIndex: 0,
+      radius,
+      onPegHit: (pegIdx) => {
+        handlePegHit(pegIdx);
+        onPegHitRef.current?.(pegIdx);
+      },
+      onLand: () => {
+        if (landedRoundIds.current.has(roundId)) return;
+        landedRoundIds.current.add(roundId);
+        onLandRef.current?.(roundId);
+        const key = `${rowsRef.current}_${riskRef.current}`;
+        const mults = paytablesRef.current[key] ?? [];
+        const mult = mults[slotIndex] ?? 1;
+        const intensity = winIntensityFromMultiplier(mult);
+        triggerSlotAnim(slotIndex, intensity);
+        updateSlotHighlight(slotIndex, true);
+        const sc = sceneRef.current;
+        if (sc) spawnWinParticles(particlesRef.current, sc, slotIndex, rowsRef.current, intensity);
+      },
+      onComplete: () => {
+        const be = ballEntriesRef.current.get(roundId);
+        if (be) {
+          if (be.gfx.parent) scene.ballsContainer.removeChild(be.gfx);
+          be.gfx.destroy();
+          ballEntriesRef.current.delete(roundId);
+        }
+        playbackRef.current.delete(roundId);
+        landedRoundIds.current.delete(roundId);
+        onBallCompleteRef.current(roundId);
+        // Un-highlight after a short delay
+        setTimeout(() => updateAllSlotHighlights(), 450);
+      },
+    });
+  }
+
+  function unregisterPlayback(roundId: number) {
+    const be = ballEntriesRef.current.get(roundId);
+    if (be) {
+      const scene = sceneRef.current;
+      if (scene && be.gfx.parent) scene.ballsContainer.removeChild(be.gfx);
+      be.gfx.destroy();
+      ballEntriesRef.current.delete(roundId);
+    }
+    playbackRef.current.delete(roundId);
+    landedRoundIds.current.delete(roundId);
+  }
+
+  // ── Ticker ───────────────────────────────────────────────────────────────
+
+  const tickRef = useRef<(ticker: { deltaMS: number }) => void>(() => undefined);
+
+  tickRef.current = (ticker: { deltaMS: number }) => {
+    const scene = sceneRef.current;
+    if (!scene) return;
+
+    simNowRef.current += ticker.deltaMS;
+    const simNow = simNowRef.current;
+
     const ballCount = playbackRef.current.size;
     const trailCap =
-      ballCount >= TRAIL_OFF_ABOVE_COUNT ? 0 : ballCount > TRAIL_ABOVE_COUNT ? TRAIL_REDUCED_MAX : TRAIL_MAX;
-    const next: Record<number, BallPosition> = {};
-    const toRemove: number[] = [];
+      ballCount >= TRAIL_OFF_ABOVE
+        ? 0
+        : ballCount > TRAIL_ABOVE_COUNT
+          ? TRAIL_REDUCED_MAX
+          : TRAIL_MAX;
+
+    const { slotTopY } = computeLayout(rowsRef.current);
+
+    // Clear trails for this frame
+    scene.trailGfx.clear();
+
+    const toComplete: number[] = [];
+
     playbackRef.current.forEach((entry, roundId) => {
+      const be = ballEntriesRef.current.get(roundId);
+      if (!be) return;
+
       const elapsed = simNow - entry.startTime;
       const progress = Math.min(1, elapsed / entry.durationMs);
       const simTime = entry.path.totalSimTime * progress;
+
+      // Fire peg hits
       while (
         entry.pegHitIndex < entry.path.pegHits.length &&
-        entry.path.pegHits[entry.pegHitIndex].simTime <= simTime
+        entry.path.pegHits[entry.pegHitIndex]!.simTime <= simTime
       ) {
-        const hit = entry.path.pegHits[entry.pegHitIndex];
-        entry.onPegHit(hit.pegIndex);
+        entry.onPegHit(entry.path.pegHits[entry.pegHitIndex]!.pegIndex);
         entry.pegHitIndex++;
       }
+
       const r = entry.radius;
+
       if (progress >= 1) {
+        be.gfx.x = entry.path.finalX;
+        be.gfx.y = entry.path.finalY;
         entry.onLand();
-        entry.onComplete();
-        toRemove.push(roundId);
-        next[roundId] = { x: entry.path.finalX, y: entry.path.finalY, trail: [] };
+        toComplete.push(roundId);
         return;
       }
+
       const { x, y } = interpolatePath(entry.path.positions, simTime);
+
       if (y - r >= slotTopY) {
+        be.gfx.x = entry.path.finalX;
+        be.gfx.y = entry.path.finalY;
         entry.onLand();
-        entry.onComplete();
-        toRemove.push(roundId);
-        next[roundId] = { x: entry.path.finalX, y: entry.path.finalY, trail: [] };
+        toComplete.push(roundId);
         return;
       }
-      const trail =
-        trailCap > 0
-          ? (() => {
-              const prevPos = positionsRef.current[roundId];
-              const pt = { x, y };
-              return prevPos ? [...prevPos.trail, pt].slice(-trailCap) : [pt];
-            })()
-          : [];
-      next[roundId] = { x, y, trail };
+
+      // Clamp ball center so it never visually enters the slot area
+      const maxCenterY = slotTopY - 2 * r;
+      const drawY = Math.min(y, maxCenterY);
+
+      be.gfx.x = x;
+      be.gfx.y = drawY;
+      be.gfx.visible = true;
+
+      // Trails
+      if (trailCap > 0) {
+        be.trail = [...be.trail, { x, y: drawY }].slice(-trailCap);
+        const trailR = Math.max(r - 1, 2);
+        for (let i = 0; i < be.trail.length; i++) {
+          const p = be.trail[i]!;
+          const trailY = Math.min(p.y, slotTopY - 2 * trailR);
+          const alpha = ((i + 1) / be.trail.length) * 0.35;
+          scene.trailGfx.circle(p.x, trailY, trailR).fill({ color: TRAIL_COLOR, alpha });
+        }
+      } else {
+        be.trail = [];
+      }
     });
-    positionsRef.current = next;
-    const now2 = performance.now();
-    if (fpsNodeRef.current && lastFrameTimeRef.current > 0) {
-      const dt = now2 - lastFrameTimeRef.current;
-      if (dt > 0) {
-        const fps = 1000 / dt;
-        if (now2 - fpsUiLastRef.current >= PEG_FLUSH_INTERVAL_MS) {
-          fpsNodeRef.current.textContent = `${Math.round(fps)} FPS`;
-          fpsUiLastRef.current = now2;
-        }
-        if (fpsLogLastRef.current === 0) fpsLogLastRef.current = now2;
-        fpsFrameCountRef.current += 1;
-        fpsAccumRef.current += fps;
-        const sinceLog = now2 - fpsLogLastRef.current;
-        if (sinceLog >= 1000) {
-          const avg = fpsFrameCountRef.current > 0 ? fpsAccumRef.current / fpsFrameCountRef.current : 0;
-          console.log(`[FPS] ${avg.toFixed(1)} (${fpsFrameCountRef.current} frames in ${(sinceLog / 1000).toFixed(1)}s)`);
-          fpsLogLastRef.current = now2;
-          fpsFrameCountRef.current = 0;
-          fpsAccumRef.current = 0;
-        }
-      }
-    }
-    lastFrameTimeRef.current = now2;
-    const canvas = canvasRef.current;
-    if (canvas && playbackRef.current.size > 0) {
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        drawBalls(
-          ctx,
-          next,
-          playbackRef.current,
-          viewBoxHeightRef.current,
-          playbackRef.current.size,
-          gradientCacheRef.current,
-          slotTopYRef.current
-        );
-      }
-    }
-    toRemove.forEach((id) => playbackRef.current.delete(id));
-    if (playbackRef.current.size > 0) {
-      rafIdRef.current = requestAnimationFrame(tick);
-    } else {
-      rafIdRef.current = 0;
-      lastRealNowRef.current = null;
-      lastFrameTimeRef.current = 0;
-      fpsFrameCountRef.current = 0;
-      fpsAccumRef.current = 0;
-      setIsAnimating(false);
-      setActivePegs(activePegsRef.current.slice());
-      activePegsRef.current = [];
-      if (fpsNodeRef.current) fpsNodeRef.current.textContent = '—';
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
-    }
-  }, []);
 
-  const registerPlayback = useCallback(
-    (
-      roundId: number,
-      path: RecordedPath,
-      durationMs: number,
-      radius: number,
-      slotIndex: number,
-      callbacks: { onPegHit: (pegIndex: number) => void; onLand: () => void; onComplete: () => void }
-    ) => {
-      const first = path.positions[0];
-      const initial: BallPosition = first
-        ? { x: first.x, y: first.y, trail: [] }
-        : { x: path.finalX, y: path.finalY, trail: [] };
-      positionsRef.current = { ...positionsRef.current, [roundId]: initial };
-      playbackRef.current.set(roundId, {
-        path,
-        slotIndex,
-        startTime: simNowRef.current,
-        durationMs,
-        pegHitIndex: 0,
-        radius,
-        onPegHit: callbacks.onPegHit,
-        onLand: callbacks.onLand,
-        onComplete: callbacks.onComplete,
+    // Complete finished balls
+    for (const id of toComplete) {
+      const entry = playbackRef.current.get(id);
+      if (entry) entry.onComplete();
+    }
+
+    // Slot landing animations
+    slotAnimsRef.current.forEach((anim, slotIndex) => {
+      anim.elapsed += ticker.deltaMS;
+      const progress = Math.min(1, anim.elapsed / anim.duration);
+      const eased = Math.sin(progress * Math.PI); // 0→1→0 pulse
+
+      const slotCont = scene.slotsContainer.children[slotIndex] as Container | undefined;
+      if (slotCont) {
+        if (anim.intensity === 'minimal') {
+          slotCont.alpha = 1 + 0.2 * eased;
+        } else if (anim.intensity === 'bolder') {
+          const s = 1 + 0.04 * eased;
+          slotCont.scale.set(s);
+          slotCont.alpha = 1 + 0.3 * eased;
+        } else {
+          // dramatic
+          const s = 1 + 0.06 * eased;
+          slotCont.scale.set(s);
+          slotCont.alpha = 1 + 0.5 * eased;
+        }
+      }
+
+      if (progress >= 1) {
+        slotAnimsRef.current.delete(slotIndex);
+        if (slotCont) {
+          slotCont.scale.set(1);
+          slotCont.alpha = 1;
+        }
+      }
+    });
+
+    // Particle update
+    const particles = particlesRef.current;
+    if (particles.length > 0) {
+      const deadParticles: Particle[] = [];
+      for (const p of particles) {
+        p.life += ticker.deltaMS;
+        const t = p.life / p.maxLife;
+        if (t >= 1) {
+          deadParticles.push(p);
+          continue;
+        }
+        p.vy += 0.003; // gravity
+        p.gfx.x += p.vx * ticker.deltaMS;
+        p.gfx.y += p.vy * ticker.deltaMS;
+        p.gfx.alpha = 1 - t * t;
+        p.gfx.scale.set(1 - t * 0.5);
+      }
+      for (const p of deadParticles) {
+        if (p.gfx.parent) scene.ballsContainer.removeChild(p.gfx);
+        p.gfx.destroy();
+        particles.splice(particles.indexOf(p), 1);
+      }
+    }
+
+  };
+
+  // ── Initialize PixiJS ────────────────────────────────────────────────────
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let destroyed = false;
+    let appReady = false;
+    const app = new Application();
+
+    const init = async () => {
+      const w = container.clientWidth || BOARD_WIDTH;
+      const { viewBoxHeight } = computeLayout(rowsRef.current);
+      const scale0 = w / BOARD_WIDTH;
+      const totalH = Math.round((VIEWBOX_Y_OFFSET + viewBoxHeight) * scale0);
+
+      await app.init({
+        width: w,
+        height: totalH,
+        background: 0x0d1117, // match CSS --color-bg-base; avoids composite transparency issues
+        antialias: true,
+        // autoDensity:false means PixiJS never touches canvas.style, so CSS rules apply cleanly
+        resolution: 1,
+        autoDensity: false,
       });
-      const canvas = canvasRef.current;
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          drawBalls(
-            ctx,
-            positionsRef.current,
-            playbackRef.current,
-            viewBoxHeightRef.current,
-            playbackRef.current.size,
-            gradientCacheRef.current,
-            slotTopYRef.current
-          );
-        }
+
+      // PixiJS v8 bug: when resizeTo is not used the ResizePlugin never sets _cancelResize,
+      // but destroy() calls it unconditionally. Patch with a no-op to avoid the TypeError in
+      // React Strict Mode (which runs cleanup before init finishes on the first effect pass).
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!(app as any)._cancelResize) (app as any)._cancelResize = () => {};
+
+      appReady = true;
+
+      if (destroyed) {
+        // Cleanup ran before init finished; destroy now that app is ready
+        app.destroy(true);
+        return;
       }
-      if (rafIdRef.current === 0) {
-        if (playbackRef.current.size === 1) setIsAnimating(true);
-        rafIdRef.current = requestAnimationFrame(tick);
-      }
-    },
-    [tick]
-  );
 
-  const unregisterPlayback = useCallback((roundId: number) => {
-    playbackRef.current.delete(roundId);
-  }, []);
+      // Canvas styling – class only; CSS controls display sizing
+      const canvas = app.canvas as HTMLCanvasElement;
+      canvas.className = 'board-canvas';
+      container.appendChild(canvas);
 
-  useEffect(() => {
-    setActivePegs([]);
-    activePegsRef.current = [];
-  }, [balls]);
+      // ── Build scene graph ──────────────────────────────────────────────
 
-  useEffect(() => {
-    return () => {
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = 0;
+      // Background
+      const bgGfx = new Graphics();
+      drawBgGlow(bgGfx, viewBoxHeight);
+
+      // Pegs
+      const { pegIdleCtx, pegActiveCtx } = makePegContexts();
+      const pegsContainer = new Container();
+
+      // Trails (single Graphics redrawn every frame)
+      const trailGfx = new Graphics();
+
+      // Balls
+      const ballsContainer = new Container();
+
+      // Slots
+      const slotsContainer = new Container();
+
+      // Board container: apply scale + Y-offset so game coords (0,0) appear at pixel (0, VIEWBOX_Y_OFFSET)
+      const boardContainer = new Container();
+      boardContainer.scale.set(scale0);
+      boardContainer.y = VIEWBOX_Y_OFFSET * scale0;
+      boardContainer.addChild(bgGfx, pegsContainer, trailGfx, ballsContainer, slotsContainer);
+      app.stage.addChild(boardContainer);
+
+      sceneRef.current = {
+        app,
+        boardContainer,
+        bgGfx,
+        pegsContainer,
+        pegGfxList: [],
+        trailGfx,
+        ballsContainer,
+        slotsContainer,
+        pegIdleCtx,
+        pegActiveCtx,
+      };
+
+      // Build initial pegs and slots
+      buildPegs();
+      buildSlots();
+
+      // Start ticker
+      app.ticker.add((t) => tickRef.current(t));
+
+      // ResizeObserver: keep buffer at the canvas's actual displayed pixel size
+      // (canvas.getBoundingClientRect().width tracks CSS sizing on both mobile and desktop)
+      const ro = new ResizeObserver(() => {
+        if (!sceneRef.current) return;
+        const rect = canvas.getBoundingClientRect();
+        const newW = Math.round(rect.width) || container.clientWidth;
+        if (!newW) return;
+        const { viewBoxHeight: newVBH } = computeLayout(rowsRef.current);
+        const newScale = newW / BOARD_WIDTH;
+        const newH = Math.round((VIEWBOX_Y_OFFSET + newVBH) * newScale);
+
+        app.renderer.resize(newW, newH);
+        boardContainer.scale.set(newScale);
+        boardContainer.y = VIEWBOX_Y_OFFSET * newScale;
+        drawBgGlow(bgGfx, newVBH);
+      });
+      ro.observe(canvas);
+
+      // Store ro for cleanup
+      (container as HTMLDivElement & { __pixiRo?: ResizeObserver }).__pixiRo = ro;
     };
-  }, []);
 
-  const key = `${rows}_${riskLevel}`;
-  const multipliers = paytables[key] ?? [];
+    init().catch(console.error);
 
-  const { pegPositions, slotGroupY, viewBoxHeight, slotTopY, slotBottomY } = useMemo(() => {
-    const slots = rows + 1;
-    const slotWidth = BOARD_W / slots;
-    const rowHeight = slotWidth * ROW_HEIGHT_FACTOR;
-    const positions = getPegPositions(rows);
-    const slotGroupY = 18 + rows * rowHeight;
-    const viewBoxHeight = positions.length ? slotGroupY + SLOT_HEIGHT + 80 : 240;
-    const slotTopY = slotGroupY;
-    const slotBottomY = slotGroupY + SLOT_HEIGHT;
-    return { pegPositions: positions, slotGroupY, viewBoxHeight, slotTopY, slotBottomY };
-  }, [rows]);
-  viewBoxHeightRef.current = viewBoxHeight;
-  slotTopYRef.current = slotTopY;
-  slotBottomYRef.current = slotBottomY;
+    return () => {
+      destroyed = true;
+      const ro = (container as HTMLDivElement & { __pixiRo?: ResizeObserver }).__pixiRo;
+      if (ro) ro.disconnect();
+      if (sceneRef.current) {
+        sceneRef.current.pegIdleCtx.destroy();
+        sceneRef.current.pegActiveCtx.destroy();
+        sceneRef.current = null;
+      }
+      // Only call destroy() if init() already resolved; otherwise the check inside init() handles it
+      if (appReady) {
+        try {
+          app.destroy(true, { children: true });
+        } catch {
+          // Ignore errors during cleanup
+        }
+        const canvas = container.querySelector('canvas');
+        if (canvas) container.removeChild(canvas);
+      }
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
-    <div className="board-wrap" style={{ position: 'relative' }}>
-      <div ref={fpsNodeRef} className="fps-counter" aria-hidden="true">
-        —
-      </div>
-      <div className={`board-inner${isAnimating ? ' board-animating' : ''}`} style={{ position: 'relative' }}>
-        <svg
-          viewBox={`0 -40 320 ${pegPositions.length ? slotGroupY + SLOT_HEIGHT + 80 : 240}`}
-          className="board-svg"
-          preserveAspectRatio="xMidYMin meet"
-          style={{ overflow: 'visible', display: 'block' }}
-          data-animating={isAnimating ? 'true' : undefined}
-        >
-          <defs>
-            <radialGradient id="peg-3d" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="50%" stopColor="#f0f0f5" stopOpacity="1" />
-              <stop offset="85%" stopColor="#c0c0d0" stopOpacity="1" />
-              <stop offset="100%" stopColor="#8a8a9a" stopOpacity="1" />
-            </radialGradient>
-            <radialGradient id="peg-3d-active" cx="33%" cy="27%" r="68%">
-              <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-              <stop offset="45%" stopColor="#f5f5ff" stopOpacity="1" />
-              <stop offset="80%" stopColor="#d0d8e8" stopOpacity="1" />
-              <stop offset="100%" stopColor="#9aa0b0" stopOpacity="1" />
-            </radialGradient>
-            <filter id="peg-glow" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="peg-glow-cyan" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
-              <feFlood floodColor="#00E5FF" floodOpacity="0.6" result="color" />
-              <feComposite in="color" in2="blur" operator="in" result="glow" />
-              <feMerge>
-                <feMergeNode in="glow" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            {multipliers.length > 0 && multipliers.map((_, i) => {
-              const bounds = getSlotXBounds(rows, i);
-              const slotX = bounds.left;
-              const slotW = bounds.right - bounds.left;
-              return (
-                <clipPath key={i} id={`slot-clip-${i}`}>
-                  <rect x={slotX} y={0} width={slotW} height={SLOT_HEIGHT} rx={4} />
-                </clipPath>
-              );
-            })}
-          </defs>
-          {pegPositions.map((p, i) => {
-            const isActive = activePegs.includes(i);
-            const r = isActive ? PEG_R * 1.15 : PEG_R;
-            return (
-              <g key={i} transform={`translate(${p.x}, ${p.y})`} style={{ transition: 'filter 0.15s ease-out' }}>
-                <circle
-                  r={r}
-                  cx={0}
-                  cy={0}
-                  fill={`url(#peg-${isActive ? '3d-active' : '3d'})`}
-                  filter={isAnimating ? undefined : isActive ? 'url(#peg-glow-cyan)' : 'url(#peg-glow)'}
-                />
-              </g>
-            );
-          })}
-          {balls.map((ball) => (
-            <Ball
-              key={ball.roundId}
-              roundId={ball.roundId}
-              rows={ball.rows}
-              slotIndex={ball.slotIndex}
-              durationMs={animationDurationMs}
-              onPegHit={handlePegHit}
-              onLand={handleBallLand}
-              onComplete={onBallComplete}
-              registerPlayback={registerPlayback}
-              unregisterPlayback={unregisterPlayback}
-            />
-          ))}
-        </svg>
-        <canvas
-          ref={canvasRef}
-          width={320}
-          height={viewBoxHeight}
-          className="board-canvas"
-          style={{
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            width: '100%',
-            height: '100%',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-        />
-        {/* Slots layer on top so balls fall behind them */}
-        {multipliers.length > 0 && (
-          <svg
-            viewBox={`0 -40 320 ${pegPositions.length ? slotGroupY + SLOT_HEIGHT + 80 : 240}`}
-            className="board-svg board-slots-layer"
-            preserveAspectRatio="xMidYMin meet"
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%',
-              overflow: 'visible',
-              pointerEvents: 'none',
-              zIndex: 2,
-            }}
-            aria-hidden="true"
-          >
-            <g transform={`translate(0, ${slotGroupY})`}>
-              {multipliers.map((mult, i) => {
-                const bounds = getSlotXBounds(rows, i);
-                const slotX = bounds.left;
-                const slotW = bounds.right - bounds.left;
-                const slotCenterX = (bounds.left + bounds.right) / 2;
-                const tier = mult < 1 ? 'low' : mult >= 5 ? 'high' : 'mid';
-                const intensity = winIntensityFromMultiplier(mult);
-                const showAsResult = balls.some((ball) => ball.slotIndex === i && landedRoundIds.has(ball.roundId));
-                const landedClass = showAsResult ? `landed-subtle-${intensity}` : '';
-                const fontSize = Math.min(10, Math.max(6, slotW / 4));
-                return (
-                  <g key={i}>
-                    <rect
-                      x={slotX}
-                      y={0}
-                      width={slotW}
-                      height={SLOT_HEIGHT}
-                      rx={4}
-                      className={`slot slot-${tier} ${showAsResult ? 'slot-result' : ''} ${landedClass}`}
-                      style={{
-                        transition: 'all 0.15s ease',
-                        ...(landedClass ? { transformOrigin: '50% 50%' } : {}),
-                      }}
-                    />
-                    <g clipPath={`url(#slot-clip-${i})`}>
-                      <text
-                        x={slotCenterX}
-                        y={SLOT_HEIGHT / 2 - (11 + fontSize * 1.2) / 2 + fontSize * 0.8}
-                        textAnchor="middle"
-                        className="slot-text"
-                        style={{ fontSize }}
-                      >
-                        <tspan x={slotCenterX} dy={0}>{String(mult)}</tspan>
-                        <tspan x={slotCenterX} dy={11}>x</tspan>
-                      </text>
-                    </g>
-                  </g>
-                );
-              })}
-            </g>
-          </svg>
-        )}
-      </div>
-    </div>
-  );
+  // ── Rebuild pegs + slots when config changes ─────────────────────────────
+
+  useEffect(() => {
+    if (!sceneRef.current) return;
+    const scene = sceneRef.current;
+    const { viewBoxHeight } = computeLayout(rows);
+    const container = containerRef.current;
+    const newW = container?.clientWidth ?? BOARD_WIDTH;
+    const newScale = newW / BOARD_WIDTH;
+    const newH = Math.round((VIEWBOX_Y_OFFSET + viewBoxHeight) * newScale);
+    scene.app.renderer.resize(newW, newH);
+    scene.boardContainer.scale.set(newScale);
+    scene.boardContainer.y = VIEWBOX_Y_OFFSET * newScale;
+    drawBgGlow(scene.bgGfx, viewBoxHeight);
+    buildPegs();
+    buildSlots();
+  }, [rows, riskLevel, paytables]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Handle new active balls ───────────────────────────────────────────────
+
+  useEffect(() => {
+    const balls = activeBalls ?? [];
+    const currentPlayback = playbackRef.current;
+
+    // Find balls that were removed (completed/cancelled)
+    currentPlayback.forEach((_, roundId) => {
+      if (!balls.find((b) => b.roundId === roundId)) {
+        unregisterPlayback(roundId);
+      }
+    });
+
+    // Find balls that are new
+    for (const ball of balls) {
+      if (currentPlayback.has(ball.roundId)) continue;
+      if (ballEntriesRef.current.has(ball.roundId)) continue;
+
+      const roundId = ball.roundId;
+      const ballRadius = getBallRadiusForRows(ball.rows);
+      const durationMs = animDurRef.current;
+      const slotIndex = ball.slotIndex;
+      const eps = 0.01;
+
+      const doRegister = (path: RecordedPath): boolean => {
+        const bounds = getSlotXBounds(ball.rows, slotIndex);
+        if (path.finalX < bounds.left - eps || path.finalX > bounds.right + eps) return false;
+        registerPlayback(roundId, path, durationMs, ballRadius, slotIndex);
+        return true;
+      };
+
+      const cached = getCachedPath(ball.rows, slotIndex);
+      if (cached) {
+        if (doRegister(cached)) continue;
+        clearPathCache(ball.rows, slotIndex);
+      }
+
+      let retried = false;
+      const tryRecord = () => {
+        scheduleRecord(ball.rows, slotIndex, ballRadius)
+          .then((path) => {
+            if (doRegister(path)) return;
+            if (!retried) {
+              retried = true;
+              clearPathCache(ball.rows, slotIndex);
+              tryRecord();
+            }
+          })
+          .catch(() => {});
+      };
+      tryRecord();
+    }
+  }, [activeBalls]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return <div className="board-wrap" ref={containerRef} />;
 }

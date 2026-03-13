@@ -1,10 +1,13 @@
 services:
+  # ---------------------------------------------------------------------------
+  # RGS (Remote Gaming Server)
+  # ---------------------------------------------------------------------------
   - type: web
-    name: plinkovibe-backend
+    name: plinkovibe-rgs
     env: node
     rootDir: .
-    buildCommand: npm install --include=dev && npm run build --workspace=backend
-    startCommand: npm run start --workspace=backend
+    buildCommand: npm install --include=dev && npm run build --workspace=rgs
+    startCommand: npm run start --workspace=rgs
     plan: free
     envVars:
       - key: NODE_ENV
@@ -13,5 +16,34 @@ services:
         value: "true"
       - key: CORS_ORIGINS
         value: https://plinkovibe.scott.co.im
+      - key: PAM_BASE_URL
+        # Set this to the PAM service's Render URL once it is deployed
+        value: https://plinkovibe-pam.onrender.com
+      - key: PAM_HMAC_SECRET
+        sync: false  # Set in Render dashboard — must match PAM value
+      - key: PAM_JWT_SECRET
+        sync: false  # Set in Render dashboard — must match PAM value
     healthCheckPath: /api/health
 
+  # ---------------------------------------------------------------------------
+  # PAM (Player Account Management)
+  # ---------------------------------------------------------------------------
+  - type: web
+    name: plinkovibe-pam
+    env: node
+    rootDir: .
+    buildCommand: npm install --include=dev && npm run build --workspace=pam
+    startCommand: npm run start --workspace=pam
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BEHIND_TLS_PROXY
+        value: "true"
+      - key: CORS_ORIGINS
+        value: https://plinkovibe.scott.co.im
+      - key: PAM_JWT_SECRET
+        sync: false  # Set in Render dashboard — generate with: openssl rand -hex 32
+      - key: PAM_HMAC_SECRET
+        sync: false  # Set in Render dashboard — must match RGS value
+    healthCheckPath: /health
