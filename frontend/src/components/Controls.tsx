@@ -1,5 +1,4 @@
 import type { ConfigResponse, RiskLevel, Currency } from 'shared';
-import { CURRENCIES, CURRENCY_SYMBOLS } from 'shared';
 import { MIN_BALLS, MAX_BALLS, type AnimationSpeed } from '@/hooks/usePlinko';
 
 const SPEED_OPTIONS: AnimationSpeed[] = ['slow', 'regular', 'turbo'];
@@ -50,7 +49,6 @@ export function Controls({
   balance,
   hideBetButton,
   currency = 'FUN',
-  onCurrencyChange,
   currencySymbol = '🎮',
 }: ControlsProps) {
   const rowsList = config?.rows ?? [8, 10, 12, 14];
@@ -65,28 +63,10 @@ export function Controls({
     <div className={`controls-panel panel-overlay ${playing ? 'controls-disabled' : ''}`}>
       {error && <div className="error-msg">{error}</div>}
 
-      {onCurrencyChange && (
-        <div className="control-group">
-          <span className="control-label">Currency</span>
-          <div className="currency-selectors">
-            {CURRENCIES.map((c) => (
-              <button
-                key={c}
-                type="button"
-                className={`btn btn-secondary btn-currency ${currency === c ? 'active-low' : ''}`}
-                onClick={() => onCurrencyChange(c)}
-                disabled={playing}
-                title={c}
-              >
-                {CURRENCY_SYMBOLS[c]} {c}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       <div className="control-group">
-        <span className="control-label">Bet Amount ({currencySymbol})</span>
+        <span className="control-label">
+          Bet Amount ({currency === 'FUN' ? currency : currencySymbol || currency})
+        </span>
         <div className="bet-input-row">
           <button
             type="button"

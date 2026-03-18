@@ -29,9 +29,9 @@
   },
   {
     "sessionId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
-    "balance": 99770,
+    "balance": 98350,
     "createdAt": 1773398923169,
-    "lastActiveAt": 1773407909617,
+    "lastActiveAt": 1773846538220,
     "createdByIp": "127.0.0.1"
   },
   {
@@ -109,6 +109,34 @@
     "balance": 100000,
     "createdAt": 1773407851288,
     "lastActiveAt": 1773407851288,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "88680a45-ee74-4b04-8399-2187bd64a502",
+    "balance": 100000,
+    "createdAt": 1773846101061,
+    "lastActiveAt": 1773846101061,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "9b99d2de-6bf8-4807-9a4b-a9b4dc3b207a",
+    "balance": 100000,
+    "createdAt": 1773846505555,
+    "lastActiveAt": 1773846505555,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "8e17d501-d336-4b84-8c73-ce53bf683517",
+    "balance": 100000,
+    "createdAt": 1773851063639,
+    "lastActiveAt": 1773851063639,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "0e102717-8e0f-430f-8076-187f148c7aba",
+    "balance": 100000,
+    "createdAt": 1773851073022,
+    "lastActiveAt": 1773851073022,
     "createdByIp": "127.0.0.1"
   }
 ]

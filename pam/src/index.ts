@@ -56,9 +56,13 @@ app.use(
 );
 
 // ---------------------------------------------------------------------------
-// Body parsing — 2 kb limit; bet batches can be slightly larger than RGS
+// Body parsing
+//
+// Keep a tight default limit for public endpoints, but allow larger payloads
+// for internal wallet batching (up to 100 bet outcomes).
 // ---------------------------------------------------------------------------
-app.use(express.json({ limit: '2kb' }));
+app.use(['/auth', '/wallet', '/guest'], express.json({ limit: '2kb' }));
+app.use('/internal', express.json({ limit: '50kb' }), internalRouter);
 
 // ---------------------------------------------------------------------------
 // Rate limiting
@@ -111,7 +115,7 @@ app.get('/health', (_req, res) => res.json({ ok: true, service: 'pam' }));
 app.use('/auth', authRouter);
 app.use('/wallet', walletRouter);
 app.use('/guest', guestRouter);
-app.use('/internal', internalRouter);
+// (internal routes mounted above with a larger JSON limit)
 
 // ---------------------------------------------------------------------------
 // Initialise data store

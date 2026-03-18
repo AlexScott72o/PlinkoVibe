@@ -327,5 +327,4054 @@
     "roundId": "ab25cd5d-d213-4836-b949-cc1f3b0e9f51",
     "balanceAfter": 99845,
     "timestamp": 1773409161787
+  },
+  {
+    "transactionId": "beb7d87d-60fd-401f-aa24-1e49d7ff64d7_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "34d4d7c6-a478-4f2b-9946-3bd4626ce92f",
+    "balanceAfter": 99745,
+    "timestamp": 1773846156592
+  },
+  {
+    "transactionId": "beb7d87d-60fd-401f-aa24-1e49d7ff64d7",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "34d4d7c6-a478-4f2b-9946-3bd4626ce92f",
+    "balanceAfter": 99865,
+    "timestamp": 1773846156594
+  },
+  {
+    "transactionId": "80a09c95-d34a-4a48-9073-7dd5c0eb8b05",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "deposit",
+    "amount": 100000,
+    "currency": "EUR",
+    "balanceAfter": 100000,
+    "timestamp": 1773846395046
+  },
+  {
+    "transactionId": "4d9eb9d5-1e12-4209-87e1-d85537a6dc33_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0eddb4e8-e423-4bfe-8fda-a94e26c8e9a2",
+    "balanceAfter": 99670,
+    "timestamp": 1773846538051
+  },
+  {
+    "transactionId": "4d9eb9d5-1e12-4209-87e1-d85537a6dc33",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "0eddb4e8-e423-4bfe-8fda-a94e26c8e9a2",
+    "balanceAfter": 99730,
+    "timestamp": 1773846538054
+  },
+  {
+    "transactionId": "e3299e77-50eb-4117-9e5b-9c240ef5503b_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fef2d368-a02e-4db8-ace6-578cedf59d78",
+    "balanceAfter": 99630,
+    "timestamp": 1773846538055
+  },
+  {
+    "transactionId": "e3299e77-50eb-4117-9e5b-9c240ef5503b",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "fef2d368-a02e-4db8-ace6-578cedf59d78",
+    "balanceAfter": 99690,
+    "timestamp": 1773846538062
+  },
+  {
+    "transactionId": "33c93ae8-a39c-4422-903b-a4e2c1bad9b8_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fa9f71d9-16e5-4bd9-9d5f-a049c80ff220",
+    "balanceAfter": 99590,
+    "timestamp": 1773846538063
+  },
+  {
+    "transactionId": "33c93ae8-a39c-4422-903b-a4e2c1bad9b8",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "fa9f71d9-16e5-4bd9-9d5f-a049c80ff220",
+    "balanceAfter": 99650,
+    "timestamp": 1773846538065
+  },
+  {
+    "transactionId": "6d00c890-b1e0-4226-86b5-d00ec0a9a047_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "74f2dd92-c994-4330-a3a3-5a3a7d53ee0c",
+    "balanceAfter": 99550,
+    "timestamp": 1773846538068
+  },
+  {
+    "transactionId": "6d00c890-b1e0-4226-86b5-d00ec0a9a047",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "74f2dd92-c994-4330-a3a3-5a3a7d53ee0c",
+    "balanceAfter": 99585,
+    "timestamp": 1773846538073
+  },
+  {
+    "transactionId": "b229cbf6-48a4-4cfe-8160-6ef8e75beb10_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ccf43712-3464-4c81-8996-6e0fffcb7792",
+    "balanceAfter": 99485,
+    "timestamp": 1773846538074
+  },
+  {
+    "transactionId": "b229cbf6-48a4-4cfe-8160-6ef8e75beb10",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "ccf43712-3464-4c81-8996-6e0fffcb7792",
+    "balanceAfter": 99605,
+    "timestamp": 1773846538075
+  },
+  {
+    "transactionId": "31e4b386-6dc7-4d63-a29f-3cff28959436_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f91986f9-18c1-4c9c-ab72-7755557c97d1",
+    "balanceAfter": 99505,
+    "timestamp": 1773846538076
+  },
+  {
+    "transactionId": "31e4b386-6dc7-4d63-a29f-3cff28959436",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "f91986f9-18c1-4c9c-ab72-7755557c97d1",
+    "balanceAfter": 99565,
+    "timestamp": 1773846538077
+  },
+  {
+    "transactionId": "09b8a5f2-1479-4067-bca3-afa1ce5b2d4e_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1cc3354a-2af2-4ac9-939f-9ec1a5fa0f79",
+    "balanceAfter": 99465,
+    "timestamp": 1773846538078
+  },
+  {
+    "transactionId": "09b8a5f2-1479-4067-bca3-afa1ce5b2d4e",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "1cc3354a-2af2-4ac9-939f-9ec1a5fa0f79",
+    "balanceAfter": 99525,
+    "timestamp": 1773846538078
+  },
+  {
+    "transactionId": "d154c418-8563-42ac-9264-1798c73bea0c_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ee2d1ad8-7a89-460a-8f8b-27113c5a48e2",
+    "balanceAfter": 99425,
+    "timestamp": 1773846538079
+  },
+  {
+    "transactionId": "d154c418-8563-42ac-9264-1798c73bea0c",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "ee2d1ad8-7a89-460a-8f8b-27113c5a48e2",
+    "balanceAfter": 99460,
+    "timestamp": 1773846538080
+  },
+  {
+    "transactionId": "18b72460-3cb6-4c6a-b3c2-c7e6eefdfe51_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "45c406a2-1dc0-4d17-803d-7dd0e443c5b1",
+    "balanceAfter": 99360,
+    "timestamp": 1773846538081
+  },
+  {
+    "transactionId": "18b72460-3cb6-4c6a-b3c2-c7e6eefdfe51",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "45c406a2-1dc0-4d17-803d-7dd0e443c5b1",
+    "balanceAfter": 99420,
+    "timestamp": 1773846538082
+  },
+  {
+    "transactionId": "845b0826-fe43-4d45-8338-a93db274cddd_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8e40b336-b4b5-4703-9233-70d689124768",
+    "balanceAfter": 99320,
+    "timestamp": 1773846538083
+  },
+  {
+    "transactionId": "845b0826-fe43-4d45-8338-a93db274cddd",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "8e40b336-b4b5-4703-9233-70d689124768",
+    "balanceAfter": 99380,
+    "timestamp": 1773846538084
+  },
+  {
+    "transactionId": "c79adba3-bc0f-44b8-bf9e-f8125d2d150e_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5f78f3af-506c-4f64-a6af-342a06c76d69",
+    "balanceAfter": 99280,
+    "timestamp": 1773846538090
+  },
+  {
+    "transactionId": "c79adba3-bc0f-44b8-bf9e-f8125d2d150e",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "5f78f3af-506c-4f64-a6af-342a06c76d69",
+    "balanceAfter": 99400,
+    "timestamp": 1773846538090
+  },
+  {
+    "transactionId": "90711185-fd9b-4cd9-9d52-3b147b22916a_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e2611e21-8c00-4576-88ef-c0a71ab7923b",
+    "balanceAfter": 99300,
+    "timestamp": 1773846538091
+  },
+  {
+    "transactionId": "90711185-fd9b-4cd9-9d52-3b147b22916a",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "e2611e21-8c00-4576-88ef-c0a71ab7923b",
+    "balanceAfter": 99360,
+    "timestamp": 1773846538091
+  },
+  {
+    "transactionId": "952205bb-9399-4357-b807-500d81b6b913_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ff7e2ba3-fafa-4fe0-a60f-841141576eef",
+    "balanceAfter": 99260,
+    "timestamp": 1773846538092
+  },
+  {
+    "transactionId": "952205bb-9399-4357-b807-500d81b6b913",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "ff7e2ba3-fafa-4fe0-a60f-841141576eef",
+    "balanceAfter": 99380,
+    "timestamp": 1773846538092
+  },
+  {
+    "transactionId": "0398f95a-6c9e-47d5-af74-f605d663e8e2_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e0dac388-2b35-43e1-ad74-1410b5ebb405",
+    "balanceAfter": 99280,
+    "timestamp": 1773846538093
+  },
+  {
+    "transactionId": "0398f95a-6c9e-47d5-af74-f605d663e8e2",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "e0dac388-2b35-43e1-ad74-1410b5ebb405",
+    "balanceAfter": 99400,
+    "timestamp": 1773846538093
+  },
+  {
+    "transactionId": "4851cebb-47e9-4ca3-9fca-bb9ed897d1ac_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3a93feea-83ea-4b5c-baf6-b78b9adc5357",
+    "balanceAfter": 99300,
+    "timestamp": 1773846538094
+  },
+  {
+    "transactionId": "4851cebb-47e9-4ca3-9fca-bb9ed897d1ac",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "3a93feea-83ea-4b5c-baf6-b78b9adc5357",
+    "balanceAfter": 99360,
+    "timestamp": 1773846538094
+  },
+  {
+    "transactionId": "e1ff9f8e-36e8-4441-a5b5-423e8ce4e502_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0f984212-1734-4e76-915f-6bd27ad23e81",
+    "balanceAfter": 99260,
+    "timestamp": 1773846538094
+  },
+  {
+    "transactionId": "e1ff9f8e-36e8-4441-a5b5-423e8ce4e502",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "0f984212-1734-4e76-915f-6bd27ad23e81",
+    "balanceAfter": 99320,
+    "timestamp": 1773846538095
+  },
+  {
+    "transactionId": "9fdc70ff-0976-45d4-8f7c-08f4cbd5f96d_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fc0caae1-4523-48a4-a55c-621ee0dd6375",
+    "balanceAfter": 99220,
+    "timestamp": 1773846538095
+  },
+  {
+    "transactionId": "9fdc70ff-0976-45d4-8f7c-08f4cbd5f96d",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "fc0caae1-4523-48a4-a55c-621ee0dd6375",
+    "balanceAfter": 99255,
+    "timestamp": 1773846538095
+  },
+  {
+    "transactionId": "eb1d718f-db73-4b01-82e1-fa3bd19a6570_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9a99a571-aec0-4b45-a11d-792c17b3310e",
+    "balanceAfter": 99155,
+    "timestamp": 1773846538096
+  },
+  {
+    "transactionId": "eb1d718f-db73-4b01-82e1-fa3bd19a6570",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9a99a571-aec0-4b45-a11d-792c17b3310e",
+    "balanceAfter": 99215,
+    "timestamp": 1773846538096
+  },
+  {
+    "transactionId": "e0ef6eb5-fc27-4904-a763-61b5f8b4ad10_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "abba2d01-eea6-4da0-9f56-9d4b638fa78c",
+    "balanceAfter": 99115,
+    "timestamp": 1773846538097
+  },
+  {
+    "transactionId": "e0ef6eb5-fc27-4904-a763-61b5f8b4ad10",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "abba2d01-eea6-4da0-9f56-9d4b638fa78c",
+    "balanceAfter": 99150,
+    "timestamp": 1773846538097
+  },
+  {
+    "transactionId": "685fbfb3-44cd-4d6c-902c-dcd54c61ec46_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9273cf6b-157a-45c3-807f-8f9afdb3a568",
+    "balanceAfter": 99050,
+    "timestamp": 1773846538097
+  },
+  {
+    "transactionId": "685fbfb3-44cd-4d6c-902c-dcd54c61ec46",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9273cf6b-157a-45c3-807f-8f9afdb3a568",
+    "balanceAfter": 99110,
+    "timestamp": 1773846538097
+  },
+  {
+    "transactionId": "e70e00be-bc53-4f7e-8833-9cd1af3b21ca_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8cefdea8-11a3-4930-8a5b-43fe6a03f6e0",
+    "balanceAfter": 99010,
+    "timestamp": 1773846538098
+  },
+  {
+    "transactionId": "e70e00be-bc53-4f7e-8833-9cd1af3b21ca",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "8cefdea8-11a3-4930-8a5b-43fe6a03f6e0",
+    "balanceAfter": 99130,
+    "timestamp": 1773846538099
+  },
+  {
+    "transactionId": "35a0b5ee-f7d9-49a5-b0fe-12ade0160f7d_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "49e4f4b6-9ce0-49fe-94e2-33d8d9234327",
+    "balanceAfter": 99030,
+    "timestamp": 1773846538099
+  },
+  {
+    "transactionId": "35a0b5ee-f7d9-49a5-b0fe-12ade0160f7d",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "49e4f4b6-9ce0-49fe-94e2-33d8d9234327",
+    "balanceAfter": 99090,
+    "timestamp": 1773846538100
+  },
+  {
+    "transactionId": "b5ce7a8f-31b5-4212-ae63-eb1d6f6a1da0_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0db3cf30-97c5-4370-a138-4b2f5ca9959f",
+    "balanceAfter": 98990,
+    "timestamp": 1773846538100
+  },
+  {
+    "transactionId": "b5ce7a8f-31b5-4212-ae63-eb1d6f6a1da0",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "0db3cf30-97c5-4370-a138-4b2f5ca9959f",
+    "balanceAfter": 99110,
+    "timestamp": 1773846538100
+  },
+  {
+    "transactionId": "f7ee9f2b-eafd-4ad0-8894-90c4aa360260_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "806cfe67-8a1c-4423-8d7f-37886dc879c3",
+    "balanceAfter": 99010,
+    "timestamp": 1773846538101
+  },
+  {
+    "transactionId": "f7ee9f2b-eafd-4ad0-8894-90c4aa360260",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "806cfe67-8a1c-4423-8d7f-37886dc879c3",
+    "balanceAfter": 99045,
+    "timestamp": 1773846538101
+  },
+  {
+    "transactionId": "66d096dd-100c-402f-b15c-bb29b8a18a5d_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "69d1aca6-e350-4bfc-aded-efc415be7222",
+    "balanceAfter": 98945,
+    "timestamp": 1773846538101
+  },
+  {
+    "transactionId": "66d096dd-100c-402f-b15c-bb29b8a18a5d",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "69d1aca6-e350-4bfc-aded-efc415be7222",
+    "balanceAfter": 99005,
+    "timestamp": 1773846538102
+  },
+  {
+    "transactionId": "4fc3a307-a361-40f9-badd-868fd01cc855_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d8a533a6-95d3-4d5f-8d5a-978579493214",
+    "balanceAfter": 98905,
+    "timestamp": 1773846538103
+  },
+  {
+    "transactionId": "4fc3a307-a361-40f9-badd-868fd01cc855",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "d8a533a6-95d3-4d5f-8d5a-978579493214",
+    "balanceAfter": 98965,
+    "timestamp": 1773846538104
+  },
+  {
+    "transactionId": "7baff998-6bb6-4cb6-9ac0-dd2f86cbf687_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ed4ad73e-30e4-428f-bf7e-0ac02ac551a4",
+    "balanceAfter": 98865,
+    "timestamp": 1773846538104
+  },
+  {
+    "transactionId": "7baff998-6bb6-4cb6-9ac0-dd2f86cbf687",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 500,
+    "currency": "FUN",
+    "roundId": "ed4ad73e-30e4-428f-bf7e-0ac02ac551a4",
+    "balanceAfter": 99365,
+    "timestamp": 1773846538105
+  },
+  {
+    "transactionId": "b4a578ba-549c-433d-8a67-d8a130fa5fd1_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "986c1dc0-4ef4-4e20-bdd5-88c7c7d34001",
+    "balanceAfter": 99265,
+    "timestamp": 1773846538105
+  },
+  {
+    "transactionId": "b4a578ba-549c-433d-8a67-d8a130fa5fd1",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "986c1dc0-4ef4-4e20-bdd5-88c7c7d34001",
+    "balanceAfter": 99325,
+    "timestamp": 1773846538106
+  },
+  {
+    "transactionId": "a1cf85d5-43f4-448f-bd43-e6e61e93e26f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "90e65e87-f923-4318-a20e-b7e57ddcbd2a",
+    "balanceAfter": 99225,
+    "timestamp": 1773846538106
+  },
+  {
+    "transactionId": "a1cf85d5-43f4-448f-bd43-e6e61e93e26f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "90e65e87-f923-4318-a20e-b7e57ddcbd2a",
+    "balanceAfter": 99285,
+    "timestamp": 1773846538107
+  },
+  {
+    "transactionId": "93b5a924-f485-4d57-927f-ae7d8a80f730_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d3d5cf69-aacc-4a30-8d0d-b37d08f7fa9a",
+    "balanceAfter": 99185,
+    "timestamp": 1773846538107
+  },
+  {
+    "transactionId": "93b5a924-f485-4d57-927f-ae7d8a80f730",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "d3d5cf69-aacc-4a30-8d0d-b37d08f7fa9a",
+    "balanceAfter": 99245,
+    "timestamp": 1773846538108
+  },
+  {
+    "transactionId": "20e92caa-c09e-4d01-a903-59de83d1998f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "bbe8f6b7-ef0f-4846-9e48-6e4f3e4cc666",
+    "balanceAfter": 99145,
+    "timestamp": 1773846538108
+  },
+  {
+    "transactionId": "20e92caa-c09e-4d01-a903-59de83d1998f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "bbe8f6b7-ef0f-4846-9e48-6e4f3e4cc666",
+    "balanceAfter": 99180,
+    "timestamp": 1773846538109
+  },
+  {
+    "transactionId": "2b4e8f0a-6520-43ed-98f2-0007cecc3351_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6964b230-f399-4f8c-9cc9-87f6732b8765",
+    "balanceAfter": 99080,
+    "timestamp": 1773846538109
+  },
+  {
+    "transactionId": "2b4e8f0a-6520-43ed-98f2-0007cecc3351",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "6964b230-f399-4f8c-9cc9-87f6732b8765",
+    "balanceAfter": 99115,
+    "timestamp": 1773846538110
+  },
+  {
+    "transactionId": "8be5d8e4-3da2-4788-8091-63bc5c464b7c_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5af42e51-f03f-4412-8331-66fc54c0e073",
+    "balanceAfter": 99015,
+    "timestamp": 1773846538110
+  },
+  {
+    "transactionId": "8be5d8e4-3da2-4788-8091-63bc5c464b7c",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5af42e51-f03f-4412-8331-66fc54c0e073",
+    "balanceAfter": 99075,
+    "timestamp": 1773846538111
+  },
+  {
+    "transactionId": "057016b3-451e-4961-85e5-99839c59d903_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "757652c1-337b-4d40-995d-5b3caf4e1f1a",
+    "balanceAfter": 98975,
+    "timestamp": 1773846538111
+  },
+  {
+    "transactionId": "057016b3-451e-4961-85e5-99839c59d903",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "757652c1-337b-4d40-995d-5b3caf4e1f1a",
+    "balanceAfter": 99035,
+    "timestamp": 1773846538111
+  },
+  {
+    "transactionId": "1dd2ba45-2ed6-498b-9177-cc56fa5b4187_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "91d98c90-9c3c-4c35-891f-d45e71ec2e87",
+    "balanceAfter": 98935,
+    "timestamp": 1773846538112
+  },
+  {
+    "transactionId": "1dd2ba45-2ed6-498b-9177-cc56fa5b4187",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "91d98c90-9c3c-4c35-891f-d45e71ec2e87",
+    "balanceAfter": 99055,
+    "timestamp": 1773846538112
+  },
+  {
+    "transactionId": "f1bfeed1-51f8-404d-be6f-3cbd44a572bf_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3e653c50-1481-4617-9609-90ff693401ca",
+    "balanceAfter": 98955,
+    "timestamp": 1773846538112
+  },
+  {
+    "transactionId": "f1bfeed1-51f8-404d-be6f-3cbd44a572bf",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "3e653c50-1481-4617-9609-90ff693401ca",
+    "balanceAfter": 99155,
+    "timestamp": 1773846538113
+  },
+  {
+    "transactionId": "b6a12c3d-7d69-495f-83ab-2c5391d90ed2_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e324d10e-e06e-425c-9c73-ea0d2fc44071",
+    "balanceAfter": 99055,
+    "timestamp": 1773846538114
+  },
+  {
+    "transactionId": "b6a12c3d-7d69-495f-83ab-2c5391d90ed2",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "e324d10e-e06e-425c-9c73-ea0d2fc44071",
+    "balanceAfter": 99090,
+    "timestamp": 1773846538114
+  },
+  {
+    "transactionId": "31a36347-be12-40aa-b15e-e559136855b3_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "86884fc2-bcc2-44dc-9022-c58986b247ee",
+    "balanceAfter": 98990,
+    "timestamp": 1773846538115
+  },
+  {
+    "transactionId": "31a36347-be12-40aa-b15e-e559136855b3",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "86884fc2-bcc2-44dc-9022-c58986b247ee",
+    "balanceAfter": 99025,
+    "timestamp": 1773846538115
+  },
+  {
+    "transactionId": "99bc8f57-dc86-4b1f-b721-62fa31057121_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4615dc6e-26a3-417b-b837-ac1f7b98dd30",
+    "balanceAfter": 98925,
+    "timestamp": 1773846538116
+  },
+  {
+    "transactionId": "99bc8f57-dc86-4b1f-b721-62fa31057121",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "4615dc6e-26a3-417b-b837-ac1f7b98dd30",
+    "balanceAfter": 98960,
+    "timestamp": 1773846538116
+  },
+  {
+    "transactionId": "90349a34-4f3b-42ec-bbfa-df7ab66d2bbd_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "77ac8649-7d7f-448c-8eff-e18d8506f662",
+    "balanceAfter": 98860,
+    "timestamp": 1773846538117
+  },
+  {
+    "transactionId": "90349a34-4f3b-42ec-bbfa-df7ab66d2bbd",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 500,
+    "currency": "FUN",
+    "roundId": "77ac8649-7d7f-448c-8eff-e18d8506f662",
+    "balanceAfter": 99360,
+    "timestamp": 1773846538118
+  },
+  {
+    "transactionId": "46e4da68-97ad-447b-9929-aec157ea07fd_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "b9da827a-680a-4b47-b58b-7dc2ef00f0db",
+    "balanceAfter": 99260,
+    "timestamp": 1773846538119
+  },
+  {
+    "transactionId": "46e4da68-97ad-447b-9929-aec157ea07fd",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "b9da827a-680a-4b47-b58b-7dc2ef00f0db",
+    "balanceAfter": 99295,
+    "timestamp": 1773846538120
+  },
+  {
+    "transactionId": "24c1e284-7fbf-4286-8076-b8fb1e725fcb_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0842f345-c60a-4d3d-80fa-3d4d5f9d772d",
+    "balanceAfter": 99195,
+    "timestamp": 1773846538121
+  },
+  {
+    "transactionId": "24c1e284-7fbf-4286-8076-b8fb1e725fcb",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "0842f345-c60a-4d3d-80fa-3d4d5f9d772d",
+    "balanceAfter": 99230,
+    "timestamp": 1773846538121
+  },
+  {
+    "transactionId": "79aead5e-a7e1-4155-83d7-aad553e52cc9_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2dabb889-9d52-47b3-9c81-2d441ceb9bd1",
+    "balanceAfter": 99130,
+    "timestamp": 1773846538122
+  },
+  {
+    "transactionId": "79aead5e-a7e1-4155-83d7-aad553e52cc9",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "2dabb889-9d52-47b3-9c81-2d441ceb9bd1",
+    "balanceAfter": 99165,
+    "timestamp": 1773846538123
+  },
+  {
+    "transactionId": "14654bf0-8fde-4f97-b15b-e023775715d7_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "feaa2896-d5a0-4c89-aa8d-7fac93f593f4",
+    "balanceAfter": 99065,
+    "timestamp": 1773846538124
+  },
+  {
+    "transactionId": "14654bf0-8fde-4f97-b15b-e023775715d7",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "feaa2896-d5a0-4c89-aa8d-7fac93f593f4",
+    "balanceAfter": 99125,
+    "timestamp": 1773846538124
+  },
+  {
+    "transactionId": "56fb847b-d602-4562-b2cd-8cb25a692dc7_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "b21a6ced-4ba6-49ce-b898-c4cf2f02747e",
+    "balanceAfter": 99025,
+    "timestamp": 1773846538125
+  },
+  {
+    "transactionId": "56fb847b-d602-4562-b2cd-8cb25a692dc7",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "b21a6ced-4ba6-49ce-b898-c4cf2f02747e",
+    "balanceAfter": 99085,
+    "timestamp": 1773846538129
+  },
+  {
+    "transactionId": "bc174b40-49b2-4e0e-a56b-ea4c95662907_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6a034df5-5131-48eb-9de2-5f4517908eae",
+    "balanceAfter": 98985,
+    "timestamp": 1773846538130
+  },
+  {
+    "transactionId": "bc174b40-49b2-4e0e-a56b-ea4c95662907",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "6a034df5-5131-48eb-9de2-5f4517908eae",
+    "balanceAfter": 99045,
+    "timestamp": 1773846538131
+  },
+  {
+    "transactionId": "0d4d7b3c-7131-48b8-af0b-77cd01d5873d_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6f392115-e3b6-4a11-b302-f5ab428a1fe2",
+    "balanceAfter": 98945,
+    "timestamp": 1773846538132
+  },
+  {
+    "transactionId": "0d4d7b3c-7131-48b8-af0b-77cd01d5873d",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "6f392115-e3b6-4a11-b302-f5ab428a1fe2",
+    "balanceAfter": 99005,
+    "timestamp": 1773846538132
+  },
+  {
+    "transactionId": "2c68135c-6d55-470a-9346-0650fbc521fc_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f5d8791d-2627-4708-817b-d021cf628bd0",
+    "balanceAfter": 98905,
+    "timestamp": 1773846538133
+  },
+  {
+    "transactionId": "2c68135c-6d55-470a-9346-0650fbc521fc",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "f5d8791d-2627-4708-817b-d021cf628bd0",
+    "balanceAfter": 98940,
+    "timestamp": 1773846538134
+  },
+  {
+    "transactionId": "bdda6c16-2bc3-443c-8920-2094e455e876_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2dfa0400-07d5-475c-a5eb-95f79e6a1ab1",
+    "balanceAfter": 98840,
+    "timestamp": 1773846538135
+  },
+  {
+    "transactionId": "bdda6c16-2bc3-443c-8920-2094e455e876",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "2dfa0400-07d5-475c-a5eb-95f79e6a1ab1",
+    "balanceAfter": 98900,
+    "timestamp": 1773846538135
+  },
+  {
+    "transactionId": "54b54e1b-b41c-4992-be4b-7cd51f1e0110_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2edbfb9b-bb82-4e71-8d84-15e629a5eefe",
+    "balanceAfter": 98800,
+    "timestamp": 1773846538136
+  },
+  {
+    "transactionId": "54b54e1b-b41c-4992-be4b-7cd51f1e0110",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "2edbfb9b-bb82-4e71-8d84-15e629a5eefe",
+    "balanceAfter": 98835,
+    "timestamp": 1773846538137
+  },
+  {
+    "transactionId": "caf46ca9-0992-4ed2-a543-06cbcbadd84b_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "117781cb-1b5c-49ee-bdc3-8a536590a157",
+    "balanceAfter": 98735,
+    "timestamp": 1773846538138
+  },
+  {
+    "transactionId": "caf46ca9-0992-4ed2-a543-06cbcbadd84b",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "117781cb-1b5c-49ee-bdc3-8a536590a157",
+    "balanceAfter": 98770,
+    "timestamp": 1773846538138
+  },
+  {
+    "transactionId": "c0ed7b3c-2334-4b5b-9533-2a9fb96d2231_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4a0ce7f3-0d54-4b32-8883-5f7f55c6f0ef",
+    "balanceAfter": 98670,
+    "timestamp": 1773846538139
+  },
+  {
+    "transactionId": "c0ed7b3c-2334-4b5b-9533-2a9fb96d2231",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "4a0ce7f3-0d54-4b32-8883-5f7f55c6f0ef",
+    "balanceAfter": 98730,
+    "timestamp": 1773846538140
+  },
+  {
+    "transactionId": "e34a05bc-8e6e-4043-a484-77e226b9d8cb_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a4b2ee1d-5feb-417a-9ea4-23b9234ac6d6",
+    "balanceAfter": 98630,
+    "timestamp": 1773846538141
+  },
+  {
+    "transactionId": "e34a05bc-8e6e-4043-a484-77e226b9d8cb",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 500,
+    "currency": "FUN",
+    "roundId": "a4b2ee1d-5feb-417a-9ea4-23b9234ac6d6",
+    "balanceAfter": 99130,
+    "timestamp": 1773846538141
+  },
+  {
+    "transactionId": "8633d368-5068-4ef4-8808-43afba3658b0_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6f33cc1f-5b57-4472-bf24-1a18cc5a59f6",
+    "balanceAfter": 99030,
+    "timestamp": 1773846538142
+  },
+  {
+    "transactionId": "8633d368-5068-4ef4-8808-43afba3658b0",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "6f33cc1f-5b57-4472-bf24-1a18cc5a59f6",
+    "balanceAfter": 99150,
+    "timestamp": 1773846538143
+  },
+  {
+    "transactionId": "a3f6dae4-984f-434e-9d82-9b0aed06ae4f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a5bee64a-6ae8-43a3-91ef-cc26d7b886a8",
+    "balanceAfter": 99050,
+    "timestamp": 1773846538143
+  },
+  {
+    "transactionId": "a3f6dae4-984f-434e-9d82-9b0aed06ae4f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "a5bee64a-6ae8-43a3-91ef-cc26d7b886a8",
+    "balanceAfter": 99085,
+    "timestamp": 1773846538144
+  },
+  {
+    "transactionId": "faf59382-a6f1-4223-872f-c368787752a5_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fb3169db-5e3f-4799-abab-ecf92e804385",
+    "balanceAfter": 98985,
+    "timestamp": 1773846538144
+  },
+  {
+    "transactionId": "faf59382-a6f1-4223-872f-c368787752a5",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "fb3169db-5e3f-4799-abab-ecf92e804385",
+    "balanceAfter": 99020,
+    "timestamp": 1773846538145
+  },
+  {
+    "transactionId": "0d2116d1-20b5-470f-83be-2c51018ba077_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9d5411b5-d911-457e-ab92-32a9487069e6",
+    "balanceAfter": 98920,
+    "timestamp": 1773846538145
+  },
+  {
+    "transactionId": "0d2116d1-20b5-470f-83be-2c51018ba077",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9d5411b5-d911-457e-ab92-32a9487069e6",
+    "balanceAfter": 98980,
+    "timestamp": 1773846538146
+  },
+  {
+    "transactionId": "0c49b226-09e6-4f17-9e40-822751355330_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9190c6eb-3028-4d72-8273-11162f5b4b5e",
+    "balanceAfter": 98880,
+    "timestamp": 1773846538146
+  },
+  {
+    "transactionId": "0c49b226-09e6-4f17-9e40-822751355330",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9190c6eb-3028-4d72-8273-11162f5b4b5e",
+    "balanceAfter": 98940,
+    "timestamp": 1773846538147
+  },
+  {
+    "transactionId": "3d6a102a-e16e-476e-b74a-68f4069516df_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fd132ca4-aaf9-4319-ae03-67633808739a",
+    "balanceAfter": 98840,
+    "timestamp": 1773846538147
+  },
+  {
+    "transactionId": "3d6a102a-e16e-476e-b74a-68f4069516df",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "fd132ca4-aaf9-4319-ae03-67633808739a",
+    "balanceAfter": 98900,
+    "timestamp": 1773846538148
+  },
+  {
+    "transactionId": "1356cd56-c927-433a-b524-621ab89eb238_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ee55baf0-1f62-48ad-90f3-05ed107bec88",
+    "balanceAfter": 98800,
+    "timestamp": 1773846538149
+  },
+  {
+    "transactionId": "1356cd56-c927-433a-b524-621ab89eb238",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "ee55baf0-1f62-48ad-90f3-05ed107bec88",
+    "balanceAfter": 98920,
+    "timestamp": 1773846538150
+  },
+  {
+    "transactionId": "8908b881-0b56-4cc6-aee2-62ec2b88223a_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "063ec053-06ff-4d4b-9fc7-939c083a27c2",
+    "balanceAfter": 98820,
+    "timestamp": 1773846538151
+  },
+  {
+    "transactionId": "8908b881-0b56-4cc6-aee2-62ec2b88223a",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "063ec053-06ff-4d4b-9fc7-939c083a27c2",
+    "balanceAfter": 98940,
+    "timestamp": 1773846538151
+  },
+  {
+    "transactionId": "38494da4-5558-4643-af78-b08309421d6c_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4c63fc4b-2a3d-4c1d-ba89-e789410ec851",
+    "balanceAfter": 98840,
+    "timestamp": 1773846538152
+  },
+  {
+    "transactionId": "38494da4-5558-4643-af78-b08309421d6c",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "4c63fc4b-2a3d-4c1d-ba89-e789410ec851",
+    "balanceAfter": 98900,
+    "timestamp": 1773846538153
+  },
+  {
+    "transactionId": "6b9e276e-da59-4f43-a1c0-bfed8d2a1cf5_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "51b5b1c3-1d4f-4be3-8906-6e632ef045a4",
+    "balanceAfter": 98800,
+    "timestamp": 1773846538153
+  },
+  {
+    "transactionId": "6b9e276e-da59-4f43-a1c0-bfed8d2a1cf5",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "51b5b1c3-1d4f-4be3-8906-6e632ef045a4",
+    "balanceAfter": 98835,
+    "timestamp": 1773846538154
+  },
+  {
+    "transactionId": "6ca3ac0a-882b-440e-a573-86d5fb7e45ca_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "09e66eb8-a549-4733-8d4a-b67f1c51d381",
+    "balanceAfter": 98735,
+    "timestamp": 1773846538155
+  },
+  {
+    "transactionId": "6ca3ac0a-882b-440e-a573-86d5fb7e45ca",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "09e66eb8-a549-4733-8d4a-b67f1c51d381",
+    "balanceAfter": 98795,
+    "timestamp": 1773846538156
+  },
+  {
+    "transactionId": "0624b23d-d1b0-4ee6-8608-c3be1cf3f343_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "bd708bfe-b950-414b-9b8c-94003659b7b6",
+    "balanceAfter": 98695,
+    "timestamp": 1773846538157
+  },
+  {
+    "transactionId": "0624b23d-d1b0-4ee6-8608-c3be1cf3f343",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "bd708bfe-b950-414b-9b8c-94003659b7b6",
+    "balanceAfter": 98755,
+    "timestamp": 1773846538158
+  },
+  {
+    "transactionId": "10417f47-7747-462d-914b-2ec1c4d9989f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a59c5b24-cbae-4063-acb2-d4a6a01c39c1",
+    "balanceAfter": 98655,
+    "timestamp": 1773846538159
+  },
+  {
+    "transactionId": "10417f47-7747-462d-914b-2ec1c4d9989f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "a59c5b24-cbae-4063-acb2-d4a6a01c39c1",
+    "balanceAfter": 98690,
+    "timestamp": 1773846538161
+  },
+  {
+    "transactionId": "26a1122f-067b-4fb9-b29c-281c3b00b9c1_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0b4451d7-d349-4954-a559-db077fd62292",
+    "balanceAfter": 98590,
+    "timestamp": 1773846538162
+  },
+  {
+    "transactionId": "26a1122f-067b-4fb9-b29c-281c3b00b9c1",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "0b4451d7-d349-4954-a559-db077fd62292",
+    "balanceAfter": 98790,
+    "timestamp": 1773846538163
+  },
+  {
+    "transactionId": "9d82f795-7b69-49e4-b1c9-a74b65b48c59_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "20a845c6-d2aa-4807-bb0a-cd1fb609d8ac",
+    "balanceAfter": 98690,
+    "timestamp": 1773846538163
+  },
+  {
+    "transactionId": "9d82f795-7b69-49e4-b1c9-a74b65b48c59",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "20a845c6-d2aa-4807-bb0a-cd1fb609d8ac",
+    "balanceAfter": 98750,
+    "timestamp": 1773846538164
+  },
+  {
+    "transactionId": "e609d955-3388-467d-a38d-6bdbc1168700_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "297bc479-3010-4ac7-a208-69f95d42b64f",
+    "balanceAfter": 98650,
+    "timestamp": 1773846538165
+  },
+  {
+    "transactionId": "e609d955-3388-467d-a38d-6bdbc1168700",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "297bc479-3010-4ac7-a208-69f95d42b64f",
+    "balanceAfter": 98710,
+    "timestamp": 1773846538167
+  },
+  {
+    "transactionId": "ba0d5583-447a-4926-8fa4-3261d5534025_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "92a12057-b080-4915-b1df-a30b8be39891",
+    "balanceAfter": 98610,
+    "timestamp": 1773846538171
+  },
+  {
+    "transactionId": "ba0d5583-447a-4926-8fa4-3261d5534025",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "92a12057-b080-4915-b1df-a30b8be39891",
+    "balanceAfter": 98645,
+    "timestamp": 1773846538173
+  },
+  {
+    "transactionId": "09930fc9-958b-44fe-aa8d-323519b6dc16_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5e9ed725-495b-42f1-bc2f-bf3c6a89ae5e",
+    "balanceAfter": 98545,
+    "timestamp": 1773846538173
+  },
+  {
+    "transactionId": "09930fc9-958b-44fe-aa8d-323519b6dc16",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "5e9ed725-495b-42f1-bc2f-bf3c6a89ae5e",
+    "balanceAfter": 98665,
+    "timestamp": 1773846538174
+  },
+  {
+    "transactionId": "fab9b427-e00f-4cd8-a4aa-2e0dfaf581eb_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "edb9034a-ffb3-4429-a53e-a8707415f61b",
+    "balanceAfter": 98565,
+    "timestamp": 1773846538175
+  },
+  {
+    "transactionId": "fab9b427-e00f-4cd8-a4aa-2e0dfaf581eb",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "edb9034a-ffb3-4429-a53e-a8707415f61b",
+    "balanceAfter": 98685,
+    "timestamp": 1773846538176
+  },
+  {
+    "transactionId": "e56da2df-0bea-4889-9a71-ba8053008335_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "236055f8-5abe-4f1d-9067-70fe71d9522a",
+    "balanceAfter": 98585,
+    "timestamp": 1773846538177
+  },
+  {
+    "transactionId": "e56da2df-0bea-4889-9a71-ba8053008335",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "236055f8-5abe-4f1d-9067-70fe71d9522a",
+    "balanceAfter": 98645,
+    "timestamp": 1773846538177
+  },
+  {
+    "transactionId": "5b82accd-a9f0-44fb-86f2-c0705300b088_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5366b857-ab7b-4e1c-812e-208bf156073c",
+    "balanceAfter": 98545,
+    "timestamp": 1773846538178
+  },
+  {
+    "transactionId": "5b82accd-a9f0-44fb-86f2-c0705300b088",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5366b857-ab7b-4e1c-812e-208bf156073c",
+    "balanceAfter": 98605,
+    "timestamp": 1773846538179
+  },
+  {
+    "transactionId": "cae5d0b9-86e4-4313-95b2-413002e74fae_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a4fab084-7326-4ad8-86fa-de227f93d89e",
+    "balanceAfter": 98505,
+    "timestamp": 1773846538180
+  },
+  {
+    "transactionId": "cae5d0b9-86e4-4313-95b2-413002e74fae",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "a4fab084-7326-4ad8-86fa-de227f93d89e",
+    "balanceAfter": 98540,
+    "timestamp": 1773846538180
+  },
+  {
+    "transactionId": "6653fc4b-1468-4cb9-be52-9c402cd046c9_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "690a0cd5-3a97-4201-9100-1b75040d1f3c",
+    "balanceAfter": 98440,
+    "timestamp": 1773846538181
+  },
+  {
+    "transactionId": "6653fc4b-1468-4cb9-be52-9c402cd046c9",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "690a0cd5-3a97-4201-9100-1b75040d1f3c",
+    "balanceAfter": 98560,
+    "timestamp": 1773846538181
+  },
+  {
+    "transactionId": "9577903e-f596-472f-99d9-0b292374fe61_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "b90cfad1-22a6-4304-8e8f-1e4372c9ccd3",
+    "balanceAfter": 98460,
+    "timestamp": 1773846538183
+  },
+  {
+    "transactionId": "9577903e-f596-472f-99d9-0b292374fe61",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "b90cfad1-22a6-4304-8e8f-1e4372c9ccd3",
+    "balanceAfter": 98495,
+    "timestamp": 1773846538183
+  },
+  {
+    "transactionId": "e8daa25c-bced-46d8-8f2a-e98e5c425827_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0ec281ac-47d0-46b4-af93-2a09f1ef8832",
+    "balanceAfter": 98395,
+    "timestamp": 1773846538184
+  },
+  {
+    "transactionId": "e8daa25c-bced-46d8-8f2a-e98e5c425827",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "0ec281ac-47d0-46b4-af93-2a09f1ef8832",
+    "balanceAfter": 98515,
+    "timestamp": 1773846538185
+  },
+  {
+    "transactionId": "67901472-9b37-4acd-b4c4-447f919e5a8f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0dcc5e16-234d-4169-a1b9-ac6c9d53a4df",
+    "balanceAfter": 98415,
+    "timestamp": 1773846538185
+  },
+  {
+    "transactionId": "67901472-9b37-4acd-b4c4-447f919e5a8f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "0dcc5e16-234d-4169-a1b9-ac6c9d53a4df",
+    "balanceAfter": 98475,
+    "timestamp": 1773846538186
+  },
+  {
+    "transactionId": "aa020968-8e80-409f-82a0-0ea2055679de_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "aeac776a-07c7-41ef-913a-aa35006255ec",
+    "balanceAfter": 98375,
+    "timestamp": 1773846538187
+  },
+  {
+    "transactionId": "aa020968-8e80-409f-82a0-0ea2055679de",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "aeac776a-07c7-41ef-913a-aa35006255ec",
+    "balanceAfter": 98495,
+    "timestamp": 1773846538188
+  },
+  {
+    "transactionId": "01ed35fa-d9d4-4c37-991a-a47ab0e51520_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d82acf60-37f1-448f-9de9-95f72b79a832",
+    "balanceAfter": 98395,
+    "timestamp": 1773846538189
+  },
+  {
+    "transactionId": "01ed35fa-d9d4-4c37-991a-a47ab0e51520",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "d82acf60-37f1-448f-9de9-95f72b79a832",
+    "balanceAfter": 98430,
+    "timestamp": 1773846538189
+  },
+  {
+    "transactionId": "27bab3cc-507a-4a26-81ef-b6739cb74d15_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f7af83a5-1d79-4214-b8b5-4369e2a7f946",
+    "balanceAfter": 98330,
+    "timestamp": 1773846538190
+  },
+  {
+    "transactionId": "27bab3cc-507a-4a26-81ef-b6739cb74d15",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "f7af83a5-1d79-4214-b8b5-4369e2a7f946",
+    "balanceAfter": 98450,
+    "timestamp": 1773846538191
+  },
+  {
+    "transactionId": "182574ae-7df1-4ce4-a1c9-2c40911802c4_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "14fde577-831c-4f17-ae81-221088f8b733",
+    "balanceAfter": 98350,
+    "timestamp": 1773846538192
+  },
+  {
+    "transactionId": "182574ae-7df1-4ce4-a1c9-2c40911802c4",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "14fde577-831c-4f17-ae81-221088f8b733",
+    "balanceAfter": 98410,
+    "timestamp": 1773846538192
+  },
+  {
+    "transactionId": "1f7be58d-daca-40d5-b7c8-ae5b7f38a361_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "c729d6dd-7d73-4d78-9a3d-a9bd868e7bef",
+    "balanceAfter": 98310,
+    "timestamp": 1773846538193
+  },
+  {
+    "transactionId": "1f7be58d-daca-40d5-b7c8-ae5b7f38a361",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "c729d6dd-7d73-4d78-9a3d-a9bd868e7bef",
+    "balanceAfter": 98430,
+    "timestamp": 1773846538194
+  },
+  {
+    "transactionId": "370f0356-5bc3-4490-8c51-18d83902fdc2_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "33dcf475-c3a2-4f78-8c53-b11604e8256f",
+    "balanceAfter": 98330,
+    "timestamp": 1773846538195
+  },
+  {
+    "transactionId": "370f0356-5bc3-4490-8c51-18d83902fdc2",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "33dcf475-c3a2-4f78-8c53-b11604e8256f",
+    "balanceAfter": 98365,
+    "timestamp": 1773846538195
+  },
+  {
+    "transactionId": "e399699d-8583-4358-9c99-20b8438f95a0_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1f0ca39c-bb0e-496c-ba7b-64944f2d0830",
+    "balanceAfter": 98265,
+    "timestamp": 1773846538196
+  },
+  {
+    "transactionId": "e399699d-8583-4358-9c99-20b8438f95a0",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "1f0ca39c-bb0e-496c-ba7b-64944f2d0830",
+    "balanceAfter": 98465,
+    "timestamp": 1773846538196
+  },
+  {
+    "transactionId": "fe086404-b1fc-4945-aa77-1af79fd8be4a_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1b570c99-b4f2-4a97-a10b-d5d747110dcd",
+    "balanceAfter": 98365,
+    "timestamp": 1773846538197
+  },
+  {
+    "transactionId": "fe086404-b1fc-4945-aa77-1af79fd8be4a",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "1b570c99-b4f2-4a97-a10b-d5d747110dcd",
+    "balanceAfter": 98425,
+    "timestamp": 1773846538198
+  },
+  {
+    "transactionId": "2985f3aa-943f-450a-b304-9028cffc8404_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7dbe8f95-f23c-40a4-be2f-060bf16f22be",
+    "balanceAfter": 98325,
+    "timestamp": 1773846538199
+  },
+  {
+    "transactionId": "2985f3aa-943f-450a-b304-9028cffc8404",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "7dbe8f95-f23c-40a4-be2f-060bf16f22be",
+    "balanceAfter": 98360,
+    "timestamp": 1773846538200
+  },
+  {
+    "transactionId": "58e5f2b5-41f6-477e-b14c-d5f86c6dca18_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4bd6f646-c325-496c-b232-d0c2f80dcd52",
+    "balanceAfter": 98260,
+    "timestamp": 1773846538200
+  },
+  {
+    "transactionId": "58e5f2b5-41f6-477e-b14c-d5f86c6dca18",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "4bd6f646-c325-496c-b232-d0c2f80dcd52",
+    "balanceAfter": 98380,
+    "timestamp": 1773846538201
+  },
+  {
+    "transactionId": "12ec6c85-234c-4ddf-bc20-ce76e473a978_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5d906255-2d1f-4a17-adfd-b8f700076446",
+    "balanceAfter": 98280,
+    "timestamp": 1773846538202
+  },
+  {
+    "transactionId": "12ec6c85-234c-4ddf-bc20-ce76e473a978",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "5d906255-2d1f-4a17-adfd-b8f700076446",
+    "balanceAfter": 98315,
+    "timestamp": 1773846538203
+  },
+  {
+    "transactionId": "810801b6-0675-4310-82e5-544a210935d2_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ac400b82-6dde-45a8-8dee-110e340f1e28",
+    "balanceAfter": 98215,
+    "timestamp": 1773846538204
+  },
+  {
+    "transactionId": "810801b6-0675-4310-82e5-544a210935d2",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "ac400b82-6dde-45a8-8dee-110e340f1e28",
+    "balanceAfter": 98275,
+    "timestamp": 1773846538204
+  },
+  {
+    "transactionId": "6bf048b7-720c-441d-a75c-13e0327d70da_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5a548f24-5ec4-4ca8-8a01-7d9253e3f25a",
+    "balanceAfter": 98175,
+    "timestamp": 1773846538205
+  },
+  {
+    "transactionId": "6bf048b7-720c-441d-a75c-13e0327d70da",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "5a548f24-5ec4-4ca8-8a01-7d9253e3f25a",
+    "balanceAfter": 98295,
+    "timestamp": 1773846538206
+  },
+  {
+    "transactionId": "f9b71029-4a74-44ab-897f-d984efc8929a_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "dd516de8-bc53-4edc-a9c5-8e0970ec0c6c",
+    "balanceAfter": 98195,
+    "timestamp": 1773846538206
+  },
+  {
+    "transactionId": "f9b71029-4a74-44ab-897f-d984efc8929a",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "dd516de8-bc53-4edc-a9c5-8e0970ec0c6c",
+    "balanceAfter": 98255,
+    "timestamp": 1773846538207
+  },
+  {
+    "transactionId": "c742eb9f-8f61-49f3-8a02-16e1b43da51f_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "25bc69a3-0dd7-49ce-93f9-2b778ca09710",
+    "balanceAfter": 98155,
+    "timestamp": 1773846538208
+  },
+  {
+    "transactionId": "c742eb9f-8f61-49f3-8a02-16e1b43da51f",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "25bc69a3-0dd7-49ce-93f9-2b778ca09710",
+    "balanceAfter": 98215,
+    "timestamp": 1773846538209
+  },
+  {
+    "transactionId": "dc8c2827-0f62-49e3-bdde-a8a7ea1bd678_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8705142d-d139-4496-b836-f47b82da9f5e",
+    "balanceAfter": 98115,
+    "timestamp": 1773846538210
+  },
+  {
+    "transactionId": "dc8c2827-0f62-49e3-bdde-a8a7ea1bd678",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "8705142d-d139-4496-b836-f47b82da9f5e",
+    "balanceAfter": 98235,
+    "timestamp": 1773846538210
+  },
+  {
+    "transactionId": "d3fe755f-b570-4dba-92be-396aaa11b4b1_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ef5f5165-361b-460e-9057-5ec3e22bf115",
+    "balanceAfter": 98135,
+    "timestamp": 1773846538211
+  },
+  {
+    "transactionId": "d3fe755f-b570-4dba-92be-396aaa11b4b1",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "ef5f5165-361b-460e-9057-5ec3e22bf115",
+    "balanceAfter": 98255,
+    "timestamp": 1773846538212
+  },
+  {
+    "transactionId": "4e129e3b-af10-45b3-bd48-48e40220cfee_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "87d94de5-4cf4-43f7-9d78-dece30c5789c",
+    "balanceAfter": 98155,
+    "timestamp": 1773846538212
+  },
+  {
+    "transactionId": "4e129e3b-af10-45b3-bd48-48e40220cfee",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "87d94de5-4cf4-43f7-9d78-dece30c5789c",
+    "balanceAfter": 98190,
+    "timestamp": 1773846538213
+  },
+  {
+    "transactionId": "ec0cb3d1-c895-4964-b097-f289a82373e0_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "98643407-20f5-4630-9aeb-5fc07409793a",
+    "balanceAfter": 98090,
+    "timestamp": 1773846538214
+  },
+  {
+    "transactionId": "ec0cb3d1-c895-4964-b097-f289a82373e0",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "98643407-20f5-4630-9aeb-5fc07409793a",
+    "balanceAfter": 98290,
+    "timestamp": 1773846538215
+  },
+  {
+    "transactionId": "9b4ccd45-d879-43d6-b726-44408c06b939_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e4dd0a6b-1e90-4b76-b58e-6384c17e39da",
+    "balanceAfter": 98190,
+    "timestamp": 1773846538216
+  },
+  {
+    "transactionId": "9b4ccd45-d879-43d6-b726-44408c06b939",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "e4dd0a6b-1e90-4b76-b58e-6384c17e39da",
+    "balanceAfter": 98250,
+    "timestamp": 1773846538217
+  },
+  {
+    "transactionId": "29c7191f-4c25-4e86-a816-e2295ef0b7e6_debit",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0e6f781b-b06b-40b7-801d-6cfa705fe1f0",
+    "balanceAfter": 98150,
+    "timestamp": 1773846538218
+  },
+  {
+    "transactionId": "29c7191f-4c25-4e86-a816-e2295ef0b7e6",
+    "playerId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "0e6f781b-b06b-40b7-801d-6cfa705fe1f0",
+    "balanceAfter": 98350,
+    "timestamp": 1773846538219
+  },
+  {
+    "transactionId": "5a5f37d3-5dd5-4e45-98cd-2d6002dd227c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ccacd7ea-4e02-417b-b993-f9f8bdf59faa",
+    "balanceAfter": 99765,
+    "timestamp": 1773846698502
+  },
+  {
+    "transactionId": "5a5f37d3-5dd5-4e45-98cd-2d6002dd227c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "ccacd7ea-4e02-417b-b993-f9f8bdf59faa",
+    "balanceAfter": 99885,
+    "timestamp": 1773846698504
+  },
+  {
+    "transactionId": "9de1e708-a1b7-4d66-9a3a-3be1f03599d4_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7a5cea08-95cf-41a3-b5eb-6d6053d6bd85",
+    "balanceAfter": 99785,
+    "timestamp": 1773846698506
+  },
+  {
+    "transactionId": "9de1e708-a1b7-4d66-9a3a-3be1f03599d4",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "7a5cea08-95cf-41a3-b5eb-6d6053d6bd85",
+    "balanceAfter": 99905,
+    "timestamp": 1773846698507
+  },
+  {
+    "transactionId": "68a87772-dabb-4240-b0df-f877967389be_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0c81cbac-faaf-4e2a-aa5d-4f39fb561611",
+    "balanceAfter": 99805,
+    "timestamp": 1773846698508
+  },
+  {
+    "transactionId": "68a87772-dabb-4240-b0df-f877967389be",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "0c81cbac-faaf-4e2a-aa5d-4f39fb561611",
+    "balanceAfter": 100005,
+    "timestamp": 1773846698509
+  },
+  {
+    "transactionId": "b8e516ca-3517-40ec-8cce-3854de54cf68_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8f15ffef-f06e-40b9-a364-4585679f56a3",
+    "balanceAfter": 99905,
+    "timestamp": 1773846698509
+  },
+  {
+    "transactionId": "b8e516ca-3517-40ec-8cce-3854de54cf68",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "8f15ffef-f06e-40b9-a364-4585679f56a3",
+    "balanceAfter": 99965,
+    "timestamp": 1773846698510
+  },
+  {
+    "transactionId": "36f48f59-0a50-45d8-b9c5-98b948397800_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "09d87766-1ab5-430f-8e11-41e7a28a24bb",
+    "balanceAfter": 99865,
+    "timestamp": 1773846698512
+  },
+  {
+    "transactionId": "36f48f59-0a50-45d8-b9c5-98b948397800",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "09d87766-1ab5-430f-8e11-41e7a28a24bb",
+    "balanceAfter": 99985,
+    "timestamp": 1773846698513
+  },
+  {
+    "transactionId": "82cc1347-f588-41c2-baf0-4124e7567bf2_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a55d8c95-51c3-4526-9000-85d5ea591e6c",
+    "balanceAfter": 99885,
+    "timestamp": 1773846698513
+  },
+  {
+    "transactionId": "82cc1347-f588-41c2-baf0-4124e7567bf2",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "a55d8c95-51c3-4526-9000-85d5ea591e6c",
+    "balanceAfter": 99920,
+    "timestamp": 1773846698514
+  },
+  {
+    "transactionId": "64963edb-0880-4e49-b249-8efc18df5408_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "c658cc20-ddb9-4791-be49-9384a94d545c",
+    "balanceAfter": 99820,
+    "timestamp": 1773846698515
+  },
+  {
+    "transactionId": "64963edb-0880-4e49-b249-8efc18df5408",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "c658cc20-ddb9-4791-be49-9384a94d545c",
+    "balanceAfter": 99880,
+    "timestamp": 1773846698516
+  },
+  {
+    "transactionId": "9b43ce83-95cb-4dd8-85e8-1358dde4d3c7_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7fa4a424-0e69-4e8f-b9f9-34789efd1ebb",
+    "balanceAfter": 99780,
+    "timestamp": 1773846698520
+  },
+  {
+    "transactionId": "9b43ce83-95cb-4dd8-85e8-1358dde4d3c7",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "7fa4a424-0e69-4e8f-b9f9-34789efd1ebb",
+    "balanceAfter": 99900,
+    "timestamp": 1773846698522
+  },
+  {
+    "transactionId": "d76c2ce5-8ed9-4437-84be-ffe1d0035d68_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0f519438-f138-4076-bc39-ff90cf426814",
+    "balanceAfter": 99800,
+    "timestamp": 1773846698523
+  },
+  {
+    "transactionId": "d76c2ce5-8ed9-4437-84be-ffe1d0035d68",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "0f519438-f138-4076-bc39-ff90cf426814",
+    "balanceAfter": 99920,
+    "timestamp": 1773846698525
+  },
+  {
+    "transactionId": "786c8653-7d49-4700-9281-4ca744e96066_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "01181d75-bf1c-468e-861c-c3a8dcb51d33",
+    "balanceAfter": 99820,
+    "timestamp": 1773846698525
+  },
+  {
+    "transactionId": "786c8653-7d49-4700-9281-4ca744e96066",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "01181d75-bf1c-468e-861c-c3a8dcb51d33",
+    "balanceAfter": 99880,
+    "timestamp": 1773846698526
+  },
+  {
+    "transactionId": "b49ff3b5-555a-4f6a-a57d-92128c30a31f_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5fe83747-f1a6-42a3-90fd-d0c5d72a9071",
+    "balanceAfter": 99780,
+    "timestamp": 1773846698527
+  },
+  {
+    "transactionId": "b49ff3b5-555a-4f6a-a57d-92128c30a31f",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "5fe83747-f1a6-42a3-90fd-d0c5d72a9071",
+    "balanceAfter": 99900,
+    "timestamp": 1773846698528
+  },
+  {
+    "transactionId": "e4612ba5-20fb-468e-a85f-c051abfec214_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1746b1ba-56ba-4951-a14a-990c558e2579",
+    "balanceAfter": 99800,
+    "timestamp": 1773846698528
+  },
+  {
+    "transactionId": "e4612ba5-20fb-468e-a85f-c051abfec214",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "1746b1ba-56ba-4951-a14a-990c558e2579",
+    "balanceAfter": 99860,
+    "timestamp": 1773846698529
+  },
+  {
+    "transactionId": "8cd7abd1-2c7c-4333-b00d-1854043d97af_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3b1c42cd-c5c9-4492-9b63-778e7a1757fa",
+    "balanceAfter": 99760,
+    "timestamp": 1773846698530
+  },
+  {
+    "transactionId": "8cd7abd1-2c7c-4333-b00d-1854043d97af",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "3b1c42cd-c5c9-4492-9b63-778e7a1757fa",
+    "balanceAfter": 99960,
+    "timestamp": 1773846698531
+  },
+  {
+    "transactionId": "be00a80e-f155-48da-87eb-922949920300_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7e608579-08fc-4578-94c1-6cd345e148a1",
+    "balanceAfter": 99860,
+    "timestamp": 1773846698532
+  },
+  {
+    "transactionId": "be00a80e-f155-48da-87eb-922949920300",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "7e608579-08fc-4578-94c1-6cd345e148a1",
+    "balanceAfter": 99895,
+    "timestamp": 1773846698532
+  },
+  {
+    "transactionId": "f065ba29-3020-4493-899a-808296ade5eb_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7a0b8b5f-6cbe-481d-9587-cee9295fe202",
+    "balanceAfter": 99795,
+    "timestamp": 1773846698533
+  },
+  {
+    "transactionId": "f065ba29-3020-4493-899a-808296ade5eb",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "7a0b8b5f-6cbe-481d-9587-cee9295fe202",
+    "balanceAfter": 99855,
+    "timestamp": 1773846698537
+  },
+  {
+    "transactionId": "5b4d0416-0a1a-4423-aa23-8c626f7ca5cd_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e9268c70-660d-4bd5-b781-9c6e2e6519e4",
+    "balanceAfter": 99755,
+    "timestamp": 1773846698539
+  },
+  {
+    "transactionId": "5b4d0416-0a1a-4423-aa23-8c626f7ca5cd",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "e9268c70-660d-4bd5-b781-9c6e2e6519e4",
+    "balanceAfter": 99875,
+    "timestamp": 1773846698540
+  },
+  {
+    "transactionId": "2fec0fa2-50bf-4c5b-956c-e4faa9bc6206_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "38eb85b8-ebf0-4216-a1c5-e61ca3761807",
+    "balanceAfter": 99775,
+    "timestamp": 1773846698541
+  },
+  {
+    "transactionId": "2fec0fa2-50bf-4c5b-956c-e4faa9bc6206",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "38eb85b8-ebf0-4216-a1c5-e61ca3761807",
+    "balanceAfter": 99895,
+    "timestamp": 1773846698541
+  },
+  {
+    "transactionId": "ecf35a2a-1f69-4093-a548-b41dc11e0d46_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1b116818-88e0-4ccf-9e43-354e4b3f6804",
+    "balanceAfter": 99795,
+    "timestamp": 1773846698542
+  },
+  {
+    "transactionId": "ecf35a2a-1f69-4093-a548-b41dc11e0d46",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "1b116818-88e0-4ccf-9e43-354e4b3f6804",
+    "balanceAfter": 99855,
+    "timestamp": 1773846698542
+  },
+  {
+    "transactionId": "35330107-934b-4115-9bd0-4c42b0e00545_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e1158d6d-b8fe-40cb-8525-017ee433b475",
+    "balanceAfter": 99755,
+    "timestamp": 1773846698544
+  },
+  {
+    "transactionId": "35330107-934b-4115-9bd0-4c42b0e00545",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "e1158d6d-b8fe-40cb-8525-017ee433b475",
+    "balanceAfter": 99875,
+    "timestamp": 1773846698545
+  },
+  {
+    "transactionId": "da0d2dce-bd36-4101-8ba3-b3fafad3fde7_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3a3f0476-37d1-4031-9d0d-7011473080cb",
+    "balanceAfter": 99775,
+    "timestamp": 1773846698546
+  },
+  {
+    "transactionId": "da0d2dce-bd36-4101-8ba3-b3fafad3fde7",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "3a3f0476-37d1-4031-9d0d-7011473080cb",
+    "balanceAfter": 99810,
+    "timestamp": 1773846698548
+  },
+  {
+    "transactionId": "f6490747-e027-4f05-aca2-c09cf447bd0b_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "068e0cd6-4962-40f7-a3f0-90004494e7da",
+    "balanceAfter": 99710,
+    "timestamp": 1773846698549
+  },
+  {
+    "transactionId": "f6490747-e027-4f05-aca2-c09cf447bd0b",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "068e0cd6-4962-40f7-a3f0-90004494e7da",
+    "balanceAfter": 99770,
+    "timestamp": 1773846698550
+  },
+  {
+    "transactionId": "1cdf05a5-d2da-482f-9ea3-d13c8262a9ab_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6a699df7-9eae-4741-a727-dd6750b83f4e",
+    "balanceAfter": 99670,
+    "timestamp": 1773846698552
+  },
+  {
+    "transactionId": "1cdf05a5-d2da-482f-9ea3-d13c8262a9ab",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "6a699df7-9eae-4741-a727-dd6750b83f4e",
+    "balanceAfter": 99730,
+    "timestamp": 1773846698556
+  },
+  {
+    "transactionId": "e876c697-a339-4607-9b30-085e078692f4_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "506b7b40-2b24-4b03-a4c9-ffe66c0ea5cd",
+    "balanceAfter": 99630,
+    "timestamp": 1773846698557
+  },
+  {
+    "transactionId": "e876c697-a339-4607-9b30-085e078692f4",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "506b7b40-2b24-4b03-a4c9-ffe66c0ea5cd",
+    "balanceAfter": 99750,
+    "timestamp": 1773846698558
+  },
+  {
+    "transactionId": "2d6d7930-d6e9-48ef-9a95-dd49e76f04c9_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8febb708-9911-4759-ba35-ab1819e56a2e",
+    "balanceAfter": 99650,
+    "timestamp": 1773846698558
+  },
+  {
+    "transactionId": "2d6d7930-d6e9-48ef-9a95-dd49e76f04c9",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "8febb708-9911-4759-ba35-ab1819e56a2e",
+    "balanceAfter": 99685,
+    "timestamp": 1773846698560
+  },
+  {
+    "transactionId": "a9cb6986-7b77-4cfe-bee6-7ef876f0dd3f_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "82d1c78b-31f3-48e4-88c2-2e6632838e6b",
+    "balanceAfter": 99585,
+    "timestamp": 1773846698561
+  },
+  {
+    "transactionId": "a9cb6986-7b77-4cfe-bee6-7ef876f0dd3f",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "82d1c78b-31f3-48e4-88c2-2e6632838e6b",
+    "balanceAfter": 99645,
+    "timestamp": 1773846698562
+  },
+  {
+    "transactionId": "3dac7242-eff0-4ff9-960b-540a6b00e699_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ede8c95b-9f53-4836-bcb6-cf782d4587b1",
+    "balanceAfter": 99545,
+    "timestamp": 1773846698563
+  },
+  {
+    "transactionId": "3dac7242-eff0-4ff9-960b-540a6b00e699",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "ede8c95b-9f53-4836-bcb6-cf782d4587b1",
+    "balanceAfter": 99605,
+    "timestamp": 1773846698564
+  },
+  {
+    "transactionId": "2936d12b-541f-4581-bbe1-788705c8946e_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9f79c43e-4956-4b8d-a801-19f0ecbf9baf",
+    "balanceAfter": 99505,
+    "timestamp": 1773846698565
+  },
+  {
+    "transactionId": "2936d12b-541f-4581-bbe1-788705c8946e",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9f79c43e-4956-4b8d-a801-19f0ecbf9baf",
+    "balanceAfter": 99565,
+    "timestamp": 1773846698567
+  },
+  {
+    "transactionId": "efd544d3-8ee3-4d25-bdf7-b5e53d786472_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e431a876-0133-4006-a7e6-6d792da73a07",
+    "balanceAfter": 99465,
+    "timestamp": 1773846698567
+  },
+  {
+    "transactionId": "efd544d3-8ee3-4d25-bdf7-b5e53d786472",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "e431a876-0133-4006-a7e6-6d792da73a07",
+    "balanceAfter": 99585,
+    "timestamp": 1773846698572
+  },
+  {
+    "transactionId": "3933604a-0798-4e2f-96c8-b3d44f94a360_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "38c56820-473a-459c-bb85-373df94ba16b",
+    "balanceAfter": 99485,
+    "timestamp": 1773846698573
+  },
+  {
+    "transactionId": "3933604a-0798-4e2f-96c8-b3d44f94a360",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "38c56820-473a-459c-bb85-373df94ba16b",
+    "balanceAfter": 99545,
+    "timestamp": 1773846698574
+  },
+  {
+    "transactionId": "5b11f37d-b36d-4d62-9a59-5e1aa86acec8_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "832df33e-fb6b-4bd4-8b30-fd260a52a261",
+    "balanceAfter": 99445,
+    "timestamp": 1773846698575
+  },
+  {
+    "transactionId": "5b11f37d-b36d-4d62-9a59-5e1aa86acec8",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "832df33e-fb6b-4bd4-8b30-fd260a52a261",
+    "balanceAfter": 99565,
+    "timestamp": 1773846698575
+  },
+  {
+    "transactionId": "73a8d38d-5e17-454c-9e40-2747687ad411_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "15045e67-5aee-4257-9fab-564820317a77",
+    "balanceAfter": 99465,
+    "timestamp": 1773846698576
+  },
+  {
+    "transactionId": "73a8d38d-5e17-454c-9e40-2747687ad411",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "15045e67-5aee-4257-9fab-564820317a77",
+    "balanceAfter": 99525,
+    "timestamp": 1773846698576
+  },
+  {
+    "transactionId": "90e42205-6258-4b8f-a119-8fc0dd02f821_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "bbeae9be-be9b-4945-b312-2a0bc01aee9b",
+    "balanceAfter": 99425,
+    "timestamp": 1773846698578
+  },
+  {
+    "transactionId": "90e42205-6258-4b8f-a119-8fc0dd02f821",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "bbeae9be-be9b-4945-b312-2a0bc01aee9b",
+    "balanceAfter": 99485,
+    "timestamp": 1773846698578
+  },
+  {
+    "transactionId": "aaca0c95-6b9b-4b72-ac87-300e093161ee_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0b345fc9-0963-49f5-8cb9-3d9551e6fae4",
+    "balanceAfter": 99385,
+    "timestamp": 1773846698579
+  },
+  {
+    "transactionId": "aaca0c95-6b9b-4b72-ac87-300e093161ee",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "0b345fc9-0963-49f5-8cb9-3d9551e6fae4",
+    "balanceAfter": 99420,
+    "timestamp": 1773846698580
+  },
+  {
+    "transactionId": "d76d0808-9bb4-4f40-9470-2adff18d69de_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f5c35a01-f4df-4396-aafa-4df0a91a2904",
+    "balanceAfter": 99320,
+    "timestamp": 1773846698580
+  },
+  {
+    "transactionId": "d76d0808-9bb4-4f40-9470-2adff18d69de",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "f5c35a01-f4df-4396-aafa-4df0a91a2904",
+    "balanceAfter": 99355,
+    "timestamp": 1773846698581
+  },
+  {
+    "transactionId": "c063113c-4439-4ab2-924f-78d10c5cccef_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5aa8cab5-b436-4fbf-897b-8d03278f059d",
+    "balanceAfter": 99255,
+    "timestamp": 1773846698581
+  },
+  {
+    "transactionId": "c063113c-4439-4ab2-924f-78d10c5cccef",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5aa8cab5-b436-4fbf-897b-8d03278f059d",
+    "balanceAfter": 99315,
+    "timestamp": 1773846698582
+  },
+  {
+    "transactionId": "b25f8377-a1ce-4976-84fb-b69b94d7521f_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "09592766-1982-4c70-9565-ccaeabb9bb66",
+    "balanceAfter": 99215,
+    "timestamp": 1773846698582
+  },
+  {
+    "transactionId": "b25f8377-a1ce-4976-84fb-b69b94d7521f",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "09592766-1982-4c70-9565-ccaeabb9bb66",
+    "balanceAfter": 99335,
+    "timestamp": 1773846698583
+  },
+  {
+    "transactionId": "873f3b9d-d8a3-498e-8b40-84b656798e52_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2ea33779-2df8-4e38-bcd4-2b7bd57ab76f",
+    "balanceAfter": 99235,
+    "timestamp": 1773846698584
+  },
+  {
+    "transactionId": "873f3b9d-d8a3-498e-8b40-84b656798e52",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "2ea33779-2df8-4e38-bcd4-2b7bd57ab76f",
+    "balanceAfter": 99295,
+    "timestamp": 1773846698584
+  },
+  {
+    "transactionId": "15b88a80-1ded-4332-ac74-97790a94402f_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4030afd0-6157-4545-a3ba-41b16db0f8d4",
+    "balanceAfter": 99195,
+    "timestamp": 1773846698585
+  },
+  {
+    "transactionId": "15b88a80-1ded-4332-ac74-97790a94402f",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "4030afd0-6157-4545-a3ba-41b16db0f8d4",
+    "balanceAfter": 99230,
+    "timestamp": 1773846698586
+  },
+  {
+    "transactionId": "79f819ef-4d20-4b0e-9e91-0936c82316ca_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "20db83fd-8876-4776-92a1-d34e351b4e0f",
+    "balanceAfter": 99130,
+    "timestamp": 1773846698587
+  },
+  {
+    "transactionId": "79f819ef-4d20-4b0e-9e91-0936c82316ca",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "20db83fd-8876-4776-92a1-d34e351b4e0f",
+    "balanceAfter": 99165,
+    "timestamp": 1773846698588
+  },
+  {
+    "transactionId": "25b0aac9-6455-42ca-89b3-0a80ed04319b_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "07f325f0-5b38-4267-b963-abb7f9ebdd4e",
+    "balanceAfter": 99065,
+    "timestamp": 1773846698588
+  },
+  {
+    "transactionId": "25b0aac9-6455-42ca-89b3-0a80ed04319b",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "07f325f0-5b38-4267-b963-abb7f9ebdd4e",
+    "balanceAfter": 99185,
+    "timestamp": 1773846698589
+  },
+  {
+    "transactionId": "70cb5892-a7b2-41db-9e1c-67d2cd729114_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7017d464-dd66-40b0-a38a-edc26123e3c3",
+    "balanceAfter": 99085,
+    "timestamp": 1773846698589
+  },
+  {
+    "transactionId": "70cb5892-a7b2-41db-9e1c-67d2cd729114",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "7017d464-dd66-40b0-a38a-edc26123e3c3",
+    "balanceAfter": 99285,
+    "timestamp": 1773846698590
+  },
+  {
+    "transactionId": "28c7fc3a-92e4-4967-8665-88e3e38f7548_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "de9762bf-3163-449f-96ce-2d337b9abd39",
+    "balanceAfter": 99185,
+    "timestamp": 1773846698590
+  },
+  {
+    "transactionId": "28c7fc3a-92e4-4967-8665-88e3e38f7548",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "de9762bf-3163-449f-96ce-2d337b9abd39",
+    "balanceAfter": 99245,
+    "timestamp": 1773846698591
+  },
+  {
+    "transactionId": "bcbe3677-203c-4b1d-8a1c-063ea38569eb_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "cd0ee801-5dba-4593-adda-aad4cedbb935",
+    "balanceAfter": 99145,
+    "timestamp": 1773846698592
+  },
+  {
+    "transactionId": "bcbe3677-203c-4b1d-8a1c-063ea38569eb",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "cd0ee801-5dba-4593-adda-aad4cedbb935",
+    "balanceAfter": 99180,
+    "timestamp": 1773846698593
+  },
+  {
+    "transactionId": "f16816e4-e379-46b6-b640-ccaf15af85ad_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "36f18bd6-f02d-4bb3-9bfb-8b9eb74ad949",
+    "balanceAfter": 99080,
+    "timestamp": 1773846698594
+  },
+  {
+    "transactionId": "f16816e4-e379-46b6-b640-ccaf15af85ad",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "36f18bd6-f02d-4bb3-9bfb-8b9eb74ad949",
+    "balanceAfter": 99140,
+    "timestamp": 1773846698595
+  },
+  {
+    "transactionId": "ab6a52fd-ff25-4d25-8a93-ce232cbf4652_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fd838501-9e0f-48dc-8cbc-1d0627340d96",
+    "balanceAfter": 99040,
+    "timestamp": 1773846698595
+  },
+  {
+    "transactionId": "ab6a52fd-ff25-4d25-8a93-ce232cbf4652",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "fd838501-9e0f-48dc-8cbc-1d0627340d96",
+    "balanceAfter": 99240,
+    "timestamp": 1773846698596
+  },
+  {
+    "transactionId": "cdf02d96-6ce1-4fd3-87a0-ad191ef39ba1_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a6bb02e5-0ac7-4bce-83e1-af3f20eb1638",
+    "balanceAfter": 99140,
+    "timestamp": 1773846698596
+  },
+  {
+    "transactionId": "cdf02d96-6ce1-4fd3-87a0-ad191ef39ba1",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "a6bb02e5-0ac7-4bce-83e1-af3f20eb1638",
+    "balanceAfter": 99260,
+    "timestamp": 1773846698597
+  },
+  {
+    "transactionId": "9be71158-0b98-46d5-ab05-fad528a2039d_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "59d68a4b-e5b1-432e-9f31-4ec9cd19f05c",
+    "balanceAfter": 99160,
+    "timestamp": 1773846698598
+  },
+  {
+    "transactionId": "9be71158-0b98-46d5-ab05-fad528a2039d",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "59d68a4b-e5b1-432e-9f31-4ec9cd19f05c",
+    "balanceAfter": 99220,
+    "timestamp": 1773846698601
+  },
+  {
+    "transactionId": "d59dde48-b7be-4ac5-b7d3-2f093b5ba052_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "4a31adf1-cbfe-4faf-a3fa-0ad7cbe30515",
+    "balanceAfter": 99120,
+    "timestamp": 1773846698606
+  },
+  {
+    "transactionId": "d59dde48-b7be-4ac5-b7d3-2f093b5ba052",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "4a31adf1-cbfe-4faf-a3fa-0ad7cbe30515",
+    "balanceAfter": 99155,
+    "timestamp": 1773846698607
+  },
+  {
+    "transactionId": "67cebbd5-1bde-4e22-b581-a710353ceb22_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1af6ec91-48e8-4a8b-ba3b-0205b3fbef42",
+    "balanceAfter": 99055,
+    "timestamp": 1773846698608
+  },
+  {
+    "transactionId": "67cebbd5-1bde-4e22-b581-a710353ceb22",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "1af6ec91-48e8-4a8b-ba3b-0205b3fbef42",
+    "balanceAfter": 99175,
+    "timestamp": 1773846698609
+  },
+  {
+    "transactionId": "3355e136-c138-4ad5-bc1c-1d20b75ff60b_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0828eb50-baaf-485d-8c8d-cbf3f3c9843b",
+    "balanceAfter": 99075,
+    "timestamp": 1773846698610
+  },
+  {
+    "transactionId": "3355e136-c138-4ad5-bc1c-1d20b75ff60b",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "0828eb50-baaf-485d-8c8d-cbf3f3c9843b",
+    "balanceAfter": 99275,
+    "timestamp": 1773846698611
+  },
+  {
+    "transactionId": "d8dfbb7b-18b2-4e8b-9ad3-1629bc3b662c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "bf6e6851-2b10-405a-98e4-43f2c25c5bcb",
+    "balanceAfter": 99175,
+    "timestamp": 1773846698612
+  },
+  {
+    "transactionId": "d8dfbb7b-18b2-4e8b-9ad3-1629bc3b662c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "bf6e6851-2b10-405a-98e4-43f2c25c5bcb",
+    "balanceAfter": 99295,
+    "timestamp": 1773846698613
+  },
+  {
+    "transactionId": "24d3e928-51f8-448f-a7c1-ae252d2b9fad_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8350583c-6d08-49e1-83d8-b1567c25a3f6",
+    "balanceAfter": 99195,
+    "timestamp": 1773846698614
+  },
+  {
+    "transactionId": "24d3e928-51f8-448f-a7c1-ae252d2b9fad",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "8350583c-6d08-49e1-83d8-b1567c25a3f6",
+    "balanceAfter": 99230,
+    "timestamp": 1773846698614
+  },
+  {
+    "transactionId": "537e7cf6-0ada-4d4c-bc3f-8eda17f8c137_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "492043a8-d57c-4eaf-9059-b8e4a314a8d7",
+    "balanceAfter": 99130,
+    "timestamp": 1773846698615
+  },
+  {
+    "transactionId": "537e7cf6-0ada-4d4c-bc3f-8eda17f8c137",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "492043a8-d57c-4eaf-9059-b8e4a314a8d7",
+    "balanceAfter": 99190,
+    "timestamp": 1773846698616
+  },
+  {
+    "transactionId": "68bc99a0-6b7c-4269-b096-13cf28346b5c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "1c1619e6-3655-441c-98b5-01c39340326e",
+    "balanceAfter": 99090,
+    "timestamp": 1773846698617
+  },
+  {
+    "transactionId": "68bc99a0-6b7c-4269-b096-13cf28346b5c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "1c1619e6-3655-441c-98b5-01c39340326e",
+    "balanceAfter": 99150,
+    "timestamp": 1773846698618
+  },
+  {
+    "transactionId": "f56323e0-551d-4b1b-a368-c59c2728def7_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5d2eaa6f-53c0-4f8d-8d82-5ce1dd98b71a",
+    "balanceAfter": 99050,
+    "timestamp": 1773846698619
+  },
+  {
+    "transactionId": "f56323e0-551d-4b1b-a368-c59c2728def7",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5d2eaa6f-53c0-4f8d-8d82-5ce1dd98b71a",
+    "balanceAfter": 99110,
+    "timestamp": 1773846698619
+  },
+  {
+    "transactionId": "88e4a0a6-cc0b-4e1e-aa0f-fefe04b4e07d_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d20c9543-4a97-4507-93f7-9382dad03c2b",
+    "balanceAfter": 99010,
+    "timestamp": 1773846698620
+  },
+  {
+    "transactionId": "88e4a0a6-cc0b-4e1e-aa0f-fefe04b4e07d",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 500,
+    "currency": "FUN",
+    "roundId": "d20c9543-4a97-4507-93f7-9382dad03c2b",
+    "balanceAfter": 99510,
+    "timestamp": 1773846698621
+  },
+  {
+    "transactionId": "a69dde99-7503-44b5-a567-c47a46398dbe_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e6c3bfe7-5f1e-4c0f-932b-1c7c9e9dfa74",
+    "balanceAfter": 99410,
+    "timestamp": 1773846698621
+  },
+  {
+    "transactionId": "a69dde99-7503-44b5-a567-c47a46398dbe",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "e6c3bfe7-5f1e-4c0f-932b-1c7c9e9dfa74",
+    "balanceAfter": 99470,
+    "timestamp": 1773846698622
+  },
+  {
+    "transactionId": "634a9d55-8904-45cf-a527-9b6a469594da_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "733790cb-763b-48f9-b1ea-4589030a2dc9",
+    "balanceAfter": 99370,
+    "timestamp": 1773846698623
+  },
+  {
+    "transactionId": "634a9d55-8904-45cf-a527-9b6a469594da",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "733790cb-763b-48f9-b1ea-4589030a2dc9",
+    "balanceAfter": 99430,
+    "timestamp": 1773846698624
+  },
+  {
+    "transactionId": "b6f7c227-fad8-4156-8cd6-00b97d235f1c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2567af63-0cca-4100-bd77-e540303d010a",
+    "balanceAfter": 99330,
+    "timestamp": 1773846698624
+  },
+  {
+    "transactionId": "b6f7c227-fad8-4156-8cd6-00b97d235f1c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "2567af63-0cca-4100-bd77-e540303d010a",
+    "balanceAfter": 99365,
+    "timestamp": 1773846698625
+  },
+  {
+    "transactionId": "4749fea9-5bb5-40eb-a4d2-6bd7efd8bc9a_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9a5b078b-dd36-4de1-95ad-425d3abf2fcb",
+    "balanceAfter": 99265,
+    "timestamp": 1773846698626
+  },
+  {
+    "transactionId": "4749fea9-5bb5-40eb-a4d2-6bd7efd8bc9a",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9a5b078b-dd36-4de1-95ad-425d3abf2fcb",
+    "balanceAfter": 99325,
+    "timestamp": 1773846698628
+  },
+  {
+    "transactionId": "2c2b78dc-a2b1-4fe6-a433-e3b7ae0c2a30_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "53fb66dc-c8a7-4f06-a3d2-95d3f588a813",
+    "balanceAfter": 99225,
+    "timestamp": 1773846698629
+  },
+  {
+    "transactionId": "2c2b78dc-a2b1-4fe6-a433-e3b7ae0c2a30",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "53fb66dc-c8a7-4f06-a3d2-95d3f588a813",
+    "balanceAfter": 99260,
+    "timestamp": 1773846698630
+  },
+  {
+    "transactionId": "9f1a4c1e-a8c3-4a53-be94-abb6bab18283_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "daaa1553-e655-4bbd-b28d-3d4bcb3fac44",
+    "balanceAfter": 99160,
+    "timestamp": 1773846698631
+  },
+  {
+    "transactionId": "9f1a4c1e-a8c3-4a53-be94-abb6bab18283",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "daaa1553-e655-4bbd-b28d-3d4bcb3fac44",
+    "balanceAfter": 99360,
+    "timestamp": 1773846698632
+  },
+  {
+    "transactionId": "0842201a-48d2-49cc-8cba-714784dd20f1_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d700c945-481b-46e1-b8d8-e9d41aafc585",
+    "balanceAfter": 99260,
+    "timestamp": 1773846698633
+  },
+  {
+    "transactionId": "0842201a-48d2-49cc-8cba-714784dd20f1",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "d700c945-481b-46e1-b8d8-e9d41aafc585",
+    "balanceAfter": 99295,
+    "timestamp": 1773846698634
+  },
+  {
+    "transactionId": "76554ada-8c1f-4c54-935b-b96a0fd20f59_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "150f39a4-b687-447e-b9d2-463730fe898c",
+    "balanceAfter": 99195,
+    "timestamp": 1773846698635
+  },
+  {
+    "transactionId": "76554ada-8c1f-4c54-935b-b96a0fd20f59",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "150f39a4-b687-447e-b9d2-463730fe898c",
+    "balanceAfter": 99230,
+    "timestamp": 1773846698637
+  },
+  {
+    "transactionId": "793e0696-d8af-43ba-9644-896c50eab020_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "32785977-b3aa-4a38-915b-8d48901e7409",
+    "balanceAfter": 99130,
+    "timestamp": 1773846698638
+  },
+  {
+    "transactionId": "793e0696-d8af-43ba-9644-896c50eab020",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "32785977-b3aa-4a38-915b-8d48901e7409",
+    "balanceAfter": 99190,
+    "timestamp": 1773846698639
+  },
+  {
+    "transactionId": "f3f7b56b-586e-467c-9c6a-6096b927745e_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5ee046f5-17cf-4fe7-bf22-c38fc5ad8ca9",
+    "balanceAfter": 99090,
+    "timestamp": 1773846698639
+  },
+  {
+    "transactionId": "f3f7b56b-586e-467c-9c6a-6096b927745e",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "5ee046f5-17cf-4fe7-bf22-c38fc5ad8ca9",
+    "balanceAfter": 99125,
+    "timestamp": 1773846698640
+  },
+  {
+    "transactionId": "d6375981-ee01-4cc4-8fc5-76c3c173af75_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "649ebb3b-88c3-42da-9274-184aefb608aa",
+    "balanceAfter": 99025,
+    "timestamp": 1773846698641
+  },
+  {
+    "transactionId": "d6375981-ee01-4cc4-8fc5-76c3c173af75",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "649ebb3b-88c3-42da-9274-184aefb608aa",
+    "balanceAfter": 99060,
+    "timestamp": 1773846698642
+  },
+  {
+    "transactionId": "2b977914-837f-4e10-af20-494a02d26db6_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "fc505528-d8dc-420a-b5b7-5cdc65cc9838",
+    "balanceAfter": 98960,
+    "timestamp": 1773846698644
+  },
+  {
+    "transactionId": "2b977914-837f-4e10-af20-494a02d26db6",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "fc505528-d8dc-420a-b5b7-5cdc65cc9838",
+    "balanceAfter": 99020,
+    "timestamp": 1773846698645
+  },
+  {
+    "transactionId": "56124478-3dc7-4308-bf55-5fe58c911d0c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "baeba468-90e0-4710-a917-b211c723575d",
+    "balanceAfter": 98920,
+    "timestamp": 1773846698646
+  },
+  {
+    "transactionId": "56124478-3dc7-4308-bf55-5fe58c911d0c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "baeba468-90e0-4710-a917-b211c723575d",
+    "balanceAfter": 99040,
+    "timestamp": 1773846698647
+  },
+  {
+    "transactionId": "709cf327-b357-46f3-8a31-bb9e35464802_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "29f513fb-2a50-4cf3-ba64-ef41b4c5d1eb",
+    "balanceAfter": 98940,
+    "timestamp": 1773846698648
+  },
+  {
+    "transactionId": "709cf327-b357-46f3-8a31-bb9e35464802",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "29f513fb-2a50-4cf3-ba64-ef41b4c5d1eb",
+    "balanceAfter": 98975,
+    "timestamp": 1773846698649
+  },
+  {
+    "transactionId": "1ed63ae1-4526-44ab-8454-971c52d1e579_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f163d155-2120-498b-97fb-8343cc9c71c6",
+    "balanceAfter": 98875,
+    "timestamp": 1773846698650
+  },
+  {
+    "transactionId": "1ed63ae1-4526-44ab-8454-971c52d1e579",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "f163d155-2120-498b-97fb-8343cc9c71c6",
+    "balanceAfter": 99075,
+    "timestamp": 1773846698657
+  },
+  {
+    "transactionId": "ebcce49f-5d11-4378-b853-23abb92a9a3f_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "7543ade8-ab7d-4fe4-963a-64223ef6f5f5",
+    "balanceAfter": 98975,
+    "timestamp": 1773846698659
+  },
+  {
+    "transactionId": "ebcce49f-5d11-4378-b853-23abb92a9a3f",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "7543ade8-ab7d-4fe4-963a-64223ef6f5f5",
+    "balanceAfter": 99095,
+    "timestamp": 1773846698659
+  },
+  {
+    "transactionId": "5f7f24eb-dcbf-43d6-876f-8f8fbdde1f53_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "d3e3508f-c4b9-49f2-a8fd-e6d723ced50b",
+    "balanceAfter": 98995,
+    "timestamp": 1773846698661
+  },
+  {
+    "transactionId": "5f7f24eb-dcbf-43d6-876f-8f8fbdde1f53",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "d3e3508f-c4b9-49f2-a8fd-e6d723ced50b",
+    "balanceAfter": 99195,
+    "timestamp": 1773846698662
+  },
+  {
+    "transactionId": "fdf6047b-0395-4b2e-882e-79b9f034e07e_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "0d1419ef-8d99-4d34-9559-ebadfe5d6069",
+    "balanceAfter": 99095,
+    "timestamp": 1773846698663
+  },
+  {
+    "transactionId": "fdf6047b-0395-4b2e-882e-79b9f034e07e",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "0d1419ef-8d99-4d34-9559-ebadfe5d6069",
+    "balanceAfter": 99155,
+    "timestamp": 1773846698664
+  },
+  {
+    "transactionId": "fc878b7e-61fd-4dba-a893-73bc4208adbf_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3dcce0bf-ec8f-4af2-9824-71b0705c4edb",
+    "balanceAfter": 99055,
+    "timestamp": 1773846698664
+  },
+  {
+    "transactionId": "fc878b7e-61fd-4dba-a893-73bc4208adbf",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "3dcce0bf-ec8f-4af2-9824-71b0705c4edb",
+    "balanceAfter": 99255,
+    "timestamp": 1773846698665
+  },
+  {
+    "transactionId": "cb347ab0-b922-4af7-ad46-e33df3f46e9d_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "a2d50daf-69c2-4022-b909-32818db4a6a0",
+    "balanceAfter": 99155,
+    "timestamp": 1773846698666
+  },
+  {
+    "transactionId": "cb347ab0-b922-4af7-ad46-e33df3f46e9d",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "a2d50daf-69c2-4022-b909-32818db4a6a0",
+    "balanceAfter": 99215,
+    "timestamp": 1773846698667
+  },
+  {
+    "transactionId": "bd5fba56-eb6b-46cc-81ce-51d7c433cb01_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "682fc715-b202-4c2e-b9c6-186c089d0319",
+    "balanceAfter": 99115,
+    "timestamp": 1773846698668
+  },
+  {
+    "transactionId": "bd5fba56-eb6b-46cc-81ce-51d7c433cb01",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "682fc715-b202-4c2e-b9c6-186c089d0319",
+    "balanceAfter": 99175,
+    "timestamp": 1773846698669
+  },
+  {
+    "transactionId": "0ddcca7a-8748-4c00-9b61-669f6c5926bb_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "845d146b-9392-4df4-b68b-f179dd00600a",
+    "balanceAfter": 99075,
+    "timestamp": 1773846698671
+  },
+  {
+    "transactionId": "0ddcca7a-8748-4c00-9b61-669f6c5926bb",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "845d146b-9392-4df4-b68b-f179dd00600a",
+    "balanceAfter": 99135,
+    "timestamp": 1773846698672
+  },
+  {
+    "transactionId": "14c1a8d1-ae01-4bcf-8c42-cea6ac4e1fdb_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e4202c06-8629-459b-b04d-8abea1b0faff",
+    "balanceAfter": 99035,
+    "timestamp": 1773846698673
+  },
+  {
+    "transactionId": "14c1a8d1-ae01-4bcf-8c42-cea6ac4e1fdb",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "e4202c06-8629-459b-b04d-8abea1b0faff",
+    "balanceAfter": 99095,
+    "timestamp": 1773846698674
+  },
+  {
+    "transactionId": "13137605-0218-4cd3-ab82-c7281681ad06_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "773140b9-0dbd-4802-a3b5-03ecbd254da8",
+    "balanceAfter": 98995,
+    "timestamp": 1773846698675
+  },
+  {
+    "transactionId": "13137605-0218-4cd3-ab82-c7281681ad06",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "773140b9-0dbd-4802-a3b5-03ecbd254da8",
+    "balanceAfter": 99030,
+    "timestamp": 1773846698676
+  },
+  {
+    "transactionId": "f1e94630-eca3-467f-b8f7-dd3bbb79db30_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "f7588a9b-bcd1-4416-9ee8-0def1a2c1e0d",
+    "balanceAfter": 98930,
+    "timestamp": 1773846698678
+  },
+  {
+    "transactionId": "f1e94630-eca3-467f-b8f7-dd3bbb79db30",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "f7588a9b-bcd1-4416-9ee8-0def1a2c1e0d",
+    "balanceAfter": 99050,
+    "timestamp": 1773846698679
+  },
+  {
+    "transactionId": "421cfecf-41de-46f7-b651-a08309e5493e_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e287faa9-bdc9-4878-b1c1-b1fb41a998bc",
+    "balanceAfter": 98950,
+    "timestamp": 1773846698680
+  },
+  {
+    "transactionId": "421cfecf-41de-46f7-b651-a08309e5493e",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "e287faa9-bdc9-4878-b1c1-b1fb41a998bc",
+    "balanceAfter": 98985,
+    "timestamp": 1773846698680
+  },
+  {
+    "transactionId": "7a8f3b4d-91a7-4ed1-ab2c-70b424908b30_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5628bbb5-1f13-4f97-a11c-c5063788f5c0",
+    "balanceAfter": 98885,
+    "timestamp": 1773846698681
+  },
+  {
+    "transactionId": "7a8f3b4d-91a7-4ed1-ab2c-70b424908b30",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5628bbb5-1f13-4f97-a11c-c5063788f5c0",
+    "balanceAfter": 98945,
+    "timestamp": 1773846698682
+  },
+  {
+    "transactionId": "fd447201-e8c1-4dfa-b505-c668a5cacbdf_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "581c4fb0-a2dd-4c26-9dca-5b29a8bbe021",
+    "balanceAfter": 98845,
+    "timestamp": 1773846698683
+  },
+  {
+    "transactionId": "fd447201-e8c1-4dfa-b505-c668a5cacbdf",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "581c4fb0-a2dd-4c26-9dca-5b29a8bbe021",
+    "balanceAfter": 98965,
+    "timestamp": 1773846698683
+  },
+  {
+    "transactionId": "f557691d-0e15-46fd-877c-a563c2cb3b33_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "6d56b336-6a54-4568-89cc-345c1e2a3e3a",
+    "balanceAfter": 98865,
+    "timestamp": 1773846698684
+  },
+  {
+    "transactionId": "f557691d-0e15-46fd-877c-a563c2cb3b33",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "6d56b336-6a54-4568-89cc-345c1e2a3e3a",
+    "balanceAfter": 98900,
+    "timestamp": 1773846698686
+  },
+  {
+    "transactionId": "d3569d93-4e97-49f3-a010-273429b8e964_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "8d1cc25d-482f-4ff6-95fe-619c612a1b7b",
+    "balanceAfter": 98800,
+    "timestamp": 1773846698687
+  },
+  {
+    "transactionId": "d3569d93-4e97-49f3-a010-273429b8e964",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "8d1cc25d-482f-4ff6-95fe-619c612a1b7b",
+    "balanceAfter": 98860,
+    "timestamp": 1773846698688
+  },
+  {
+    "transactionId": "9d11b5b9-8037-427f-bdbc-44b264fcc67b_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "812e7f38-3b29-4152-aeab-9b3b9a624bea",
+    "balanceAfter": 98760,
+    "timestamp": 1773846698690
+  },
+  {
+    "transactionId": "9d11b5b9-8037-427f-bdbc-44b264fcc67b",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 35,
+    "currency": "FUN",
+    "roundId": "812e7f38-3b29-4152-aeab-9b3b9a624bea",
+    "balanceAfter": 98795,
+    "timestamp": 1773846698691
+  },
+  {
+    "transactionId": "a3c65f2f-27e0-4f82-8e52-eb4ea3932404_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "06a97b00-e872-4572-b796-12d68cab8527",
+    "balanceAfter": 98695,
+    "timestamp": 1773846698692
+  },
+  {
+    "transactionId": "a3c65f2f-27e0-4f82-8e52-eb4ea3932404",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "06a97b00-e872-4572-b796-12d68cab8527",
+    "balanceAfter": 98815,
+    "timestamp": 1773846698693
+  },
+  {
+    "transactionId": "fb14e629-4776-4a9f-a5b3-aa7e07b32f56_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "c0d22f40-0f97-4ce3-8f13-788aebead48a",
+    "balanceAfter": 98715,
+    "timestamp": 1773846698694
+  },
+  {
+    "transactionId": "fb14e629-4776-4a9f-a5b3-aa7e07b32f56",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "c0d22f40-0f97-4ce3-8f13-788aebead48a",
+    "balanceAfter": 98915,
+    "timestamp": 1773846698695
+  },
+  {
+    "transactionId": "413af7e4-496d-44ec-8b9f-b93916c3973c_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "9b314cfa-a6c7-4584-a2cb-4bc77f3762c3",
+    "balanceAfter": 98815,
+    "timestamp": 1773846698696
+  },
+  {
+    "transactionId": "413af7e4-496d-44ec-8b9f-b93916c3973c",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "9b314cfa-a6c7-4584-a2cb-4bc77f3762c3",
+    "balanceAfter": 98875,
+    "timestamp": 1773846698697
+  },
+  {
+    "transactionId": "79283e34-f421-402c-afb8-80a8343b0d38_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "01d56c20-0e1e-4ce6-8569-df575241cdda",
+    "balanceAfter": 98775,
+    "timestamp": 1773846698697
+  },
+  {
+    "transactionId": "79283e34-f421-402c-afb8-80a8343b0d38",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "01d56c20-0e1e-4ce6-8569-df575241cdda",
+    "balanceAfter": 98835,
+    "timestamp": 1773846698698
+  },
+  {
+    "transactionId": "748fdd19-7d44-443c-a457-1bdbd0df3c33_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "e6fde30d-3cb5-4da7-9e72-3de3b2ba90de",
+    "balanceAfter": 98735,
+    "timestamp": 1773846698699
+  },
+  {
+    "transactionId": "748fdd19-7d44-443c-a457-1bdbd0df3c33",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "e6fde30d-3cb5-4da7-9e72-3de3b2ba90de",
+    "balanceAfter": 98855,
+    "timestamp": 1773846698700
+  },
+  {
+    "transactionId": "98fbd8a3-7695-44b5-8bb8-0c15674e88ea_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "654f71a1-406c-4328-8e3e-51f733c2aeaa",
+    "balanceAfter": 98755,
+    "timestamp": 1773846698700
+  },
+  {
+    "transactionId": "98fbd8a3-7695-44b5-8bb8-0c15674e88ea",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "654f71a1-406c-4328-8e3e-51f733c2aeaa",
+    "balanceAfter": 98815,
+    "timestamp": 1773846698703
+  },
+  {
+    "transactionId": "ed92c4d4-b1dd-44db-a347-7e1a29d86769_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "30ad787c-2c71-4435-abec-24463af4c03d",
+    "balanceAfter": 98715,
+    "timestamp": 1773846698704
+  },
+  {
+    "transactionId": "ed92c4d4-b1dd-44db-a347-7e1a29d86769",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "30ad787c-2c71-4435-abec-24463af4c03d",
+    "balanceAfter": 98775,
+    "timestamp": 1773846698706
+  },
+  {
+    "transactionId": "7d4be648-6608-41e9-a339-840bcbb16673_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5cfbfb01-ac6c-4128-b0e4-91c10875b80f",
+    "balanceAfter": 98675,
+    "timestamp": 1773846698707
+  },
+  {
+    "transactionId": "7d4be648-6608-41e9-a339-840bcbb16673",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "5cfbfb01-ac6c-4128-b0e4-91c10875b80f",
+    "balanceAfter": 98875,
+    "timestamp": 1773846698708
+  },
+  {
+    "transactionId": "245ab60c-7be2-4794-8064-4880f587492e_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "5eaf5694-3b7a-4f5f-a35b-523d719f3906",
+    "balanceAfter": 98775,
+    "timestamp": 1773846698709
+  },
+  {
+    "transactionId": "245ab60c-7be2-4794-8064-4880f587492e",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "5eaf5694-3b7a-4f5f-a35b-523d719f3906",
+    "balanceAfter": 98835,
+    "timestamp": 1773846698714
+  },
+  {
+    "transactionId": "0b1ddd4f-bbd0-4246-aaff-fffcd2194e53_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "ad4d289e-0942-4612-a5f2-bf06b959458a",
+    "balanceAfter": 98735,
+    "timestamp": 1773846698715
+  },
+  {
+    "transactionId": "0b1ddd4f-bbd0-4246-aaff-fffcd2194e53",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "ad4d289e-0942-4612-a5f2-bf06b959458a",
+    "balanceAfter": 98795,
+    "timestamp": 1773846698716
+  },
+  {
+    "transactionId": "3780657a-cb07-4fc5-a677-e4808f2a1347_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "580fd2b9-a5e3-4de2-8472-f497600606f3",
+    "balanceAfter": 98695,
+    "timestamp": 1773846698717
+  },
+  {
+    "transactionId": "3780657a-cb07-4fc5-a677-e4808f2a1347",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 120,
+    "currency": "FUN",
+    "roundId": "580fd2b9-a5e3-4de2-8472-f497600606f3",
+    "balanceAfter": 98815,
+    "timestamp": 1773846698717
+  },
+  {
+    "transactionId": "4a96a687-ae52-4d11-8bd0-ddb39b8ef2fc_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "74e9869a-293d-4025-a407-67b4181af29e",
+    "balanceAfter": 98715,
+    "timestamp": 1773846698718
+  },
+  {
+    "transactionId": "4a96a687-ae52-4d11-8bd0-ddb39b8ef2fc",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "74e9869a-293d-4025-a407-67b4181af29e",
+    "balanceAfter": 98775,
+    "timestamp": 1773846698720
+  },
+  {
+    "transactionId": "5a9d37da-3567-4bc9-a4df-9744126627e5_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "3db6bcda-894f-4eb5-b0d5-1547a9c8c680",
+    "balanceAfter": 98675,
+    "timestamp": 1773846698721
+  },
+  {
+    "transactionId": "5a9d37da-3567-4bc9-a4df-9744126627e5",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 60,
+    "currency": "FUN",
+    "roundId": "3db6bcda-894f-4eb5-b0d5-1547a9c8c680",
+    "balanceAfter": 98735,
+    "timestamp": 1773846698722
+  },
+  {
+    "transactionId": "491a4f68-3dab-47a8-a516-245b07ff77ef_debit",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "debit",
+    "amount": 100,
+    "currency": "FUN",
+    "roundId": "2d225a6f-a855-41a5-9f0f-f3f339ebebcc",
+    "balanceAfter": 98635,
+    "timestamp": 1773855092182
+  },
+  {
+    "transactionId": "491a4f68-3dab-47a8-a516-245b07ff77ef",
+    "playerId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "type": "credit",
+    "amount": 200,
+    "currency": "FUN",
+    "roundId": "2d225a6f-a855-41a5-9f0f-f3f339ebebcc",
+    "balanceAfter": 98835,
+    "timestamp": 1773855092187
   }
 ]

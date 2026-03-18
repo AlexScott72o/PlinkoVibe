@@ -149,7 +149,8 @@ function App() {
     onLand(roundId);
   };
 
-  const currencySymbol = CURRENCY_SYMBOLS[auth.currency];
+  // FUN uses an emoji in CURRENCY_SYMBOLS ('🎮'); hide it in the game UI so we show just "FUN".
+  const currencySymbol = auth.currency === 'FUN' ? '' : CURRENCY_SYMBOLS[auth.currency];
 
   if (isAppLoading) {
     const progressPct = Math.min(
@@ -186,7 +187,7 @@ function App() {
               <p className="loading-slow-support">
                 Enjoying the game? Help us upgrade to faster servers —{' '}
                 <a
-                  href="https://buymeacoffee.com/quitter"
+                  href="https://buymeacoffee.com/alexscott"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="loading-coffee-link"
@@ -204,21 +205,19 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <button
-          type="button"
-          className="mobile-menu-toggle header-icon-left"
-          onClick={() => setMobileMenuOpen(true)}
-          aria-label="Open settings"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3" />
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-          </svg>
-        </button>
+        <div className="header-left">
+          <button
+            type="button"
+            className="mobile-menu-toggle header-icon-left"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open settings"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+          </button>
 
-        <h1 className="logo-text">PlinkoVibe</h1>
-
-        <div className="header-right">
           {/* Account menu */}
           <div className="account-menu-wrap" ref={accountMenuRef}>
             {auth.status === 'authenticated' ? (
@@ -286,7 +285,11 @@ function App() {
               </div>
             )}
           </div>
+        </div>
 
+        <h1 className="logo-text">PlinkoVibe</h1>
+
+        <div className="header-right">
           {/* Audio menu */}
           <div className="audio-control-wrap" ref={audioMenuRef}>
             <button
@@ -448,7 +451,6 @@ function App() {
             error={error}
             balance={balance}
             currency={auth.currency}
-            onCurrencyChange={auth.status === 'authenticated' ? auth.setCurrency : undefined}
             currencySymbol={currencySymbol}
           />
         </aside>
@@ -501,7 +503,6 @@ function App() {
               error={error}
               balance={balance}
               currency={auth.currency}
-              onCurrencyChange={auth.status === 'authenticated' ? auth.setCurrency : undefined}
               currencySymbol={currencySymbol}
               hideBetButton
             />
