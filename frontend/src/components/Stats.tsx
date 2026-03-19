@@ -1,18 +1,20 @@
-import type { BetResponse } from 'shared';
+import type { BetResponse, Currency } from 'shared';
 
 interface StatsProps {
   balance: number;
   lastResults: BetResponse[];
   hideBalance?: boolean;
+  currency?: Currency;
+  currencySymbol?: string;
 }
 
-export function Stats({ balance, lastResults, hideBalance }: StatsProps) {
+export function Stats({ balance, lastResults, hideBalance, currency = 'FUN', currencySymbol = '🎮' }: StatsProps) {
   return (
     <div className="stats-panel panel-overlay">
       {!hideBalance && (
         <div className="stat-box">
-          <span className="caption-text">BALANCE (FUN)</span>
-          <span className="stat-value">{balance.toFixed(2)}</span>
+          <span className="caption-text">BALANCE ({currency})</span>
+          <span className="stat-value">{currencySymbol}{balance.toFixed(2)}</span>
         </div>
       )}
 

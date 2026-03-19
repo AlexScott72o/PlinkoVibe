@@ -252,12 +252,25 @@ input:disabled + .toggle-slider {
 .header {
   position: relative;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0.75rem 1rem;
   min-height: 0;
   flex-shrink: 0;
+}
+
+.header-left {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
 }
 
 .logo-text {
@@ -438,19 +451,6 @@ input:disabled + .toggle-slider {
     overflow: hidden;
   }
 
-  /* Inner wrapper gets size from SVG (width: 100%, height from aspect ratio); canvas fills it so they align */
-  .board-hero .board-wrap .board-inner {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .board-hero .board-wrap .board-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
 
   .mobile-bet-row {
     flex-shrink: 0;
@@ -680,28 +680,22 @@ input:disabled + .toggle-slider {
     align-items: center;
   }
   
-  /* Top of SVG (initial ball drop) aligns with top of panels, shifted up 40px. Min-height keeps board at max size when window is resized. */
+  /* Top of canvas (initial ball drop zone) aligns with top of panels; shifted up via the translateY.
+     Min-height keeps board at a stable size as window shrinks. */
   .board-hero .board-wrap {
     flex: 1;
     min-height: 520px;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
     padding: 0 0.5rem;
     overflow: visible;
   }
 
-  .board-hero .board-wrap .board-inner {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  
-  .board-hero .board-wrap .board-svg,
   .board-hero .board-wrap .board-canvas {
-    height: 100%;
-    width: auto;
+    width: 100%;
+    height: auto;
     max-width: 100%;
     transform: translateY(-40px) translateZ(0);
   }
@@ -714,7 +708,7 @@ input:disabled + .toggle-slider {
   gap: 1.5rem;
 }
 
-/* --- Board Styles (To be refactored further in ui-board) --- */
+/* --- Board Styles --- */
 .board-wrap {
   width: 100%;
   max-width: 100%;
@@ -723,113 +717,15 @@ input:disabled + .toggle-slider {
   contain: layout paint;
 }
 
-.board-inner {
-  position: relative;
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
-  /* Avoid contain: strict/style so SVG stays visible during canvas animation */
-}
-
-/* GPU layer for animation; reduces repaint cost */
+/* PixiJS canvas: GPU layer, no inline sizing so CSS media queries control dimensions */
 .board-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
   image-rendering: auto;
-}
-
-.fps-counter {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  color: var(--color-accent-cyan);
-  opacity: 0.9;
-  pointer-events: none;
-  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
-}
-
-.board-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  transform: translateZ(0);
-}
-
-.peg {
-  fill: rgba(255, 255, 255, 0.8);
-  transition: transform 0.15s ease-out, fill 0.15s ease-out;
-}
-
-.ball-wrap {
-  pointer-events: none;
-}
-
-.ball-img {
-  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.8));
-}
-
-.slot {
-  stroke: var(--color-border-subtle);
-  stroke-width: 1;
-}
-
-/* Opaque fills so balls appear to land inside the slot (drawn behind slots). */
-.slot-low { fill: rgba(40, 8, 28, 0.98); }
-.slot-mid { fill: rgba(18, 8, 38, 0.98); }
-.slot-high { fill: rgba(8, 28, 38, 0.98); }
-
-.slot-result {
-  fill: rgba(0, 80, 100, 0.98);
-  stroke: var(--color-accent-cyan);
-  stroke-width: 2;
-}
-
-/* ---- Slot win animations: finish before next ball can land (BALL_DROP_DELAY_MS turbo = 200ms) ---- */
-/* will-change hints so the browser can use compositor (GPU) for these animations */
-.slot-result.landed-subtle-minimal {
-  animation: win-subtle-minimal 0.08s ease-out;
-  fill: var(--color-accent-cyan);
-  stroke: rgba(255, 255, 255, 0.6);
-  will-change: filter;
-}
-.slot-result.landed-subtle-bolder {
-  animation: win-subtle-bolder 0.12s ease-out;
-  fill: var(--color-accent-cyan);
-  stroke: #fff;
-  will-change: transform, filter;
-}
-.slot-result.landed-subtle-dramatic {
-  animation: win-subtle-dramatic 0.16s ease-out;
-  fill: var(--color-accent-cyan);
-  stroke: #fff;
-  will-change: transform, filter;
-}
-
-@keyframes win-subtle-minimal {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.15); }
-  100% { filter: brightness(1); }
-}
-@keyframes win-subtle-bolder {
-  0% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.03); filter: brightness(1.25); }
-  100% { transform: scale(1); filter: brightness(1); }
-}
-@keyframes win-subtle-dramatic {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0 var(--color-accent-cyan)); }
-  50% { transform: scale(1.05); filter: drop-shadow(0 0 12px var(--color-accent-cyan)); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 4px var(--color-accent-cyan)); }
-}
-
-.slot-text {
-  fill: var(--color-text-primary);
-  font-family: var(--font-display);
-  font-size: 10px;
-  font-weight: 500;
 }
 
 /* --- Controls Specific Layout --- */
@@ -1483,4 +1379,469 @@ input:disabled + .toggle-slider {
 .loading-coffee-link:hover {
   color: #fff;
   text-shadow: 0 0 10px rgba(0, 229, 255, 0.8);
+}
+
+/* =============================================================================
+   Header — account & audio layout
+   ============================================================================= */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* =============================================================================
+   Account button + dropdown
+   ============================================================================= */
+
+.account-menu-wrap {
+  position: relative;
+}
+
+.btn-account {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-panel);
+  color: var(--color-text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-account:hover {
+  background: var(--color-bg-panel-hover);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+.btn-account-logged-in {
+  border-color: rgba(0, 229, 255, 0.3);
+  color: var(--color-accent-cyan);
+}
+
+.account-username {
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 180px;
+  background: rgba(21, 24, 40, 0.98);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  padding: 0.5rem;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.account-dropdown-user {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.75rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 0.35rem;
+}
+
+.account-dropdown-username {
+  font-weight: 600;
+  color: var(--color-accent-cyan);
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+}
+
+.account-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: left;
+}
+
+.account-dropdown-item:hover {
+  background: var(--color-bg-panel-hover);
+}
+
+.account-dropdown-logout {
+  color: var(--color-status-error);
+  margin-top: 0.25rem;
+}
+
+/* =============================================================================
+   Modal shared utilities
+   ============================================================================= */
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* =============================================================================
+   Auth modal
+   ============================================================================= */
+
+.auth-modal {
+  position: relative;
+  width: min(90vw, 380px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 0.25rem;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 0.6rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.auth-tab:hover {
+  color: var(--color-text-primary);
+}
+
+.auth-tab-active {
+  color: var(--color-accent-cyan);
+  border-bottom-color: var(--color-accent-cyan);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.auth-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.6rem 0.875rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.auth-input:focus {
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.08);
+}
+
+.auth-input:disabled {
+  opacity: 0.5;
+}
+
+.auth-error {
+  background: rgba(255, 51, 102, 0.1);
+  border: 1px solid rgba(255, 51, 102, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 0.875rem;
+  color: var(--color-status-error);
+  font-size: 0.875rem;
+}
+
+.auth-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 0.25rem;
+}
+
+.auth-footer-text {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+.auth-link {
+  background: transparent;
+  border: none;
+  color: var(--color-accent-cyan);
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.auth-link:hover {
+  color: #fff;
+}
+
+/* =============================================================================
+   Cashier modal
+   ============================================================================= */
+
+.cashier-modal {
+  position: relative;
+  width: min(92vw, 460px);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.cashier-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1.5rem;
+}
+
+.cashier-header .modal-close-btn {
+  position: static;
+}
+
+.cashier-section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.75rem;
+}
+
+.cashier-wallet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cashier-wallet-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.875rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.cashier-wallet-row:hover {
+  background: var(--color-bg-panel-hover);
+}
+
+.cashier-wallet-active {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+.cashier-wallet-symbol {
+  font-size: 1.25rem;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.cashier-wallet-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cashier-wallet-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.cashier-wallet-code {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.cashier-wallet-balance {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-accent-cyan);
+  min-width: 6ch;
+  text-align: right;
+}
+
+.cashier-wallet-active-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--color-accent-cyan);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+}
+
+.cashier-deposit-note {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  margin: -0.25rem 0 0.75rem;
+}
+
+.cashier-success {
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 0.875rem;
+  color: var(--color-status-success);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.cashier-deposit-currency {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.cashier-currency-btn {
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cashier-currency-btn:hover {
+  background: var(--color-bg-panel-hover);
+  color: var(--color-text-primary);
+}
+
+.cashier-currency-active {
+  border-color: rgba(0, 229, 255, 0.5);
+  color: var(--color-accent-cyan);
+  background: rgba(0, 229, 255, 0.07);
+}
+
+.cashier-deposit-presets {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.cashier-preset-btn {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cashier-preset-btn:hover {
+  background: var(--color-bg-panel-hover);
+  color: var(--color-text-primary);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.cashier-deposit-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cashier-deposit-currency-symbol {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.cashier-deposit-input {
+  flex: 1;
+}
+
+.cashier-deposit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+}
+
+/* =============================================================================
+   Currency selector in Controls
+   ============================================================================= */
+
+.currency-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.btn-currency {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.78rem;
 }

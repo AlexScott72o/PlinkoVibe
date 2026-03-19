@@ -1,0 +1,142 @@
+[
+  {
+    "sessionId": "e2c32bf7-735c-4713-9b72-44f6a28cfd1d",
+    "balance": 99960,
+    "createdAt": 1773331750178,
+    "lastActiveAt": 1773331868786,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "429a9203-530a-4977-817f-ab46a913de6b",
+    "balance": 100000,
+    "createdAt": 1773331750185,
+    "lastActiveAt": 1773331750185,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "96a16a59-912b-48fd-9104-661b53fad30c",
+    "balance": 100000,
+    "createdAt": 1773331866319,
+    "lastActiveAt": 1773331866319,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "5a01ff7e-77e4-4cf0-a53f-1f3cfcde1997",
+    "balance": 100000,
+    "createdAt": 1773398923164,
+    "lastActiveAt": 1773398923164,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "9d1fe40d-25f7-4ba4-bc72-b66c205e15da",
+    "balance": 98350,
+    "createdAt": 1773398923169,
+    "lastActiveAt": 1773846538220,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "0d81e385-6d0b-40f4-832d-cef1cf031ada",
+    "balance": 100000,
+    "createdAt": 1773398941484,
+    "lastActiveAt": 1773398941484,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "bc4c4c6e-8218-473f-9a2a-c8058dd43808",
+    "balance": 100000,
+    "createdAt": 1773399071917,
+    "lastActiveAt": 1773399071917,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "963984cc-03ba-45e9-8390-623ebdf2685a",
+    "balance": 100000,
+    "createdAt": 1773399108340,
+    "lastActiveAt": 1773399108340,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "e9f5319b-153a-48d6-b92b-7adf08558d41",
+    "balance": 100000,
+    "createdAt": 1773399120616,
+    "lastActiveAt": 1773399120616,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "6739a19a-5391-4085-9ca5-c17403d5a974",
+    "balance": 100000,
+    "createdAt": 1773399197318,
+    "lastActiveAt": 1773399197318,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "19d631f9-9bed-4492-ba78-f8b03931d6fc",
+    "balance": 100000,
+    "createdAt": 1773399402787,
+    "lastActiveAt": 1773399402787,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "9f9e2fbc-99c1-4705-9aa6-b41d04c5d615",
+    "balance": 100000,
+    "createdAt": 1773399577586,
+    "lastActiveAt": 1773399577586,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "e2bc278d-dea0-40f4-b603-23fc05aebd54",
+    "balance": 100000,
+    "createdAt": 1773400237519,
+    "lastActiveAt": 1773400237519,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "0ecbfc6c-41d0-4f39-81da-5f034b24baa3",
+    "balance": 100000,
+    "createdAt": 1773407829997,
+    "lastActiveAt": 1773407829997,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "ea299f2e-5686-49ef-8afd-fdb2e3b4d315",
+    "balance": 100000,
+    "createdAt": 1773407850999,
+    "lastActiveAt": 1773407850999,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "4d5f2140-852d-4e89-9243-88bf15b4a4bc",
+    "balance": 100000,
+    "createdAt": 1773407851288,
+    "lastActiveAt": 1773407851288,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "88680a45-ee74-4b04-8399-2187bd64a502",
+    "balance": 100000,
+    "createdAt": 1773846101061,
+    "lastActiveAt": 1773846101061,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "9b99d2de-6bf8-4807-9a4b-a9b4dc3b207a",
+    "balance": 100000,
+    "createdAt": 1773846505555,
+    "lastActiveAt": 1773846505555,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "8e17d501-d336-4b84-8c73-ce53bf683517",
+    "balance": 100000,
+    "createdAt": 1773851063639,
+    "lastActiveAt": 1773851063639,
+    "createdByIp": "127.0.0.1"
+  },
+  {
+    "sessionId": "0e102717-8e0f-430f-8076-187f148c7aba",
+    "balance": 100000,
+    "createdAt": 1773851073022,
+    "lastActiveAt": 1773851073022,
+    "createdByIp": "127.0.0.1"
+  }
+]

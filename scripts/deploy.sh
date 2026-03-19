@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "==> Building backend (for Render)"
-npm run build --workspace=backend
+echo "==> Building RGS (for Render)"
+npm run build --workspace=rgs
+
+echo "==> Building PAM (for Render)"
+npm run build --workspace=pam
 
 echo "==> Building frontend (for Cloudflare Pages)"
 npm run build --workspace=frontend

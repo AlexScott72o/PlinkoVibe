@@ -1,9 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { usePlinko, MIN_BALLS, MAX_BALLS } from './hooks/usePlinko';
+import { useAuth } from './hooks/useAuth';
 import { Board } from './components/Board';
 import { Controls } from './components/Controls';
 import { Stats } from './components/Stats';
 import { SplashScreen } from './components/SplashScreen';
+import { AuthModal } from './components/AuthModal';
+import { CashierModal } from './components/CashierModal';
+import { CURRENCY_SYMBOLS } from 'shared';
 import {
   playPegBounce,
   playLanding,
@@ -18,12 +22,12 @@ import {
   startBackgroundMusic,
 } from './sound';
 
-/** Seconds of loading after which we assume the server is waking from sleep. */
 const SLOW_CONNECTION_THRESHOLD_S = 5;
-/** Render free-tier cold-start cap used for the progress bar (seconds). */
 const EXPECTED_WAKEUP_S = 60;
 
 function App() {
+  const auth = useAuth();
+
   const {
     balance,
     config,
@@ -47,7 +51,7 @@ function App() {
     error,
     playing,
     placeBet,
-  } = usePlinko({
+  } = usePlinko(auth, {
     onReveal: (result) => {
       if (result.winAmount > 0) playWin(result.winAmount, betAmount);
     },
@@ -58,20 +62,26 @@ function App() {
   const [bgmVolume, setBgmVolumeState] = useState(getBgmVolume);
   const [showSplash, setShowSplash] = useState(true);
   const [audioMenuOpen, setAudioMenuOpen] = useState(false);
-  const audioMenuRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showCashierModal, setShowCashierModal] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const audioMenuRef = useRef<HTMLDivElement>(null);
+  const accountMenuRef = useRef<HTMLDivElement>(null);
   const [loadingElapsedS, setLoadingElapsedS] = useState(0);
 
+  const isAppLoading = auth.status === 'loading' || loading;
+
   useEffect(() => {
-    if (!loading) {
+    if (!isAppLoading) {
       setLoadingElapsedS(0);
       return;
     }
     const interval = setInterval(() => setLoadingElapsedS((s) => s + 1), 1000);
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [isAppLoading]);
 
-  const isSlowConnection = loading && loadingElapsedS >= SLOW_CONNECTION_THRESHOLD_S;
+  const isSlowConnection = isAppLoading && loadingElapsedS >= SLOW_CONNECTION_THRESHOLD_S;
 
   const canBet =
     config &&
@@ -99,6 +109,17 @@ function App() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [audioMenuOpen]);
 
+  useEffect(() => {
+    if (!accountMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(e.target as Node)) {
+        setAccountMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [accountMenuOpen]);
+
   const setMusicMutedAndState = useCallback((muted: boolean) => {
     setMusicMuted(muted);
     setMusicMutedState(muted);
@@ -109,13 +130,11 @@ function App() {
     setSfxMutedState(muted);
   }, []);
 
-  // Start background music as soon as the game has loaded. If the browser blocks
-  // autoplay, music will start on first click/tap/key.
   useEffect(() => {
-    if (!loading) {
+    if (!isAppLoading) {
       tryAutoplayBackgroundMusic();
     }
-  }, [loading]);
+  }, [isAppLoading]);
 
   const handlePlaceBet = () => {
     void placeBet();
@@ -130,7 +149,10 @@ function App() {
     onLand(roundId);
   };
 
-  if (loading) {
+  // FUN uses an emoji in CURRENCY_SYMBOLS ('🎮'); hide it in the game UI so we show just "FUN".
+  const currencySymbol = auth.currency === 'FUN' ? '' : CURRENCY_SYMBOLS[auth.currency];
+
+  if (isAppLoading) {
     const progressPct = Math.min(
       100,
       ((loadingElapsedS - SLOW_CONNECTION_THRESHOLD_S) / (EXPECTED_WAKEUP_S - SLOW_CONNECTION_THRESHOLD_S)) * 100,
@@ -142,7 +164,7 @@ function App() {
         </header>
         <div className="loading">
           {!isSlowConnection ? (
-            <p className="display-text">[ ESTABLISHING SECURE RGS CONNECTION... ]</p>
+            <p className="display-text">[ ESTABLISHING SECURE CONNECTION... ]</p>
           ) : (
             <div className="loading-slow">
               <p className="loading-slow-title">
@@ -151,25 +173,21 @@ function App() {
                   <span>.</span><span>.</span><span>.</span>
                 </span>
               </p>
-
               <p className="loading-slow-body">
                 The server is starting up from sleep — this can take up to a minute
                 on the free tier. Please hang tight!
               </p>
-
               <div className="loading-progress-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progressPct)}>
                 <div className="loading-progress-fill" style={{ width: `${progressPct}%` }} />
               </div>
-
               <div className="loading-elapsed">
                 <span className="loading-elapsed-label">Waiting</span>
                 <span className="loading-elapsed-value">{loadingElapsedS}s</span>
               </div>
-
               <p className="loading-slow-support">
                 Enjoying the game? Help us upgrade to faster servers —{' '}
                 <a
-                  href="https://buymeacoffee.com/quitter"
+                  href="https://buymeacoffee.com/alexscott"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="loading-coffee-link"
@@ -187,87 +205,163 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <button
-          type="button"
-          className="mobile-menu-toggle header-icon-left"
-          onClick={() => setMobileMenuOpen(true)}
-          aria-label="Open settings"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3" />
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-          </svg>
-        </button>
-        <h1 className="logo-text">PlinkoVibe</h1>
-        <div className="audio-control-wrap" ref={audioMenuRef}>
+        <div className="header-left">
           <button
             type="button"
-            className="btn-mute"
-            onClick={() => setAudioMenuOpen((o) => !o)}
-            aria-label="Sound settings"
-            aria-expanded={audioMenuOpen}
-            aria-haspopup="true"
+            className="mobile-menu-toggle header-icon-left"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open settings"
           >
-            {musicMuted && sfxMuted ? (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-            ) : (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-              </svg>
-            )}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
           </button>
-          {audioMenuOpen && (
-            <div className="audio-menu" role="menu">
-              <div className="audio-menu-item">
-                <span className="audio-menu-label">Background music</span>
+
+          {/* Account menu */}
+          <div className="account-menu-wrap" ref={accountMenuRef}>
+            {auth.status === 'authenticated' ? (
+              <button
+                type="button"
+                className="btn-account btn-account-logged-in"
+                onClick={() => setAccountMenuOpen((o) => !o)}
+                aria-label="Account menu"
+                aria-expanded={accountMenuOpen}
+                aria-haspopup="true"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span className="account-username">{auth.username}</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn-account btn-account-guest"
+                onClick={() => setShowAuthModal(true)}
+                aria-label="Log in or register"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                <span>Log In</span>
+              </button>
+            )}
+
+            {accountMenuOpen && auth.status === 'authenticated' && (
+              <div className="account-dropdown" role="menu">
+                <div className="account-dropdown-user">
+                  <span className="caption-text">Logged in as</span>
+                  <span className="account-dropdown-username">{auth.username}</span>
+                </div>
                 <button
                   type="button"
-                  role="menuitemcheckbox"
-                  aria-checked={!musicMuted}
-                  className={`audio-menu-toggle ${musicMuted ? 'off' : 'on'}`}
-                  onClick={() => setMusicMutedAndState(!musicMuted)}
+                  role="menuitem"
+                  className="account-dropdown-item"
+                  onClick={() => { setShowCashierModal(true); setAccountMenuOpen(false); }}
                 >
-                  {musicMuted ? 'Off' : 'On'}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
+                    <line x1="2" y1="10" x2="22" y2="10" />
+                  </svg>
+                  Cashier
                 </button>
-              </div>
-              <div className="audio-menu-item audio-menu-item-slider">
-                <span className="audio-menu-label">Music volume</span>
-                <input
-                  type="range"
-                  min={0}
-                  max={100}
-                  value={Math.round(bgmVolume * 100)}
-                  onChange={(e) => {
-                    const v = Number(e.target.value) / 100;
-                    setBgmVolume(v);
-                    setBgmVolumeState(v);
-                  }}
-                  className="audio-volume-slider"
-                  aria-label="Music volume"
-                />
-              </div>
-              <div className="audio-menu-item">
-                <span className="audio-menu-label">Sound effects</span>
                 <button
                   type="button"
-                  role="menuitemcheckbox"
-                  aria-checked={!sfxMuted}
-                  className={`audio-menu-toggle ${sfxMuted ? 'off' : 'on'}`}
-                  onClick={() => setSfxMutedAndState(!sfxMuted)}
+                  role="menuitem"
+                  className="account-dropdown-item account-dropdown-logout"
+                  onClick={async () => { setAccountMenuOpen(false); await auth.logout(); }}
                 >
-                  {sfxMuted ? 'Off' : 'On'}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                  </svg>
+                  Log Out
                 </button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        </div>
+
+        <h1 className="logo-text">PlinkoVibe</h1>
+
+        <div className="header-right">
+          {/* Audio menu */}
+          <div className="audio-control-wrap" ref={audioMenuRef}>
+            <button
+              type="button"
+              className="btn-mute"
+              onClick={() => setAudioMenuOpen((o) => !o)}
+              aria-label="Sound settings"
+              aria-expanded={audioMenuOpen}
+              aria-haspopup="true"
+            >
+              {musicMuted && sfxMuted ? (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+              ) : (
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+              )}
+            </button>
+            {audioMenuOpen && (
+              <div className="audio-menu" role="menu">
+                <div className="audio-menu-item">
+                  <span className="audio-menu-label">Background music</span>
+                  <button
+                    type="button"
+                    role="menuitemcheckbox"
+                    aria-checked={!musicMuted}
+                    className={`audio-menu-toggle ${musicMuted ? 'off' : 'on'}`}
+                    onClick={() => setMusicMutedAndState(!musicMuted)}
+                  >
+                    {musicMuted ? 'Off' : 'On'}
+                  </button>
+                </div>
+                <div className="audio-menu-item audio-menu-item-slider">
+                  <span className="audio-menu-label">Music volume</span>
+                  <input
+                    type="range"
+                    min={0}
+                    max={100}
+                    value={Math.round(bgmVolume * 100)}
+                    onChange={(e) => {
+                      const v = Number(e.target.value) / 100;
+                      setBgmVolume(v);
+                      setBgmVolumeState(v);
+                    }}
+                    className="audio-volume-slider"
+                    aria-label="Music volume"
+                  />
+                </div>
+                <div className="audio-menu-item">
+                  <span className="audio-menu-label">Sound effects</span>
+                  <button
+                    type="button"
+                    role="menuitemcheckbox"
+                    aria-checked={!sfxMuted}
+                    className={`audio-menu-toggle ${sfxMuted ? 'off' : 'on'}`}
+                    onClick={() => setSfxMutedAndState(!sfxMuted)}
+                  >
+                    {sfxMuted ? 'Off' : 'On'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
+
       <main className="main">
         <section className="board-hero">
           {error && error !== 'Insufficient balance' && error !== 'Bet out of range' && (
@@ -332,8 +426,8 @@ function App() {
               BET {Number.isInteger(totalBet) ? totalBet : totalBet.toFixed(2)}
             </span>
             <div className="mobile-balance">
-              <span className="caption-text">BALANCE (FUN)</span>
-              <span className="stat-value">{balance.toFixed(2)}</span>
+              <span className="caption-text">BALANCE ({auth.currency})</span>
+              <span className="stat-value">{currencySymbol}{balance.toFixed(2)}</span>
             </div>
           </div>
         </section>
@@ -356,6 +450,8 @@ function App() {
             onPlay={handlePlaceBet}
             error={error}
             balance={balance}
+            currency={auth.currency}
+            currencySymbol={currencySymbol}
           />
         </aside>
 
@@ -363,6 +459,8 @@ function App() {
           <Stats
             balance={balance}
             lastResults={lastResults}
+            currency={auth.currency}
+            currencySymbol={currencySymbol}
           />
         </aside>
 
@@ -404,11 +502,15 @@ function App() {
               onPlay={handlePlaceBet}
               error={error}
               balance={balance}
+              currency={auth.currency}
+              currencySymbol={currencySymbol}
               hideBetButton
             />
             <Stats
               balance={balance}
               lastResults={lastResults}
+              currency={auth.currency}
+              currencySymbol={currencySymbol}
               hideBalance
             />
           </div>
@@ -416,12 +518,20 @@ function App() {
       </main>
 
       {showSplash && (
-        <SplashScreen 
+        <SplashScreen
           onDismiss={() => {
             setShowSplash(false);
             if (!musicMuted) startBackgroundMusic();
-          }} 
+          }}
         />
+      )}
+
+      {showAuthModal && (
+        <AuthModal auth={auth} onClose={() => setShowAuthModal(false)} />
+      )}
+
+      {showCashierModal && auth.status === 'authenticated' && (
+        <CashierModal auth={auth} onClose={() => setShowCashierModal(false)} />
       )}
     </div>
   );

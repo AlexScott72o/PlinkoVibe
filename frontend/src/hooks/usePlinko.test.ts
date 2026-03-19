@@ -7,10 +7,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { usePlinko } from './usePlinko';
+import type { AuthState } from './useAuth';
 import type { PlaceBetResponse } from 'shared';
 
 vi.mock('../api', () => ({
-  ensureSession: vi.fn().mockResolvedValue({ sessionId: 'test-session', balance: 100 }),
   getConfig: vi.fn().mockResolvedValue({
     minBet: 0.1,
     maxBet: 1000,
@@ -25,6 +25,25 @@ vi.mock('../api', () => ({
   } as PlaceBetResponse),
 }));
 
+vi.mock('../pamApi', () => ({
+  getToken: vi.fn().mockReturnValue(null),
+  getGuestBalance: vi.fn().mockResolvedValue({ balance: 100 }),
+}));
+
+const mockAuth: AuthState = {
+  status: 'guest',
+  userId: null,
+  username: null,
+  guestSessionId: 'test-guest-session',
+  currency: 'FUN',
+  setCurrency: vi.fn(),
+  walletBalances: null,
+  refreshWalletBalances: vi.fn().mockResolvedValue(undefined),
+  login: vi.fn(),
+  register: vi.fn(),
+  logout: vi.fn(),
+};
+
 describe('usePlinko', () => {
   beforeEach(() => {
     vi.useFakeTimers();
@@ -34,7 +53,7 @@ describe('usePlinko', () => {
   });
 
   it('does not update balance or lastResults until the ball lands', async () => {
-    const { result } = renderHook(() => usePlinko());
+    const { result } = renderHook(() => usePlinko(mockAuth));
 
     await act(async () => {
       vi.runAllTimersAsync();

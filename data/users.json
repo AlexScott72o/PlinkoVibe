@@ -1,0 +1,17 @@
+[
+  {
+    "userId": "ce9e3a98-8e7b-4925-9be9-781acf8e8096",
+    "username": "alexscott72o",
+    "passwordHash": "$2a$12$eYAXwNxeZO0Pxs.i1FXgyuXO0m.guojrtMEvnm1OGamKcuvSmEi4y",
+    "createdAt": 1773331908058,
+    "lastLoginAt": 1773331908058,
+    "createdByIp": "127.0.0.1",
+    "wallets": {
+      "FUN": 98835,
+      "USD": 0,
+      "EUR": 100000,
+      "GBP": 0,
+      "CAD": 50000
+    }
+  }
+]

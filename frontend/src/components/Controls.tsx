@@ -1,4 +1,4 @@
-import type { ConfigResponse, RiskLevel } from 'shared';
+import type { ConfigResponse, RiskLevel, Currency } from 'shared';
 import { MIN_BALLS, MAX_BALLS, type AnimationSpeed } from '@/hooks/usePlinko';
 
 const SPEED_OPTIONS: AnimationSpeed[] = ['slow', 'regular', 'turbo'];
@@ -21,6 +21,9 @@ interface ControlsProps {
   error: string | null;
   balance: number;
   hideBetButton?: boolean;
+  currency?: Currency;
+  onCurrencyChange?: (c: Currency) => void;
+  currencySymbol?: string;
 }
 
 function clampBalls(v: number): number {
@@ -45,6 +48,8 @@ export function Controls({
   error,
   balance,
   hideBetButton,
+  currency = 'FUN',
+  currencySymbol = '🎮',
 }: ControlsProps) {
   const rowsList = config?.rows ?? [8, 10, 12, 14];
   const riskList = config?.riskLevels ?? (['low', 'medium', 'high'] as RiskLevel[]);
@@ -57,9 +62,11 @@ export function Controls({
   return (
     <div className={`controls-panel panel-overlay ${playing ? 'controls-disabled' : ''}`}>
       {error && <div className="error-msg">{error}</div>}
-      
+
       <div className="control-group">
-        <span className="control-label">Bet Amount</span>
+        <span className="control-label">
+          Bet Amount ({currency === 'FUN' ? currency : currencySymbol || currency})
+        </span>
         <div className="bet-input-row">
           <button
             type="button"
